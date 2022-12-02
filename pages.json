@@ -1,0 +1,149 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+
+		{
+			"path": "pages/mainEntrance/mainEntrance",
+			"style": {
+				"navigationBarTitleText": "mainEntrance",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/trending/charts/charts",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"backgroundColor": "#ffffff",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationStyle": "custom"
+			}
+		}, {
+			// 登录
+			"path": "pages/login/login/login",
+			"style": {
+				"navigationBarTitleText": "login",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			// 注册
+			"path": "pages/login/register/register",
+			"style": {
+				"navigationBarTitleText": "register",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/home/playlists/playlists",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#ffffff",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationStyle": "custom"
+
+			}
+
+		}, {
+			"path": "pages/home/albums/albums",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#ffffff",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/home/songs/songs",
+			"style": {
+				"navigationBarTitleText": "音乐",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#ffffff",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"type": "float",
+						"backgroundColor": "#ffffff",
+						"bounce":"none",
+						"background":"#ffffff"
+					}
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/home/artists/artists",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "歌手",
+                "enablePullDownRefresh": false,
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#ffffff",
+				"navigationBarBackgroundColor": "#ffffff",
+				// "navigationStyle": "custom",
+				"app-plus": {
+					"scrollIndicator": "none"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/dailyrecommendations/dailyrecommendations",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "dailyrecommendations",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/issuanceTrends/issuanceTrends",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "issuanceTrends",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/home/event/event",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "event",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/login/scan/scan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "扫码登录",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff",
+		"app-plus": {
+			"bounce":"none"
+		}
+		// "allowsBounceVertical": "NO"
+	},
+	"uniIdRouter": {}
+}

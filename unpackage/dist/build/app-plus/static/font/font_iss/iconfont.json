@@ -1,0 +1,37 @@
+{
+  "id": "3766712",
+  "name": "lok音乐",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "588389",
+      "name": "aite",
+      "font_class": "aite",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "3878673",
+      "name": "音乐",
+      "font_class": "music",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "11372711",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e8ba",
+      "unicode_decimal": 59578
+    },
+    {
+      "icon_id": "12856948",
+      "name": "麦克风",
+      "font_class": "maikefeng",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
