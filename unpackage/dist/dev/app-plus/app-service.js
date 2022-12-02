@@ -4062,7 +4062,8 @@ if (uni.restoreGlobal) {
         musicImage: "",
         musicPlayStatus: false,
         firstPlay: true
-      }
+      },
+      css_style: false
     },
     mutations: {
       phoneInfo(state, val) {
@@ -4365,7 +4366,7 @@ if (uni.restoreGlobal) {
           onScrolltolower: scrolltolower
         }, [
           vue.createElementVNode("view", {
-            class: "home_content",
+            class: vue.normalizeClass(["home_content", vue.unref(store).state.css_style ? "gray_filter" : ""]),
             style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
           }, [
             vue.createElementVNode("view", { class: "title" }, [
@@ -4586,7 +4587,7 @@ if (uni.restoreGlobal) {
                 [vue.vShow, !vue.unref(loadingStatus)]
               ]);
             }), 256)) : vue.createCommentVNode("v-if", true)
-          ], 4),
+          ], 6),
           vue.unref(issuanceStatus) && vue.unref(loginStatus) ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("view", {
             key: 0,
             class: "issuance",
@@ -4664,7 +4665,10 @@ if (uni.restoreGlobal) {
       };
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-        return vue.openBlock(), vue.createElementBlock("scroll-view", { "scroll-y": "" }, [
+        return vue.openBlock(), vue.createElementBlock("scroll-view", {
+          "scroll-y": "",
+          class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
+        }, [
           vue.createElementVNode("view", {
             class: "trending_content",
             style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
@@ -4843,7 +4847,7 @@ if (uni.restoreGlobal) {
               ])
             ])
           ], 4)
-        ]);
+        ], 2);
       };
     }
   };
@@ -4906,7 +4910,8 @@ if (uni.restoreGlobal) {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("scroll-view", {
           "scroll-y": "",
-          onScrolltolower: scrolltolower
+          onScrolltolower: scrolltolower,
+          class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
         }, [
           vue.createElementVNode("view", {
             class: "search_content",
@@ -4962,7 +4967,7 @@ if (uni.restoreGlobal) {
               }), 256))
             ])
           ], 4)
-        ], 32);
+        ], 34);
       };
     }
   };
@@ -4999,7 +5004,10 @@ if (uni.restoreGlobal) {
       };
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-        return vue.openBlock(), vue.createElementBlock("scroll-view", { "scroll-y": "" }, [
+        return vue.openBlock(), vue.createElementBlock("scroll-view", {
+          "scroll-y": "",
+          class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
+        }, [
           vue.createElementVNode("view", {
             class: "radios_content",
             style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
@@ -5094,7 +5102,7 @@ if (uni.restoreGlobal) {
               [vue.vShow, vue.unref(current) == 1]
             ])
           ], 4)
-        ]);
+        ], 2);
       };
     }
   };
@@ -5134,7 +5142,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", {
-          class: "setting_content",
+          class: vue.normalizeClass(["setting_content", vue.unref(store).state.css_style ? "gray_filter" : ""]),
           style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
         }, [
           vue.createElementVNode("view", { class: "title" }, [
@@ -5170,7 +5178,7 @@ if (uni.restoreGlobal) {
               vue.createElementVNode("view", { onClick: gologin }, vue.toDisplayString(vue.unref(testlogin)), 1)
             ])
           ])
-        ], 4);
+        ], 6);
       };
     }
   };
@@ -5242,7 +5250,9 @@ if (uni.restoreGlobal) {
         }
       };
       return (_ctx, _cache) => {
-        return vue.openBlock(), vue.createElementBlock("view", { class: "tabbar" }, [
+        return vue.openBlock(), vue.createElementBlock("view", {
+          class: vue.normalizeClass(["tabbar", vue.unref(store).state.css_style ? "gray_filter" : ""])
+        }, [
           (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(tabbar2), (item, index) => {
             return vue.openBlock(), vue.createElementBlock("view", {
               onClick: ($event) => changeTabbar(index)
@@ -5259,7 +5269,7 @@ if (uni.restoreGlobal) {
               }, vue.toDisplayString(item.name), 3)
             ], 8, ["onClick"]);
           }), 256))
-        ]);
+        ], 2);
       };
     }
   };
@@ -5516,8 +5526,12 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_notice_bar = resolveEasycom(vue.resolveDynamicComponent("uni-notice-bar"), __easycom_0);
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-          vue.withDirectives(vue.createElementVNode("view", { class: "play_tabbar" }, [
-            vue.createElementVNode("view"),
+          vue.withDirectives(vue.createElementVNode("view", {
+            class: vue.normalizeClass(["play_tabbar", vue.unref(store).state.css_style ? "gray_filter" : ""])
+          }, [
+            vue.createElementVNode("view", {
+              class: vue.normalizeClass(["play_tabbar_1", vue.unref(store).state.css_style ? "play_tabbar_1_1" : ""])
+            }, null, 2),
             vue.createElementVNode("view", { class: "playsetting" }, [
               vue.withDirectives(vue.createElementVNode("image", {
                 src: "/static/image/demo.jpeg",
@@ -5576,10 +5590,12 @@ if (uni.restoreGlobal) {
                 })
               ])
             ])
-          ], 512), [
+          ], 2), [
             [vue.vShow, !vue.unref(props).meauStatus]
           ]),
-          vue.withDirectives(vue.createElementVNode("view", null, [
+          vue.withDirectives(vue.createElementVNode("view", {
+            class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
+          }, [
             vue.createElementVNode("view", {
               class: vue.normalizeClass(["radioMeau_left", [showMeauStatus.value ? "" : "tranX2", showMeauStatus.value && vue.unref(firstOpen) ? "tranX2-2" : ""]])
             }, [
@@ -5643,7 +5659,7 @@ if (uni.restoreGlobal) {
                 [vue.vShow, vue.unref(musicInfo).musicImage]
               ])
             ])
-          ], 512), [
+          ], 2), [
             [vue.vShow, vue.unref(props).meauStatus]
           ])
         ], 64);
@@ -5838,7 +5854,8 @@ if (uni.restoreGlobal) {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("scroll-view", {
           "scroll-y": "",
-          "show-scrollbar": false
+          "show-scrollbar": false,
+          class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
         }, [
           vue.createElementVNode("view", {
             class: "charts",
@@ -5958,7 +5975,7 @@ if (uni.restoreGlobal) {
               [vue.vShow, vue.unref(current) == 2]
             ])
           ], 4)
-        ]);
+        ], 2);
       };
     }
   };
@@ -6074,7 +6091,10 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-          vue.unref(loginStatus) ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
+          vue.unref(loginStatus) ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: vue.normalizeClass(_ctx.store.state.css_style ? "gray_filter" : "")
+          }, [
             vue.createElementVNode("view", { class: "login" }, [
               vue.createElementVNode("image", {
                 style: { "width": "100%", "height": "100%" },
@@ -6141,11 +6161,11 @@ if (uni.restoreGlobal) {
                 vue.createElementVNode("text", { onClick: goregister }, "\u6CE8\u518C")
               ])
             ])
-          ])) : vue.createCommentVNode("v-if", true),
+          ], 2)) : vue.createCommentVNode("v-if", true),
           vue.createCommentVNode(" //\u9A8C\u8BC1\u7801\u767B\u5F55 "),
           !vue.unref(loginStatus) ? (vue.openBlock(), vue.createElementBlock("view", {
             key: 1,
-            class: "codelogin"
+            class: vue.normalizeClass(["codelogin", _ctx.store.state.css_style ? "gray_filter" : ""])
           }, [
             vue.createElementVNode("view", { class: "login" }, [
               vue.createElementVNode("image", {
@@ -6203,7 +6223,7 @@ if (uni.restoreGlobal) {
                 vue.createElementVNode("text", { onClick: goregister }, "\u6CE8\u518C")
               ])
             ])
-          ])) : vue.createCommentVNode("v-if", true)
+          ], 2)) : vue.createCommentVNode("v-if", true)
         ], 64);
       };
     }
@@ -6306,7 +6326,9 @@ if (uni.restoreGlobal) {
       };
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-        return vue.openBlock(), vue.createElementBlock("view", null, [
+        return vue.openBlock(), vue.createElementBlock("view", {
+          class: vue.normalizeClass(_ctx.store.state.css_style ? "gray_filter" : "")
+        }, [
           vue.createElementVNode("view", { class: "logins" }, [
             vue.createElementVNode("image", {
               style: { "width": "100%", "height": "100%" },
@@ -6395,7 +6417,7 @@ if (uni.restoreGlobal) {
               vue.createElementVNode("text", { onClick: goback }, "\u8FD4\u56DE")
             ])
           ])
-        ]);
+        ], 2);
       };
     }
   };
@@ -6451,7 +6473,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", {
-          class: "playlists",
+          class: vue.normalizeClass(["playlists", vue.unref(store).state.css_style ? "gray_filter" : ""]),
           style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
         }, [
           vue.createElementVNode("view", {
@@ -6516,7 +6538,7 @@ if (uni.restoreGlobal) {
 		<view class="selectmore" @click="addindex2">
 			{{index2?"\u67E5\u770B\u66F4\u591A...":"\u7F29\u8D77..."}}
 		</view> `)
-        ], 4);
+        ], 6);
       };
     }
   };
@@ -6550,7 +6572,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", {
-          class: "albums",
+          class: vue.normalizeClass(["albums", vue.unref(store).state.css_style ? "gray_filter" : ""]),
           style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
         }, [
           vue.createElementVNode("view", {
@@ -6576,7 +6598,7 @@ if (uni.restoreGlobal) {
               ]);
             }), 256))
           ])
-        ], 4);
+        ], 6);
       };
     }
   };
@@ -6643,7 +6665,7 @@ if (uni.restoreGlobal) {
         const _component_uni_load_more = resolveEasycom(vue.resolveDynamicComponent("uni-load-more"), __easycom_1$1);
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
           vue.createElementVNode("view", {
-            class: vue.normalizeClass(vue.unref(loadingStatus) ? "" : "songs"),
+            class: vue.normalizeClass([vue.unref(store).state.css_style ? "gray_filter" : "", vue.unref(loadingStatus) ? "" : "songs"]),
             style: vue.normalizeStyle([{ "box-sizing": "border-box" }, { paddingTop: vue.unref(statusBarHeight) + "px" }])
           }, [
             vue.createCommentVNode(' <uni-load-more iconType="circle" /> '),
@@ -6820,7 +6842,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
           vue.createElementVNode("view", {
-            class: "songs",
+            class: vue.normalizeClass(["songs", vue.unref(store).state.css_style ? "gray_filter" : ""]),
             style: { "box-sizing": "border-box" }
           }, [
             vue.createCommentVNode(` <view class="title" :style="{paddingTop:statusBarHeight+'px'}">\r
@@ -6863,7 +6885,7 @@ if (uni.restoreGlobal) {
                 }), 128))
               ], 8, ["scroll-into-view"])
             ])
-          ]),
+          ], 2),
           vue.createElementVNode("view", { class: "letter-nav" }, [
             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(indexList), (item, index) => {
               return vue.openBlock(), vue.createElementBlock("view", {
@@ -6914,7 +6936,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", {
-          class: "dailyrecommendations",
+          class: vue.normalizeClass(["dailyrecommendations", vue.unref(store).state.css_style ? "gray_filter" : ""]),
           style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
         }, [
           vue.createElementVNode("view", { class: "goback" }, [
@@ -6964,7 +6986,7 @@ if (uni.restoreGlobal) {
               ]);
             }), 256))
           ])
-        ], 4);
+        ], 6);
       };
     }
   };
@@ -10964,7 +10986,7 @@ if (uni.restoreGlobal) {
         const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_3);
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
           vue.createElementVNode("view", {
-            class: "issuanceTrends",
+            class: vue.normalizeClass(["issuanceTrends", vue.unref(store).state.css_style ? "gray_filter" : ""]),
             style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
           }, [
             vue.createElementVNode("view", { class: "issuanceTrends_title" }, [
@@ -11084,7 +11106,7 @@ if (uni.restoreGlobal) {
                 })) : vue.createCommentVNode("v-if", true)
               ])
             ])
-          ], 4),
+          ], 6),
           vue.createVNode(_component_uni_popup, {
             ref: "popup",
             type: "bottom"
@@ -11256,7 +11278,7 @@ if (uni.restoreGlobal) {
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
         return vue.openBlock(), vue.createElementBlock("view", {
-          class: "event",
+          class: vue.normalizeClass(["event", vue.unref(store).state.css_style ? "gray_filter" : ""]),
           style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
         }, [
           vue.createElementVNode("view", { class: "goback" }, [
@@ -11385,7 +11407,7 @@ if (uni.restoreGlobal) {
               class: "event_iconmeau_first"
             }, " 678 "))
           ])
-        ], 4);
+        ], 6);
       };
     }
   };

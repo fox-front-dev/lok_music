@@ -1,5 +1,5 @@
 <template>
-	<view class="main">
+	<view class="main" >
 		<home v-show="ctabbarItem===0"></home>
 		<trending v-show="ctabbarItem===1"></trending>
 		<search v-show="ctabbarItem===2"></search>

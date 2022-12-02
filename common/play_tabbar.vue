@@ -1,6 +1,7 @@
 <template>
-	<view class="play_tabbar" v-show="!props.meauStatus">
-		<view></view>
+
+	<view class="play_tabbar" v-show="!props.meauStatus" :class="store.state.css_style?'gray_filter':''" >
+		<view class="play_tabbar_1"  :class="store.state.css_style?'play_tabbar_1_1':''" ></view>
 		<view class="playsetting">
 			<image v-show="!(musicInfo.musicImage)" src="../static/image/demo.jpeg" class="imagesetting" mode="">
 			</image>
@@ -28,7 +29,7 @@
 			</view>
 		</view>
 	</view>
-	<view v-show="props.meauStatus">
+	<view v-show="props.meauStatus" :class="store.state.css_style?'gray_filter':''">
 		<view class="radioMeau_left" :class="[showMeauStatus?'':'tranX2',showMeauStatus&&firstOpen?'tranX2-2':'']">
 			<view class="titles" style="font-size: 16px;">
 				<!-- {{musicInfo.musicName}} -->
@@ -117,7 +118,7 @@
 		animation: roles 8s linear infinite;
 	}
 
-	.play_tabbar>view:nth-child(1) {
+	.play_tabbar_1 {
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -126,9 +127,13 @@
 		width: 100%;
 		height: 100%;
 		backdrop-filter: blur(20px);
-		background-color: rgba(238, 238, 238, 0.4);
+		background-color: rgba(238, 238, 238, 0.6);
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+	}
+	.play_tabbar_1_1{
+		backdrop-filter: blur(40px) !important;
+		background-color: rgba(238, 238, 238, 0.9) !important;
 	}
 
 	.playsetting {

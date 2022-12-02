@@ -1,5 +1,5 @@
 <template>
-	<view class="tabbar">
+	<view class="tabbar"  :class="store.state.css_style?'gray_filter':''">
 		<view v-for="item,index in tabbar" @click="changeTabbar(index)">
 			<view>
 				<image style="width: 40rpx;height: 40rpx;" :src="ctabbarItem==index? item.cimage: item.unimage" mode="">
@@ -27,7 +27,7 @@
 	import {
 		ref,getCurrentInstance
 	} from "vue"
-
+	import store from "../store/index.js"
 const proxy = getCurrentInstance()
 	let ctabbarItem = ref(0)
 	let tabbar = ref([{

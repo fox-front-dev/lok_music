@@ -39,7 +39,8 @@ const store = createStore({
 			musicImage: "",
 			musicPlayStatus: false,
 			firstPlay: true
-		}
+		},
+		css_style:false
 	},
 	mutations: {
 		//收入手机状态栏高度

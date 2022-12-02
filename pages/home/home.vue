@@ -1,7 +1,7 @@
 <template>
-	<scroll-view @scroll="scroll_event" scroll-y @scrolltolower="scrolltolower">
+	<scroll-view @scroll="scroll_event"  scroll-y @scrolltolower="scrolltolower">
 
-		<view class="home_content" :style="{paddingTop:statusBarHeight+'px'}">
+		<view class="home_content"  :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
 			<view class="title">
 				<view class="title_left">
 					音乐室

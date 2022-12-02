@@ -1,5 +1,5 @@
 <template>
-	<scroll-view  scroll-y :show-scrollbar="false">
+	<scroll-view  scroll-y :show-scrollbar="false"  :class="store.state.css_style?'gray_filter':''">
 	<view class="charts" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="title">
 			<view class="title_left" @click="get">

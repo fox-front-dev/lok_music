@@ -1,5 +1,5 @@
 <template>
-	<view class="issuanceTrends" :style="{paddingTop:statusBarHeight+'px'}">
+	<view class="issuanceTrends"  :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="issuanceTrends_title">
 			<uni-icons type="back" @click="gobacks" size="20"></uni-icons>
 			发图文

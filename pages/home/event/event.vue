@@ -1,5 +1,5 @@
 <template>
-	<view class="event" :style="{paddingTop:statusBarHeight+'px'}">
+	<view class="event"  :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="goback">
 			<uni-icons @click="gobacks" type="back" size="20"></uni-icons>
 			动态

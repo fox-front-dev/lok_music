@@ -1,5 +1,5 @@
 <template>
-	<view class="playlists" :style="{paddingTop:statusBarHeight+'px'}">
+	<view class="playlists"  :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="title" @click="goback">
 			<uni-icons style="vertical-align: middle;" type="back" size="30"></uni-icons>
 			<view class="title_left">

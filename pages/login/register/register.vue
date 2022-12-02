@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view  :class="store.state.css_style?'gray_filter':''">
 		<view class="logins">
 			<image style="width: 100%;height: 100%;" src="../../../static/image/firefox.png" mode="aspectFill"></image>
 		</view>

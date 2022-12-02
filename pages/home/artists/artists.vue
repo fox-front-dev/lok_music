@@ -1,5 +1,5 @@
 <template>
-	<view class="songs" style="box-sizing: border-box;" >
+	<view class="songs" :class="store.state.css_style?'gray_filter':''" style="box-sizing: border-box;" >
 		<!-- <view class="title" :style="{paddingTop:statusBarHeight+'px'}">
 			<uni-icons @click="goback" style="vertical-align: middle;" type="back" size="30"></uni-icons>
 			<view class="title_left">

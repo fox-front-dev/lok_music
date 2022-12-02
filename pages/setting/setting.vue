@@ -1,5 +1,5 @@
 <template>
-	<view class="setting_content" :style="{paddingTop:statusBarHeight+'px'}">
+	<view class="setting_content" :style="{paddingTop:statusBarHeight+'px'}"  :class="store.state.css_style?'gray_filter':''">
 		<view class="title">
 			<image v-if="!store.state.userInfo.userAvatar" style="width: 50px;height: 50px;" src="../../static/image/Avatar.png" mode="">
 			</image>

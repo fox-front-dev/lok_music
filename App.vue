@@ -102,7 +102,9 @@
 
 <style>
 	@import "@/static/font/font_iss/iconfont.css";
-
+	.gray_filter{
+		filter: grayscale(85%) saturate(80%);
+	}
 	/*每个页面公共css */
 	/* @font-face{
 		font-family: "pf";

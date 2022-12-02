@@ -1,5 +1,5 @@
 <template>
-	<view class="dailyrecommendations" :style="{paddingTop:statusBarHeight+'px'}">
+	<view class="dailyrecommendations" :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="goback">
 			<uni-icons @click="gobacks" type="back" size="20"></uni-icons>
 			每日推荐

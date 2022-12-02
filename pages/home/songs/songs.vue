@@ -1,5 +1,5 @@
 <template>
-	<view :class="loadingStatus?'':'songs'" style="box-sizing: border-box;" :style="{paddingTop:statusBarHeight+'px'}">
+	<view  :class="[store.state.css_style?'gray_filter':'',loadingStatus?'':'songs']" style="box-sizing: border-box;" :style="{paddingTop:statusBarHeight+'px'}">
 		<!-- <uni-load-more iconType="circle" /> -->
 		<view class="goback">
 			<uni-icons @click="gobacks" type="back" size="20"></uni-icons>

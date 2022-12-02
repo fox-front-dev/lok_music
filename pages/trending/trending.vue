@@ -1,5 +1,5 @@
 <template>
-	<scroll-view scroll-y>
+	<scroll-view scroll-y  :class="store.state.css_style?'gray_filter':''">
 		<view class="trending_content" :style="{paddingTop:statusBarHeight+'px'}">
 			<view class="trending_title">
 				<view class="title_left">

@@ -826,7 +826,7 @@
 .imageroles[data-v-7d022d33] {
 		animation: roles-7d022d33 8s linear infinite;
 }
-.play_tabbar>uni-view[data-v-7d022d33]:nth-child(1) {
+.play_tabbar_1[data-v-7d022d33] {
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -836,9 +836,14 @@
 		height: 100%;
 		-webkit-backdrop-filter: blur(20px);
 		        backdrop-filter: blur(20px);
-		background-color: rgba(238, 238, 238, 0.4);
+		background-color: rgba(238, 238, 238, 0.6);
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+}
+.play_tabbar_1_1[data-v-7d022d33]{
+		-webkit-backdrop-filter: blur(40px) !important;
+		        backdrop-filter: blur(40px) !important;
+		background-color: rgba(238, 238, 238, 0.9) !important;
 }
 .playsetting[data-v-7d022d33] {
 		height: 100%;

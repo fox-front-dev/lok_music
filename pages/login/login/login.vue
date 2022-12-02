@@ -1,5 +1,5 @@
 <template>
-	<view v-if="loginStatus">
+	<view v-if="loginStatus"  :class="store.state.css_style?'gray_filter':''">
 		<view class="login">
 			<image style="width: 100%;height: 100%;" src="../../../static/image/firefox.png" mode=""></image>
 		</view>
@@ -39,7 +39,7 @@
 		</view>
 	</view>
 	<!-- //验证码登录 -->
-	<view class="codelogin" v-if="!loginStatus">
+	<view class="codelogin" v-if="!loginStatus"  :class="store.state.css_style?'gray_filter':''">
 		<view class="login">
 			<image style="width: 100%;height: 100%;" src="../../../static/image/firefox.png" mode=""></image>
 		</view>

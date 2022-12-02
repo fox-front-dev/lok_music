@@ -1,5 +1,5 @@
 <template>
-	<scroll-view scroll-y @scrolltolower="scrolltolower">
+	<scroll-view scroll-y @scrolltolower="scrolltolower"  :class="store.state.css_style?'gray_filter':''">
 		<view class="search_content" :style="{paddingTop:statusBarHeight+'px'}">
 			<view class="title">
 				<view class="title_left">
