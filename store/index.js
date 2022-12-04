@@ -40,6 +40,7 @@ const store = createStore({
 			musicPlayStatus: false,
 			firstPlay: true
 		},
+		// 控制是否哀悼模式 false否，true是
 		css_style:false
 	},
 	mutations: {

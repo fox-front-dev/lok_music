@@ -1,0 +1,43 @@
+
+.title.data-v-80346010 {
+		height: 106rpx;
+		display: flex;
+		padding: 0 30rpx;
+		/* justify-content: space-between; */
+		box-sizing: border-box;
+		border-bottom: 1px solid #eeeeee;
+		align-items: center;
+}
+.albums.data-v-80346010 {
+		padding-bottom: 30rpx;
+}
+.title_left.data-v-80346010 {
+		font-size: 30px;
+}
+.albums_container.data-v-80346010 {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top: 30rpx;
+		padding: 15px;
+}
+.albums_container_item1.data-v-80346010 {
+		width: 330rpx;
+		height: 440rpx;
+		margin-top: 10px;
+}
+.albums_image.data-v-80346010 {
+		width: 330rpx;
+		height: 330rpx;
+		border-radius: 20rpx;
+}
+.albums_name.data-v-80346010 {
+		text-overflow: -o-ellipsis-lastline;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		font-size: 16px;
+		text-align: center;
+}

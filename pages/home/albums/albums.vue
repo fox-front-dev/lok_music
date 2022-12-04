@@ -47,6 +47,10 @@
 	const getsublistalbum = async () => {
 		await axios.sublistalbum({}).then(res => {
 			albumlist.value=res.data.data
+		}).catch(err=>{
+			setTimeout(()=>{
+				getsublistalbum()
+			},1000)
 		})
 	}
 </script>

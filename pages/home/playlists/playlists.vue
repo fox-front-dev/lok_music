@@ -96,6 +96,10 @@
 					icon:"none"
 				})
 			}
+		}).catch(err=>{
+			setTimeout(()=>{
+				addsongsheet()
+			},1000)
 		})
 	}
 	// 获取用户歌单

@@ -1,0 +1,109 @@
+
+.playlists.data-v-6a3d4dfc{
+		padding-bottom: 60rpx;
+}
+.title.data-v-6a3d4dfc {
+		/* height: 106rpx; */
+		display: flex;
+		padding: 0 30rpx;
+		align-items: center;
+		box-sizing: border-box;
+		border-bottom: 1px solid #eeeeee;
+}
+.title_left.data-v-6a3d4dfc {
+		font-size: 30px;
+}
+.title_left>view.data-v-6a3d4dfc {
+		margin-top: 10rpx;
+		font-size: 18px;
+}
+.addSongsSheet.data-v-6a3d4dfc{
+		display: flex;
+		width: 80%;
+		margin: 30rpx auto;
+		height: 88rpx;
+		line-height: 88rpx;
+		background-color:#f3f3f3;
+		padding-left: 20rpx;
+		padding-right: 20rpx;
+		border-radius: 20rpx;
+}
+.addSongsSheet >input.data-v-6a3d4dfc{
+		flex: 1;
+		height: 100%;
+		margin-right: 20rpx ;
+}
+.playlists_result.data-v-6a3d4dfc{
+		display: flex;
+		flex-wrap: wrap;
+		width: 90%;
+		/* height: 700rpx; */
+		margin: 0 auto;
+		justify-content: space-between;
+		overflow: hidden;
+}
+.ani.data-v-6a3d4dfc{
+		animation: showplaylists-6a3d4dfc 1s;
+		animation-fill-mode:forwards
+}
+.ani2.data-v-6a3d4dfc{
+		animation: playlists-6a3d4dfc 1s;
+		animation-fill-mode:forwards
+}
+.playlists_result_item.data-v-6a3d4dfc{
+		height: 350rpx;
+		width: 45%;
+}
+.playlists_result_image.data-v-6a3d4dfc{
+		width: 100%;
+		height: 250rpx;
+		border-radius: 10px;
+}
+.playlists_result_name.data-v-6a3d4dfc{
+		font-size: 14px;
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+}
+.selectmore.data-v-6a3d4dfc{
+		text-align: center;
+		border: 1px solid #00AC5A;
+		width: 30%;
+		margin: 40rpx auto;
+		border-radius: 10px;
+		font-size: 16px;
+		color: #00AC5A;
+}
+.showmore.data-v-6a3d4dfc{
+		line-height: 250rpx;
+		text-align: center;
+		background-color: #eeeeee;
+		border-radius: 20rpx;
+}
+.playlists_result2.data-v-6a3d4dfc{
+		display: flex;
+		flex-wrap: wrap;
+		width: 90%;
+		height: 700rpx;
+		margin: 60rpx auto;
+		justify-content: space-around;
+		overflow: hidden;
+}
+.songsheets.data-v-6a3d4dfc{
+		font-size: 30px;
+}
+@keyframes showplaylists-6a3d4dfc{
+from{
+			height: 700rpx;
+}to{
+			height: 1450rpx;
+}
+}@keyframes playlists-6a3d4dfc{
+from{
+			height: 1450rpx;
+}to{
+			height: 700rpx;
+}
+}

@@ -155,6 +155,10 @@
 			})
 		})
 		commenteventlist2.value=commenteventlist_firstfitler
+		}).catch(err=>{
+			setTimeout(()=>{
+				getcommentevent()
+			},1000)
 		})
 	}
 </script>

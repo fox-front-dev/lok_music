@@ -1,0 +1,49 @@
+
+.logins.data-v-417ad080 {
+		text-align: center;
+		width: 120rpx;
+		height: 120rpx;
+		margin: 15vh auto 0 auto;
+}
+.getcatch.data-v-417ad080 {
+		display: flex;
+		align-items: center;
+		font-size: 12px;
+		width: 5em;
+		flex: 1;
+		justify-content: center;
+}
+.login_title.data-v-417ad080 {
+		font-size: 18px;
+		text-align: center;
+		margin-top: 20rpx;
+}
+.form_item.data-v-417ad080 {
+		margin-top: 60rpx;
+		border-bottom: 1px solid #eee;
+		width: 80%;
+		margin: 0 auto;
+		height: 84rpx;
+		display: flex;
+}
+.form_item>input.data-v-417ad080 {
+		height: 100%;
+}
+.logbtn.data-v-417ad080 {
+		width: 80%;
+		background-color: green;
+		height: 100rpx;
+		margin-top: 60rpx;
+		line-height: 100rpx;
+}
+.sign_up.data-v-417ad080 {
+		text-align: center;
+		position: fixed;
+		bottom: 80rpx;
+		width: 100%;
+		font-size: 18px;
+		color: green;
+}
+.redtext.data-v-417ad080{
+		color: red;
+}

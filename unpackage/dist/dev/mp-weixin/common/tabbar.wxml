@@ -1,0 +1,1 @@
+<view class="{{['tabbar', 'data-v-6b6b6164', b]}}"><view wx:for="{{a}}" wx:for-item="item" class="data-v-6b6b6164" bindtap="{{item.d}}"><view class="data-v-6b6b6164"><image class="data-v-6b6b6164" style="width:40rpx;height:40rpx" src="{{item.a}}" mode=""></image></view><view class="{{['tabbarfonts', 'data-v-6b6b6164', item.c]}}">{{item.b}}</view></view></view>

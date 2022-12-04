@@ -1,0 +1,131 @@
+
+.songs.data-v-279f1b76 {
+		background-color: azure;
+}
+.goback.data-v-279f1b76 {
+		margin-top: 8px;
+		padding-left: 15px;
+}
+.songs_title.data-v-279f1b76 {
+		font-size: 40rpx;
+		font-family: SourceHanSansCN;
+		font-weight: bold;
+		/* color: #546C8C; */
+		padding: 15px;
+}
+.songs_act.data-v-279f1b76 {
+		display: flex;
+		padding-bottom: 10px;
+}
+.songs_act_image.data-v-279f1b76 {
+		height: 200rpx;
+		width: 200rpx;
+		overflow: hidden;
+		border-radius: 10px;
+		/* margin-top: 40rpx; */
+		margin-left: 30rpx;
+}
+.songs_act_right.data-v-279f1b76 {
+		font-size: 12px;
+}
+.songs_act_right_title.data-v-279f1b76 {
+		
+		font-size: 16px;
+		font-family: Adobe Heiti Std;
+		font-weight: normal;
+		margin-left: 14px;
+}
+.songs_act_right_content.data-v-279f1b76 {
+		margin-top: 16rpx;
+		margin-left: 14px;
+}
+.songs_act_right_content_image.data-v-279f1b76 {
+		width: 35rpx;
+		height: 35rpx;
+		border-radius: 50%;
+		vertical-align: middle;
+		margin-right: 10rpx;
+}
+.Comment.data-v-279f1b76 {
+		background-color: #546C8C;
+		border-radius: 20px;
+		text-align: center;
+		line-height: 20px;
+		margin-left: 14px;
+		color: white;
+		padding-left: 20rpx;
+		padding-right: 20rpx;
+		margin-top: 15px;
+		max-width: 60%;
+		font-size: 12px;
+}
+.songsPlayList.data-v-279f1b76 {
+		margin-top: 30px;
+		height: 100%;
+		/* border-top: 1px solid #546C8C; */
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+		background-color: white;
+		box-shadow: 0 -5px 10px 1px rgba(0, 0, 0, 0.1);
+		padding: 15px 15px 30px 15px;
+}
+.playall.data-v-279f1b76 {
+		line-height: 40rpx;
+		display: flex;
+		align-items: center;
+}
+.playall_image_border.data-v-279f1b76 {
+		position: relative;
+		width: 30rpx;
+		height: 30rpx;
+		border-radius: 50%;
+		border: 1px solid black;
+		margin-left: 5px;
+}
+.playall_image.data-v-279f1b76 {
+		position: absolute;
+		top: 50%;
+		left: 53%;
+		transform: translate(-50%,-50%);
+		width: 20rpx;
+		height: 20rpx;
+		/* vertical-align: middle; */
+}
+.songList.data-v-279f1b76 {
+		display: flex;
+		align-items: center;
+		height: 90rpx;
+		margin-top: 10px;
+}
+.songIndex.data-v-279f1b76 {
+		width: 12vw;
+		text-align: center;
+		font-size: 13px;
+}
+.songs_info.data-v-279f1b76{
+		display: flex;
+		width: 70%;
+		flex-direction: column;
+		/* margin-left: 10px; */
+}
+.songs_info_title.data-v-279f1b76 {
+		font-size: 16px;
+		overflow: hidden;
+		  	display: -webkit-box;
+		    -webkit-line-clamp: 1;
+		    -webkit-box-orient: vertical;
+			/* width: 70%; */
+}
+.songs_info_author.data-v-279f1b76 {
+		font-size: 14px;
+		 /* flex: 1; */
+		 overflow: hidden;
+		   	display: -webkit-box;
+		     -webkit-line-clamp: 1;
+		     -webkit-box-orient: vertical;
+			 width: 200px;
+}
+.nomusic.data-v-279f1b76{
+		text-align: center;
+		margin-top: 20px;
+}

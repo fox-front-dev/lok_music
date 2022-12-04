@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3766712 */
+  src: url('/static/font/font_iss/iconfont.ttf') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-aite:before {
+  content: "\e643";
+}
+
+.icon-music:before {
+  content: "\e617";
+}
+
+.icon-tupian:before {
+  content: "\e8ba";
+}
+
+.icon-maikefeng:before {
+  content: "\e600";
+}
+

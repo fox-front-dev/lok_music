@@ -75,6 +75,10 @@
 	const getDailyrecommend= async()=>{
 		await axios.dailyrecommend({}).then(res=>{
 			dailyrecommendreslist.value=res.data.recommend
+		}).catch(err=>{
+			setTimeout(()=>{
+				getDailyrecommend()
+			},1000)
 		})
 	}
 	// 获取每日歌曲
@@ -84,6 +88,10 @@
 			dailyrecommendsongslist.value=res.data.data.dailySongs
 			dailyrecommendsongslist.value.length=20
 			
+		}).catch(err=>{
+			setTimeout(()=>{
+				getdailyrecommendsongs()
+			},1000)
 		})
 	}
 </script>

@@ -1,0 +1,22 @@
+
+.tabbar.data-v-6b6b6164 {
+		display: flex;
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		font-size: 14px;
+		padding-bottom: 30rpx;
+		background-color: #eee;
+		height: 80rpx;
+		line-height: 80rpx;
+}
+.tabbar>view.data-v-6b6b6164 {
+		flex: 1;
+		text-align: center;
+}
+.tabbar>view>view.data-v-6b6b6164 {
+		height: 30rpx;
+}
+.fontcolor.data-v-6b6b6164 {
+		color: #1c9651;
+}

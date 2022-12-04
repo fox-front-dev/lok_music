@@ -1,5 +1,5 @@
 <template>
-	<scroll-view scroll-y  :class="store.state.css_style?'gray_filter':''">
+	<scroll-view scroll-y :class="store.state.css_style?'gray_filter':''">
 		<view class="trending_content" :style="{paddingTop:statusBarHeight+'px'}">
 			<view class="trending_title">
 				<view class="title_left">
@@ -35,8 +35,8 @@
 										</view>
 										<view class="info_ac">
 											{{item.rcmdtext}}
-									</view>
 										</view>
+									</view>
 								</view>
 							</view>
 						</swiper-item>
@@ -144,6 +144,10 @@
 			offset: 0
 		}).then(res => {
 			djtoplist.value = res.data.toplist
+		}).catch(err => {
+			setTimeout(() => {
+				getdjtoplist()
+			}, 1000)
 		})
 	}
 	//新星音乐
@@ -163,6 +167,10 @@
 					list = list.concat(item)
 				}
 			})
+		}).catch(err => {
+			setTimeout(() => {
+				getrecommendmusic(index)
+			}, 1000)
 		})
 	}
 	// 获取热门歌手
@@ -172,6 +180,10 @@
 			limit: 10
 		}).then(res => {
 			hotartistslist.value = res.data.artists
+		}).catch(err => {
+			setTimeout(() => {
+				gethotartists()
+			}, 1000)
 		})
 	}
 	// 获取推荐音乐
@@ -185,6 +197,10 @@
 					hotmusiclist.value = hotmusiclist.value.concat(item)
 				}
 			})
+		}).catch(err => {
+			setTimeout(() => {
+				gethotmusic()
+			}, 1000)
 		})
 	}
 </script>
@@ -232,27 +248,27 @@
 		padding-left: 20rpx;
 		overflow: hidden;
 		width: 70%;
-		
+
 	}
 
 	.swiper-item_content_title {
 		width: 100%;
 		font-size: 16px;
-		overflow:hidden; 
-		text-overflow:ellipsis;
-		display:-webkit-box; 
-		-webkit-box-orient:vertical;
-		-webkit-line-clamp:1; 
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
 	}
 
 	.swiper-item_content_co {
 		font-size: 14px;
-		overflow:hidden;
+		overflow: hidden;
 		width: 100%;
-		text-overflow:ellipsis;
-		display:-webkit-box; 
-		-webkit-box-orient:vertical;
-		-webkit-line-clamp:1; 
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
 	}
 
 	.swiper-item2 {

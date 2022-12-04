@@ -1,0 +1,76 @@
+
+.login.data-v-1389b5f4 {
+		text-align: center;
+		width: 120rpx;
+		height: 120rpx;
+		margin: 15vh auto 0 auto;
+}
+.form--address.data-v-1389b5f4 {
+		margin-top: 150rpx;
+}
+.login_title.data-v-1389b5f4 {
+		font-size: 18px;
+		text-align: center;
+		margin-top: 20rpx;
+}
+.form_item.data-v-1389b5f4 {
+		margin-top: 60rpx;
+		border-bottom: 1px solid #eee;
+		width: 80%;
+		margin: 0 auto;
+		height: 84rpx;
+}
+.form_item>input.data-v-1389b5f4 {
+		height: 100%;
+}
+.logbtn.data-v-1389b5f4 {
+		width: 80%;
+		background-color: green;
+		height: 100rpx;
+		margin-top: 60rpx;
+		line-height: 100rpx;
+}
+.changePassword_icon.data-v-1389b5f4 {
+		background-color: #b9b9b9;
+		width: 40rpx;
+		height: 40rpx;
+		margin-right: 10rpx;
+		border-radius: 10rpx;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		line-height: 40rpx;
+}
+.changePassword.data-v-1389b5f4 {
+		font-size: 16px;
+		justify-content: center;
+		margin-top: 40rpx;
+		display: flex;
+		flex: 1;
+		align-items: center;
+		line-height: 40rpx;
+}
+.sign_up.data-v-1389b5f4 {
+		text-align: center;
+		position: fixed;
+		bottom: 80rpx;
+		width: 100%;
+		font-size: 18px;
+		color: green;
+}
+.for_item2.data-v-1389b5f4 {
+		display: flex;
+		justify-content: space-between;
+}
+.for_item2>view.data-v-1389b5f4 {
+
+		line-height: 88rpx;
+		width: 5em;
+		text-align: center;
+}
+.gotoqj.data-v-1389b5f4{
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		margin-top: 10px;
+}

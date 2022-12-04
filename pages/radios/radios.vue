@@ -103,6 +103,10 @@
 	const getdjprogram = async () => {
 		await axios.djprogram().then(res => {
 			djprogramlist.value = res.data.result
+		}).catch(err=>{
+			setTimeout(()=>{
+				getdjprogram()
+			},1000)
 		})
 	}
 	// 热门电台
@@ -112,6 +116,10 @@
 			limit: 10
 		}).then(res => {
 			hotdjlist.value = res.data.djRadios
+		}).catch(err=>{
+			setTimeout(()=>{
+				gethotdj()
+			},1000)
 		})
 	}
 </script>

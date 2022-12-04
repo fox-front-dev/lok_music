@@ -1,0 +1,11 @@
+
+.qr-box.data-v-506d47c0 {
+		width: 400rpx;
+		height: 360rpx;
+		margin: 120px auto 0 auto;
+}
+.qrlogin.data-v-506d47c0 {
+		text-align: center;
+		/* margin-top: 30px; */
+		font-size: 14px;
+}

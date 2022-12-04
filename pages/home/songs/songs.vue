@@ -1,11 +1,14 @@
 <template>
-	<view  :class="[store.state.css_style?'gray_filter':'',loadingStatus?'':'songs']" style="box-sizing: border-box;" :style="{paddingTop:statusBarHeight+'px'}">
+	<view :class="[store.state.css_style?'gray_filter':'',loadingStatus?'':'songs']" style="box-sizing: border-box;"
+		:style="{paddingTop:statusBarHeight+'px'}">
 		<!-- <uni-load-more iconType="circle" /> -->
 		<view class="goback">
 			<uni-icons @click="gobacks" type="back" size="20"></uni-icons>
 		</view>
-		<uni-load-more :showText="false"  iconType="snow" style="margin-top: 40vh;" status="loading" v-show="loadingStatus" />	
-		<view  v-show="!loadingStatus" >
+		<view class="loader" style="margin-top: 30vh;" v-if="loadingStatus">
+
+		</view>
+		<view v-show="!loadingStatus">
 			<view class="songs_title">
 				歌单
 			</view>
@@ -22,7 +25,7 @@
 							{{songslists.creator.nickname}}
 						</view>
 						<view class="Comment">
-							{{songslists.playCount}}次播放
+							{{songslists.playCount>10000?(Math.round(songslists.playCount/10000))+"万":songslists.playCount}}次播放
 						</view>
 					</view>
 				</view>
@@ -34,17 +37,18 @@
 						<image class="playall_image" src="../../../static/image/play.png" mode=""></image>
 					</view>
 				</view>
-				
-				<view class="songList" v-for="item,index in songslist" v-if="(songslist.length)" @click="changeMusic(index)">
+
+				<view class="songList" v-for="item,index in songslist" v-if="(songslist.length)"
+					@click="changeMusic(index)">
 					<view class="songIndex">
 						{{index+1}}
 					</view>
-					
+
 					<view class="songs_info">
 						<view class="songs_info_title">
 							{{item.name}}
 						</view>
-			
+
 						<view class="songs_info_author">
 							<text v-for="i,index in item.ar">
 								{{i.name}}
@@ -74,17 +78,22 @@
 	import playtabbar from "../../../common/play_tabbar.vue"
 	import {
 		onLoad,
-		onShow
+		onShow,
+		onUnload
 	} from "@dcloudio/uni-app";
+
 	let statusBarHeight = ref()
 	const proxy = getCurrentInstance()
-	let loadingStatus=ref(true)
+	let loadingStatus = ref(true)
 	// 自定义返回键
 	const gobacks = () => {
 		uni.navigateBack(-1)
 	}
-	nextTick(()=>{
-		
+	nextTick(() => {
+
+	})
+	onUnload(() => {
+		console.log(123);
 	})
 	onLoad((option) => {
 		//获取手机信息，例如状态栏高度
@@ -103,42 +112,63 @@
 	})
 	// 获取歌单用户信息
 	let songslists = ref({
-		creator:{nickname:""}
+		creator: {
+			nickname: "",
+			coverImgUrl:""
+		}
 	})
-	const songsheepsInfo= async (id)=>{
-		await axios.songsheepsInfo({id}).then(res=>{
-			songslists.value=res.data.playlist
+	const songsheepsInfo = async (id) => {
+		await axios.songsheepsInfo({
+			id
+		}).then(res => {
+			songslists.value = res.data.playlist
+		}).catch(err=>{
+			setTimeout(()=>{
+				songsheepsInfo(id)
+			},1000)
 		})
 	}
-	
+
 	// 根据音乐歌单id获取用户歌单的音乐
-	const songslist=ref([])
-	const getsheetallsongs=async(id)=>{
-		await axios.getsheetallsongs({id}).then(res=>{
-			songslist.value=res.data.songs
+	const songslist = ref([])
+	const getsheetallsongs = async (id) => {
+		await axios.getsheetallsongs({
+			id
+		}).then(res => {
+			songslist.value = res.data.songs
+			setTimeout(() => {
+				loadingStatus.value = false
+			}, 1000)
+		}).catch(err=>{
 			setTimeout(()=>{
-				loadingStatus.value=false
+				getsheetallsongs(id)
 			},1000)
-		}) 
+		})
 	}
 	// 全部播放
-	const playAll=()=>{
-		store.commit("changeMusic",{musiclist:songslist.value,index:0})
-		store.commit("stop",0)
+	const playAll = () => {
+		store.commit("changeMusic", {
+			musiclist: songslist.value,
+			index: 0
+		})
+		store.commit("stop", 0)
 		store.commit("play")
 	}
 	// 选择从index处播放音乐
-	let musicIndex=ref(0)
-	const changeMusic=(index)=>{
-		musicIndex.value=index
+	let musicIndex = ref(0)
+	const changeMusic = (index) => {
+		musicIndex.value = index
 		debounces()
 	}
 	// 防抖函数
-	const debounces=debounce(()=>{
-			store.commit("changeMusic",{musiclist:songslist.value,index:musicIndex.value})
-			store.commit("stop",musicIndex.value)
-			store.commit("play")
-		},1000)
+	const debounces = debounce(() => {
+		store.commit("changeMusic", {
+			musiclist: songslist.value,
+			index: musicIndex.value
+		})
+		store.commit("stop", musicIndex.value)
+		store.commit("play")
+	}, 1000)
 </script>
 
 <style scoped>
@@ -181,7 +211,7 @@
 	}
 
 	.songs_act_right_title {
-		
+
 		font-size: 16px;
 		font-family: Adobe Heiti Std;
 		font-weight: normal;
@@ -245,7 +275,7 @@
 		position: absolute;
 		top: 50%;
 		left: 53%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 		width: 20rpx;
 		height: 20rpx;
 		/* vertical-align: middle; */
@@ -264,32 +294,34 @@
 		font-size: 13px;
 	}
 
-	
-	.songs_info{
+
+	.songs_info {
 		display: flex;
 		width: 70%;
 		flex-direction: column;
 		/* margin-left: 10px; */
 	}
+
 	.songs_info_title {
 		font-size: 16px;
 		overflow: hidden;
-		  	display: -webkit-box;
-		    -webkit-line-clamp: 1;
-		    -webkit-box-orient: vertical;
-			/* width: 70%; */
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		/* width: 70%; */
 	}
 
 	.songs_info_author {
 		font-size: 14px;
-		 /* flex: 1; */
-		 overflow: hidden;
-		   	display: -webkit-box;
-		     -webkit-line-clamp: 1;
-		     -webkit-box-orient: vertical;
-			 width: 200px;
+		/* flex: 1; */
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		width: 200px;
 	}
-	.nomusic{
+
+	.nomusic {
 		text-align: center;
 		margin-top: 20px;
 	}

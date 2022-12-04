@@ -1,0 +1,103 @@
+
+.dailyrecommendations.data-v-47143558 {
+		padding: 15px;
+		min-height: 100vh;
+		background-color:#F3F9FF ;
+}
+.dailyrecommendations .goback.data-v-47143558 {
+		display: flex;
+		align-items: center;
+		margin-top: 8px;
+		font-size: 18px;
+		font-family: Poppins-SemiBold, Poppins;
+		font-weight: 600;
+		color: #0C0F27;
+		line-height: 28px;
+}
+.swiper-item_image.data-v-47143558 {
+		width: 100%;
+		height: 100%;
+		border-radius: 20px;
+}
+.swiper-item.data-v-47143558 {
+		width: 430rpx;
+		height: 580rpx;
+		/* background-color: antiquewhite; */
+		overflow: none !important;
+		position: relative;
+}
+.swiper_recommend.data-v-47143558 {
+		margin-top: 20px;
+}
+.seeweek.data-v-47143558 {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+}
+.swiper_title.data-v-47143558{
+		position: absolute;
+		left: 15px;
+		bottom: 160rpx;
+		font-size: 20px;
+		font-family: Poppins-SemiBold, Poppins;
+		font-weight: 600;
+		color: green;
+		line-height: 25px;
+		font-weight: 900;
+}
+.data-v-47143558 .swiper {
+		width: 100%;
+		height: 580rpx;
+		/* background-color: white; */
+}
+.moreRecommend_title.data-v-47143558{
+		font-size: 20px;
+		font-family: Poppins-SemiBold, Poppins;
+		font-weight: 600;
+		color: #0C0F27;
+		line-height: 20px;
+		margin-top: 30px;
+		margin-bottom: 15px;
+}
+.list_recommends.data-v-47143558{
+		height: 160rpx;
+		background-color: white;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+		position: relative;
+		margin-top: 10px;
+}
+.list_recommends_image.data-v-47143558{
+		width:120rpx;
+		height: 120rpx;
+		border-radius: 16px;
+		margin-right: 10px;
+		margin-left: 10px;
+}
+.list_recommends_info_title.data-v-47143558{
+		font-size: 14px;
+		font-family: Poppins-SemiBold, Poppins;
+		font-weight: 600;
+		color: #0C0F27;
+}
+.list_recommends_info_synopsis.data-v-47143558{
+		font-size: 12px;
+		font-family: Poppins-Regular, Poppins;
+		font-weight: 400;
+		color: #9194AE;
+}
+.list_recommends_info_timer.data-v-47143558{
+		background-color: #FFE9E6;
+		color:#FF7361 ;
+		width: 130rpx;
+		height: 60rpx;
+		border-radius: 35rpx;
+		text-align: center;
+		line-height: 60rpx;
+		font-family: Poppins-Medium, Poppins;
+		font-weight: 500;
+		font-size: 12px;
+		position: absolute;
+		right: 10px;
+}

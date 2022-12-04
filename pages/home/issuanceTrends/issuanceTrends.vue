@@ -159,7 +159,11 @@
 			await axios.search({keywords:selectsongs.value}).then(res=>{
 			// lastplaymusic.value=[]
 			selectvalue.value=res.data.result.songs
-			})
+			}).catch(err=>{
+			setTimeout(()=>{
+				searchbtn()
+			},1000)
+		})
 		}else{
 			return
 		}
@@ -226,9 +230,12 @@
 	let selectmusicval=ref('')
 	let musicid=ref("")
 	const selectmusic=async(id)=>{
-
 		await axios.getsongsInfo({ids:id}).then(res=>{
 			selectmusicval.value=res.data.songs
+		}).catch(err=>{
+			setTimeout(()=>{
+				selectmusic(id)
+			},1000)
 		})
 		musicid.value=id
 		proxy.refs.popup2.close()
@@ -236,8 +243,20 @@
 	
 	// 发送到动态
 	const send=async()=>{
+		if(!testvalue.value){
+			uni.showToast({
+				title:"请先输入内容",
+				icon:"none"
+			})
+			return
+		}
 		await axios.shareevent({id:musicid.value,type:"song",msg:testvalue.value}).then(res=>{
 			gobacks()
+		}).catch(err=>{
+			uni.showToast({
+				title:"网络不佳请稍后再试",
+				icon:"none"
+			})
 		})
 	}
 	onMounted(() => {

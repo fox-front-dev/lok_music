@@ -1,7 +1,8 @@
 <template>
-	<scroll-view @scroll="scroll_event"  scroll-y @scrolltolower="scrolltolower">
+	<scroll-view @scroll="scroll_event" scroll-y @scrolltolower="scrolltolower">
 
-		<view class="home_content"  :class="store.state.css_style?'gray_filter':''" :style="{paddingTop:statusBarHeight+'px'}">
+		<view class="home_content" :class="store.state.css_style?'gray_filter':''"
+			:style="{paddingTop:statusBarHeight+'px'}">
 			<view class="title">
 				<view class="title_left">
 					音乐室
@@ -16,8 +17,10 @@
 						:src="store.state.userInfo.userAvatar" mode=""></image>
 				</view>
 			</view>
-			<uni-load-more iconType="snow" :showText="false" style="margin-top: 30vh;" status="loading"
-				v-show="loadingStatus" />
+
+			<view class="loader" style="margin-top: 30vh;" v-if="loadingStatus">
+
+			</view>
 			<view class="home_meaus" v-show="!loadingStatus">
 				<view class="meaus_item" v-for="item,index in home_meaus" @click="gotoPage(index)">
 					<image lazy-load style="width: 40rpx;height: 40rpx;vertical-align: middle;" :src="item.imgurl"
@@ -141,9 +144,9 @@
 		<view class="issuance" v-if="issuanceStatus&&loginStatus" @click="gotoPage(5)" v-show="!loadingStatus">
 			发布
 		</view>
-		
+
 	</scroll-view>
-	
+
 </template>
 
 <script setup>
@@ -186,7 +189,7 @@
 		name: '歌手',
 		imgurl: shape4
 	}, ]
-	let audioAction=ref({
+	let audioAction = ref({
 		method: 'pause'
 	})
 	onMounted(() => {
@@ -200,7 +203,7 @@
 			getUserInfo()
 		}
 	})
-	
+
 
 	// 上一页返回时调用函数
 	onLoad(() => {
@@ -242,6 +245,10 @@
 				})
 
 			}
+		}).catch(err=>{
+			setTimeout(()=>{
+				getuserallevent()
+			},1000)
 		})
 	}
 	// 获取用户信息
@@ -255,7 +262,13 @@
 				userAvatar: res.data.profile.avatarUrl,
 				nickname: res.data.profile.nickname
 			})
-
+			setTimeout(() => {
+				loadingStatus.value = false
+			}, 1000)
+		}).catch(err=>{
+			setTimeout(()=>{
+				getUserInfo()
+			},1000)
 		})
 	}
 	// 获取用户喜欢的音乐歌单
@@ -269,6 +282,10 @@
 			// console.log(songssheetlist.value);
 			// 获取用户喜欢的歌单中的音乐
 			getsheetallsongs(songssheetlist.value)
+		}).catch(err=>{
+			setTimeout(()=>{
+				usersongsheet(uid)
+			},1000)
 		})
 	}
 	// 滚动事件
@@ -314,6 +331,10 @@
 			if (res.data.code == 200) {
 				uniStorage.setStorage("token", res.data.cookie)
 			}
+		}).catch(err=>{
+			setTimeout(()=>{
+				anonimous()
+			},1000)
 		})
 	}
 	// 获取推荐歌单
@@ -323,6 +344,10 @@
 			limit: 10
 		}).then(res => {
 			recommendsheetlist.value = res.data.result
+		}).catch(err=>{
+			setTimeout(()=>{
+				getrecommondsongsheet()
+			},1000)
 		})
 	}
 	// 热门话题
@@ -339,6 +364,10 @@
 				}, 1000)
 			}
 
+		}).catch(err=>{
+			setTimeout(()=>{
+				gethottopic()
+			},1000)
 		})
 	}
 	// 根据音乐歌单id获取用户歌单的音乐
@@ -352,9 +381,11 @@
 				musiclist: songslist.value,
 				index: 0
 			})
-			setTimeout(() => {
-				loadingStatus.value = false
-			}, 1000)
+			
+		}).catch(err=>{
+			setTimeout(()=>{
+				getsheetallsongs(id)
+			},1000)
 		})
 	}
 
@@ -423,7 +454,6 @@
 			})
 		}
 	}
-	
 </script>
 
 <style scoped>
@@ -764,5 +794,7 @@
 	scroll-view {
 		height: 100vh;
 	}
-	
+
+	/* 
+	 */
 </style>

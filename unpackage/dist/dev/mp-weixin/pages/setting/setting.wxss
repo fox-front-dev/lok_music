@@ -1,0 +1,38 @@
+
+.title.data-v-9543fcb0 {
+		margin-top: 60rpx;
+		padding: 30rpx;
+		justify-content: space-between;
+		text-align: center;
+}
+.username.data-v-9543fcb0 {
+		margin-top: 30rpx;
+}
+.first.data-v-9543fcb0 {
+		margin-top: 40rpx;
+		display: flex;
+		justify-content: space-around;
+}
+.left>view.data-v-9543fcb0 {
+		background-color: #1c9651;
+		height: 100rpx;
+		border-radius: 50rpx;
+		text-align: center;
+		color: white;
+		width: 260rpx;
+		line-height: 100rpx;
+}
+.bottom.data-v-9543fcb0 {
+		width: 100%;
+		padding-top: 60rpx;
+}
+.bottom>view.data-v-9543fcb0 {
+		width: 80%;
+		background-color: #1c9651;
+		margin: 0 auto;
+		height: 100rpx;
+		border-radius: 50rpx;
+		text-align: center;
+		color: white;
+		line-height: 100rpx;
+}

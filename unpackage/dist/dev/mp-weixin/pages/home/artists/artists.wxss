@@ -1,0 +1,65 @@
+
+.title.data-v-0b792752 {
+		height: 160rpx;
+		display: flex;
+		padding: 0 30rpx;
+		/* justify-content: space-between; */
+		box-sizing: border-box;
+		/* border-bottom: 1px solid #eeeeee; */
+		align-items: center;
+		position: fixed;
+		width: 100%;
+		background-color: white;
+		z-index: 1;
+		/* margin-top: 30rpx; */
+}
+.scrolly_image.data-v-0b792752 {
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 50%;
+		margin-right: 20rpx;
+}
+.songs.data-v-0b792752 {
+		padding-bottom: 30rpx;
+		/* box-sizing: border-box; */
+		background-color: #ffffff;
+}
+.songs_container.data-v-0b792752 {
+		/* padding-top: 156rpx; */
+		box-sizing: border-box;
+		/* margin-top: 30rpx; */
+}
+.title_left.data-v-0b792752 {
+		font-size: 30px;
+}
+.letter-nav.data-v-0b792752 {
+		position: fixed;
+		top: 50%;
+		right: 20rpx;
+		transform: translateY(-50%);
+		font-size: 14px;
+		justify-content: space-around;
+		z-index: 1;
+}
+.item.data-v-0b792752 {
+		width: 30rpx;
+		text-align: center;
+}
+.scroll-container.data-v-0b792752 {
+		height: 100vh;
+}
+.scrolly_item.data-v-0b792752 {
+		height: 80rpx;
+		/* line-height: 80rpx; */
+		display: flex;
+		margin-top: 20rpx;
+		padding: 0 10px;
+}
+.scroll_id-style.data-v-0b792752 {
+		font-size: 18px;
+		padding-left: 20px;
+		/* background-color: #eeeeee; */
+		border-bottom: 1px solid #eeeeee;
+		margin-top: 20rpx;
+		padding-bottom: 20rpx;
+}

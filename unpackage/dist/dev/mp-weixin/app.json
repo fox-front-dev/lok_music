@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/mainEntrance/mainEntrance",
+    "pages/trending/charts/charts",
+    "pages/login/login/login",
+    "pages/login/register/register",
+    "pages/home/playlists/playlists",
+    "pages/home/albums/albums",
+    "pages/home/songs/songs",
+    "pages/home/artists/artists",
+    "pages/home/dailyrecommendations/dailyrecommendations",
+    "pages/home/issuanceTrends/issuanceTrends",
+    "pages/home/event/event",
+    "pages/login/scan/scan"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
+  },
+  "usingComponents": {}
+}
