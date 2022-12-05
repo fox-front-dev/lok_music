@@ -46,6 +46,10 @@ const _sfc_main = {
             icon: "none"
           });
         }
+      }).catch((err) => {
+        setTimeout(() => {
+          addsongsheet();
+        }, 1e3);
       });
     };
     let userplayreslist = common_vendor.ref([]);

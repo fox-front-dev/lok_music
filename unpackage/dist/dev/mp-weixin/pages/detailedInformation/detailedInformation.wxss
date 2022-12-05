@@ -1,0 +1,17 @@
+
+.detailedInformation.data-v-4d2d2940 {
+		height: 100vh;
+}
+.detailedInformation_title.data-v-4d2d2940 {
+		width: 100%;
+		text-align: center;
+		font-size: 18px;
+		font-weight: bold;
+}
+.detailedInformation_title-style.data-v-4d2d2940{
+		display: flex;
+		justify-content: space-between;
+		padding: 15px;
+		box-sizing: border-box;
+		align-items: center;
+}

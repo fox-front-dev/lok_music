@@ -1124,6 +1124,9 @@ uni-scroll-view[data-v-92bb8f34] {
 		padding-left: 0.9375rem;
 		padding-right: 0.625rem;
 		font-size: 14px;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		overflow: hidden;
 }
 .hotMusic_item>uni-view[data-v-2ac50026] {
 		flex: 1;

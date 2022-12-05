@@ -31,6 +31,10 @@ const _sfc_main = {
     const getdjprogram = async () => {
       await http_req.axios.djprogram().then((res) => {
         djprogramlist.value = res.data.result;
+      }).catch((err) => {
+        setTimeout(() => {
+          getdjprogram();
+        }, 1e3);
       });
     };
     let hotdjlist = common_vendor.ref([]);
@@ -39,6 +43,10 @@ const _sfc_main = {
         limit: 10
       }).then((res) => {
         hotdjlist.value = res.data.djRadios;
+      }).catch((err) => {
+        setTimeout(() => {
+          gethotdj();
+        }, 1e3);
       });
     };
     return (_ctx, _cache) => {

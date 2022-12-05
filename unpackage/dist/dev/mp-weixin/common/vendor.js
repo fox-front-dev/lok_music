@@ -6976,6 +6976,7 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
+const onUnload = /* @__PURE__ */ createHook(ON_UNLOAD);
 const pages = [
   {
     path: "pages/mainEntrance/mainEntrance",
@@ -7095,6 +7096,14 @@ const pages = [
     style: {
       navigationBarTitleText: "\u626B\u7801\u767B\u5F55",
       enablePullDownRefresh: false
+    }
+  },
+  {
+    path: "pages/detailedInformation/detailedInformation",
+    style: {
+      navigationBarTitleText: "detailedInformation",
+      enablePullDownRefresh: false,
+      navigationStyle: "custom"
     }
   }
 ];
@@ -9333,6 +9342,7 @@ exports.nextTick = nextTick;
 exports.o = o$1;
 exports.onLoad = onLoad;
 exports.onMounted = onMounted;
+exports.onUnload = onUnload;
 exports.p = p$1;
 exports.pn = pn;
 exports.ref = ref;

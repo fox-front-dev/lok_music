@@ -36,6 +36,10 @@ const _sfc_main = {
     const getsublistalbum = async () => {
       await http_req.axios.sublistalbum({}).then((res) => {
         albumlist.value = res.data.data;
+      }).catch((err) => {
+        setTimeout(() => {
+          getsublistalbum();
+        }, 1e3);
       });
     };
     return (_ctx, _cache) => {

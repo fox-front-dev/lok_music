@@ -37,20 +37,20 @@
 .swiper-item_content_title.data-v-2ac50026 {
 		width: 100%;
 		font-size: 16px;
-		overflow:hidden; 
-		text-overflow:ellipsis;
-		display:-webkit-box; 
-		-webkit-box-orient:vertical;
-		-webkit-line-clamp:1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
 }
 .swiper-item_content_co.data-v-2ac50026 {
 		font-size: 14px;
-		overflow:hidden;
+		overflow: hidden;
 		width: 100%;
-		text-overflow:ellipsis;
-		display:-webkit-box; 
-		-webkit-box-orient:vertical;
-		-webkit-line-clamp:1;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
 }
 .swiper-item2.data-v-2ac50026 {
 		height: 100%;

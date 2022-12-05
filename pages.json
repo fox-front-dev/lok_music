@@ -134,6 +134,17 @@
             
         }
         
+        ,{
+            "path" : "pages/detailedInformation/detailedInformation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "detailedInformation",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

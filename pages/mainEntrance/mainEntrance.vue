@@ -1,10 +1,10 @@
 <template>
 	<view class="main" >
-		<home v-show="ctabbarItem===0"></home>
-		<trending v-show="ctabbarItem===1"></trending>
-		<search v-show="ctabbarItem===2"></search>
-		<radios v-show="ctabbarItem===3"></radios>
-		<setting v-show="ctabbarItem===4"></setting>
+		<home v-if="ctabbarItem===0"></home>
+		<trending v-if="ctabbarItem===1"></trending>
+		<search v-if="ctabbarItem===2"></search>
+		<radios v-if="ctabbarItem===3"></radios>
+		<setting v-if="ctabbarItem===4"></setting>
 		<playTabbar v-show="store.state.musicPlay.playMusicURL"></playTabbar>
 		<tabbar @ctabbarItem="ctabbarEvent"></tabbar>
 		<uni-popup ref="popup" type="dialog">
@@ -74,6 +74,7 @@
 		});
 	}
 	const POWER_SERVICE = () => {
+		// return
 		let main = plus.android.runtimeMainActivity();
 		let packName = main.getPackageName();
 		let Context = plus.android.importClass("android.content.Context");
@@ -119,6 +120,7 @@
 		})
 	}
 	onMounted(() => {
+		// app打包取消注释
 		POWER_SERVICE()
 		register()
 	})

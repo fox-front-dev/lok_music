@@ -41,6 +41,10 @@ const _sfc_main = {
       if (selectsongs.value) {
         await http_req.axios.search({ keywords: selectsongs.value }).then((res) => {
           selectvalue.value = res.data.result.songs;
+        }).catch((err) => {
+          setTimeout(() => {
+            searchbtn();
+          }, 1e3);
         });
       } else {
         return;
@@ -102,13 +106,29 @@ const _sfc_main = {
     const selectmusic = async (id) => {
       await http_req.axios.getsongsInfo({ ids: id }).then((res) => {
         selectmusicval.value = res.data.songs;
+      }).catch((err) => {
+        setTimeout(() => {
+          selectmusic(id);
+        }, 1e3);
       });
       musicid.value = id;
       proxy.refs.popup2.close();
     };
     const send = async () => {
+      if (!testvalue.value) {
+        common_vendor.index.showToast({
+          title: "\u8BF7\u5148\u8F93\u5165\u5185\u5BB9",
+          icon: "none"
+        });
+        return;
+      }
       await http_req.axios.shareevent({ id: musicid.value, type: "song", msg: testvalue.value }).then((res) => {
         gobacks();
+      }).catch((err) => {
+        common_vendor.index.showToast({
+          title: "\u7F51\u7EDC\u4E0D\u4F73\u8BF7\u7A0D\u540E\u518D\u8BD5",
+          icon: "none"
+        });
       });
     };
     common_vendor.onMounted(() => {

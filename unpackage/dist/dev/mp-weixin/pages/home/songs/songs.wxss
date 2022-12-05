@@ -29,7 +29,7 @@
 		font-size: 12px;
 }
 .songs_act_right_title.data-v-279f1b76 {
-		
+
 		font-size: 16px;
 		font-family: Adobe Heiti Std;
 		font-weight: normal;
@@ -86,7 +86,7 @@
 		position: absolute;
 		top: 50%;
 		left: 53%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 		width: 20rpx;
 		height: 20rpx;
 		/* vertical-align: middle; */
@@ -102,7 +102,7 @@
 		text-align: center;
 		font-size: 13px;
 }
-.songs_info.data-v-279f1b76{
+.songs_info.data-v-279f1b76 {
 		display: flex;
 		width: 70%;
 		flex-direction: column;
@@ -111,21 +111,21 @@
 .songs_info_title.data-v-279f1b76 {
 		font-size: 16px;
 		overflow: hidden;
-		  	display: -webkit-box;
-		    -webkit-line-clamp: 1;
-		    -webkit-box-orient: vertical;
-			/* width: 70%; */
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		/* width: 70%; */
 }
 .songs_info_author.data-v-279f1b76 {
 		font-size: 14px;
-		 /* flex: 1; */
-		 overflow: hidden;
-		   	display: -webkit-box;
-		     -webkit-line-clamp: 1;
-		     -webkit-box-orient: vertical;
-			 width: 200px;
+		/* flex: 1; */
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		width: 200px;
 }
-.nomusic.data-v-279f1b76{
+.nomusic.data-v-279f1b76 {
 		text-align: center;
 		margin-top: 20px;
 }

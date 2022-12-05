@@ -79,6 +79,7 @@
 	} from "vue"
 	import axios from "../../../http/req.js"
 	import unstorage from "../../../uniStorage/index.js"
+	import store from "../../../store/index.js"
 	let login_data = ref({
 		phone: "",
 		password: ""

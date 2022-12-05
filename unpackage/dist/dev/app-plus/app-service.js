@@ -402,7 +402,7 @@ if (uni.restoreGlobal) {
     return target;
   };
   const { t: t$1 } = initVueI18n(messages);
-  const _sfc_main$s = {
+  const _sfc_main$t = {
     name: "uniPopupDialog",
     mixins: [popup],
     emits: ["confirm", "close"],
@@ -558,7 +558,7 @@ if (uni.restoreGlobal) {
       ])
     ]);
   }
-  var __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$8], ["__scopeId", "data-v-6f54520a"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue"]]);
+  var __easycom_0$3 = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$8], ["__scopeId", "data-v-6f54520a"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue"]]);
   class MPAnimation {
     constructor(options, _this) {
       this.options = options;
@@ -668,7 +668,7 @@ if (uni.restoreGlobal) {
     clearTimeout(_this.timer);
     return new MPAnimation(option, _this);
   }
-  const _sfc_main$r = {
+  const _sfc_main$s = {
     name: "uniTransition",
     emits: ["click", "change"],
     props: {
@@ -905,8 +905,8 @@ if (uni.restoreGlobal) {
       vue.renderSlot(_ctx.$slots, "default")
     ], 14, ["animation"])) : vue.createCommentVNode("v-if", true);
   }
-  var __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$7], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
-  const _sfc_main$q = {
+  var __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$7], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+  const _sfc_main$r = {
     name: "uniPopup",
     components: {},
     emits: ["change", "maskClick"],
@@ -1244,7 +1244,7 @@ if (uni.restoreGlobal) {
       ], 32)
     ], 2)) : vue.createCommentVNode("v-if", true);
   }
-  var __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$6], ["__scopeId", "data-v-7c43d41b"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
+  var __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$6], ["__scopeId", "data-v-7c43d41b"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-popup/components/uni-popup/uni-popup.vue"]]);
   var icons = {
     "id": "2852637",
     "name": "uniui\u56FE\u6807\u5E93",
@@ -2420,7 +2420,7 @@ if (uni.restoreGlobal) {
     const reg = /^[0-9]*$/g;
     return typeof val === "number" || reg.test(val) ? val + "px" : val;
   };
-  const _sfc_main$p = {
+  const _sfc_main$q = {
     name: "UniIcons",
     emits: ["click"],
     props: {
@@ -2471,7 +2471,7 @@ if (uni.restoreGlobal) {
       onClick: _cache[0] || (_cache[0] = (...args) => $options._onClick && $options._onClick(...args))
     }, null, 6);
   }
-  var __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$5], ["__scopeId", "data-v-a2e81f6e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
+  var __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$5], ["__scopeId", "data-v-a2e81f6e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-icons/components/uni-icons/uni-icons.vue"]]);
   var shape1 = "/static/image/Shape1.png";
   var shape2 = "/static/image/Shape2.png";
   var shape3 = "/static/image/Shape3.png";
@@ -3850,6 +3850,11 @@ if (uni.restoreGlobal) {
       }, data)
     });
   };
+  const banner = () => {
+    return http.get({
+      url: "/banner?type=2"
+    });
+  };
   var axios = {
     search: search$1,
     login,
@@ -3887,7 +3892,8 @@ if (uni.restoreGlobal) {
     toplistartist,
     highquality,
     createplaylist,
-    getsongsurl
+    getsongsurl,
+    banner
   };
   const store = createStore({
     state: {
@@ -3984,7 +3990,7 @@ if (uni.restoreGlobal) {
     },
     actions: {}
   });
-  const _sfc_main$o = {
+  const _sfc_main$p = {
     __name: "home",
     setup(__props) {
       let loadingStatus = vue.ref(true);
@@ -4477,23 +4483,39 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var home = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-92bb8f34"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/home.vue"]]);
-  const _sfc_main$n = {
+  var home = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__scopeId", "data-v-92bb8f34"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/home.vue"]]);
+  const _sfc_main$o = {
     __name: "trending",
     setup(__props) {
       let statusBarHeight = vue.ref(0);
+      let loadingStatus = vue.ref(true);
       const gocharts = () => {
         uni.navigateTo({
           url: "/pages/trending/charts/charts"
         });
       };
       vue.onMounted(() => {
+        uni.preloadPage({ url: "/pages/detailedInformation/detailedInformation" });
         statusBarHeight.value = store.state.phoneInfo.statusbarHeight;
         getdjtoplist();
         getrecommendmusic();
         gethotartists();
         gethotmusic();
+        banner2();
       });
+      let bannerlist = vue.ref([]);
+      const banner2 = () => {
+        axios.banner().then((res) => {
+          bannerlist.value = res.data.banners;
+          setTimeout(() => {
+            loadingStatus.value = false;
+          }, 1e3);
+        }).catch((err) => {
+          setTimeout(() => {
+            banner2();
+          }, 1e3);
+        });
+      };
       let djtoplist = vue.ref();
       const getdjtoplist = async () => {
         await axios.hotdjtoplist({
@@ -4557,195 +4579,199 @@ if (uni.restoreGlobal) {
           }, 1e3);
         });
       };
+      const gotodetailedInformation = (...arg) => {
+        uni.navigateTo({
+          url: `/pages/detailedInformation/detailedInformation?id=${arg[0].id}`
+        });
+      };
       return (_ctx, _cache) => {
         const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
-        return vue.openBlock(), vue.createElementBlock("scroll-view", {
-          "scroll-y": "",
-          class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
-        }, [
-          vue.createElementVNode("view", {
-            class: "trending_content",
-            style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
+        return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+          vue.withDirectives(vue.createElementVNode("view", {
+            class: "loader",
+            style: { "margin-top": "30vh" }
+          }, null, 512), [
+            [vue.vShow, vue.unref(loadingStatus)]
+          ]),
+          vue.withDirectives(vue.createElementVNode("scroll-view", {
+            "scroll-y": "",
+            class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
           }, [
-            vue.createElementVNode("view", { class: "trending_title" }, [
-              vue.createElementVNode("view", { class: "title_left" }, [
-                vue.createTextVNode(" \u6392\u884C\u699C "),
-                vue.createElementVNode("view", null, " 2022 10-29 ")
-              ]),
-              vue.createElementVNode("view", { class: "title_right" }, [
-                !vue.unref(store).state.userInfo.userAvatar ? (vue.openBlock(), vue.createElementBlock("image", {
-                  key: 0,
-                  "lazy-load": "",
-                  style: { "width": "50px", "height": "50px" },
-                  src: "/static/image/Avatar.png",
-                  mode: ""
-                })) : (vue.openBlock(), vue.createElementBlock("image", {
-                  key: 1,
-                  "lazy-load": "",
-                  style: { "width": "50px", "height": "50px", "border-radius": "50%" },
-                  src: vue.unref(store).state.userInfo.userAvatar,
-                  mode: ""
-                }, null, 8, ["src"]))
-              ])
-            ]),
             vue.createElementVNode("view", {
-              class: "trendingSwiper",
-              style: { "border-top": "1px solid #e6e6e6" }
+              class: "trending_content",
+              style: vue.normalizeStyle({ paddingTop: vue.unref(statusBarHeight) + "px" })
             }, [
-              vue.createElementVNode("view", { class: "uni-margin-wrap" }, [
-                vue.createElementVNode("swiper", {
-                  class: "swiper",
-                  autoplay: false,
-                  duration: 500,
-                  "display-multiple-items": "1",
-                  "next-margin": "20px"
-                }, [
-                  (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(djtoplist), (item) => {
-                    return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
-                      vue.createElementVNode("view", { class: "swiper-item2" }, [
-                        vue.createElementVNode("image", {
-                          "lazy-load": "",
-                          class: "swiper-item2_image",
-                          src: item.picUrl,
-                          mode: ""
-                        }, null, 8, ["src"]),
-                        vue.createElementVNode("view", { class: "swiper-item2_item" }, [
-                          vue.createElementVNode("view", { class: "star" }, [
-                            vue.createVNode(_component_uni_icons, {
-                              type: "star-filled",
-                              color: "rgb(141, 141, 141)",
-                              size: "16"
-                            }),
-                            vue.createElementVNode("view", { style: { "margin-left": "10rpx" } }, vue.toDisplayString(Math.round(item.score / 1e4)) + "w ", 1)
-                          ]),
-                          vue.createElementVNode("view", { class: "info" }, [
-                            vue.createElementVNode("view", { class: "info_name" }, vue.toDisplayString(item.name), 1),
-                            vue.createElementVNode("view", { class: "info_ac" }, vue.toDisplayString(item.rcmdtext), 1)
-                          ])
-                        ])
-                      ])
-                    ]);
-                  }), 256))
+              vue.createElementVNode("view", { class: "trending_title" }, [
+                vue.createElementVNode("view", { class: "title_left" }, [
+                  vue.createTextVNode(" \u6392\u884C\u699C "),
+                  vue.createElementVNode("view", null, " 2022 10-29 ")
+                ]),
+                vue.createElementVNode("view", { class: "title_right" }, [
+                  !vue.unref(store).state.userInfo.userAvatar ? (vue.openBlock(), vue.createElementBlock("image", {
+                    key: 0,
+                    "lazy-load": "",
+                    style: { "width": "50px", "height": "50px" },
+                    src: "/static/image/Avatar.png",
+                    mode: ""
+                  })) : (vue.openBlock(), vue.createElementBlock("image", {
+                    key: 1,
+                    "lazy-load": "",
+                    style: { "width": "50px", "height": "50px", "border-radius": "50%" },
+                    src: vue.unref(store).state.userInfo.userAvatar,
+                    mode: ""
+                  }, null, 8, ["src"]))
                 ])
-              ])
-            ]),
-            vue.createElementVNode("view", { class: "hotsongs" }, [
-              vue.createTextVNode(" \u65B0\u661F\u97F3\u4E50 "),
-              vue.createElementVNode("view", { class: "right" }, [
-                vue.createVNode(_component_uni_icons, {
-                  type: "forward",
-                  onClick: gocharts,
-                  size: "20"
-                })
-              ])
-            ]),
-            vue.createElementVNode("view", {
-              class: "trendingSwiper",
-              style: { "padding-top": "0rpx" }
-            }, [
-              vue.createElementVNode("view", { class: "uni-margin-wrap" }, [
+              ]),
+              vue.createElementVNode("view", {
+                class: "trendingSwiper",
+                style: { "border-top": "1px solid #e6e6e6" }
+              }, [
+                vue.createElementVNode("view", { class: "uni-margin-wrap" }, [
+                  vue.createElementVNode("swiper", {
+                    class: "swiper",
+                    autoplay: false,
+                    duration: 500,
+                    "display-multiple-items": "1",
+                    "next-margin": "20px"
+                  }, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(bannerlist), (item) => {
+                      return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
+                        vue.createElementVNode("view", { class: "swiper-item2" }, [
+                          vue.createElementVNode("image", {
+                            "lazy-load": "",
+                            class: "swiper-item2_image",
+                            src: item.pic,
+                            mode: ""
+                          }, null, 8, ["src"])
+                        ])
+                      ]);
+                    }), 256))
+                  ])
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "hotsongs" }, [
+                vue.createTextVNode(" \u65B0\u661F\u97F3\u4E50 "),
+                vue.createElementVNode("view", { class: "right" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    type: "forward",
+                    onClick: gocharts,
+                    size: "20"
+                  })
+                ])
+              ]),
+              vue.createElementVNode("view", {
+                class: "trendingSwiper",
+                style: { "padding-top": "0rpx" }
+              }, [
+                vue.createElementVNode("view", { class: "uni-margin-wrap" }, [
+                  vue.createElementVNode("swiper", {
+                    class: "swiper",
+                    autoplay: false,
+                    duration: 500,
+                    "display-multiple-items": "1",
+                    "next-margin": "30px"
+                  }, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(recommendmusiclist.value, (item) => {
+                      return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
+                        vue.createElementVNode("view", { class: "swiper-item" }, [
+                          (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(item, (item_re) => {
+                            return vue.openBlock(), vue.createElementBlock("view", {
+                              class: "swiper-item1",
+                              onClick: ($event) => gotodetailedInformation(item_re)
+                            }, [
+                              vue.createElementVNode("view", { class: "imageview" }, [
+                                vue.createElementVNode("image", {
+                                  "lazy-load": "",
+                                  style: { "height": "40px", "width": "40px", "border-radius": "20rpx" },
+                                  src: item_re.picUrl,
+                                  mode: ""
+                                }, null, 8, ["src"])
+                              ]),
+                              vue.createElementVNode("view", { class: "swiper-item_content" }, [
+                                vue.createElementVNode("view", { class: "swiper-item_content_title" }, vue.toDisplayString(item_re.name), 1),
+                                vue.createElementVNode("view", { class: "swiper-item_content_co" }, vue.toDisplayString(item_re.song.artists[0].name), 1)
+                              ])
+                            ], 8, ["onClick"]);
+                          }), 256))
+                        ])
+                      ]);
+                    }), 256))
+                  ])
+                ])
+              ]),
+              vue.createElementVNode("view", {
+                class: "hotsongs",
+                style: { "margin-top": "10px" }
+              }, [
+                vue.createTextVNode(" \u70ED\u95E8\u6B4C\u624B "),
+                vue.createElementVNode("view", { class: "right" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    onClick: gocharts,
+                    type: "forward",
+                    size: "20"
+                  })
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "newAlbums" }, [
                 vue.createElementVNode("swiper", {
                   class: "swiper",
                   autoplay: false,
                   duration: 500,
-                  "display-multiple-items": "1",
+                  "display-multiple-items": "3",
                   "next-margin": "30px"
                 }, [
-                  (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(recommendmusiclist.value, (item) => {
+                  (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(hotartistslist.value, (item) => {
                     return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
-                      vue.createElementVNode("view", { class: "swiper-item" }, [
-                        (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(item, (item_re) => {
-                          return vue.openBlock(), vue.createElementBlock("view", { class: "swiper-item1" }, [
-                            vue.createElementVNode("view", { class: "imageview" }, [
-                              vue.createElementVNode("image", {
-                                "lazy-load": "",
-                                style: { "height": "40px", "width": "40px", "border-radius": "20rpx" },
-                                src: item_re.picUrl,
-                                mode: ""
-                              }, null, 8, ["src"])
-                            ]),
-                            vue.createElementVNode("view", { class: "swiper-item_content" }, [
-                              vue.createElementVNode("view", { class: "swiper-item_content_title" }, vue.toDisplayString(item_re.name), 1),
-                              vue.createElementVNode("view", { class: "swiper-item_content_co" }, vue.toDisplayString(item_re.song.artists[0].name), 1)
-                            ])
-                          ]);
-                        }), 256))
+                      vue.createElementVNode("view", { class: "swiper-item3" }, [
+                        vue.createElementVNode("image", {
+                          "lazy-load": "",
+                          src: item.picUrl,
+                          style: { "width": "100%", "height": "180rpx", "border-radius": "10px" },
+                          mode: ""
+                        }, null, 8, ["src"])
+                      ]),
+                      vue.createElementVNode("view", { class: "albums_name" }, vue.toDisplayString(item.name), 1)
+                    ]);
+                  }), 256))
+                ])
+              ]),
+              vue.createElementVNode("view", {
+                class: "hotsongs",
+                style: { "margin-top": "10px" }
+              }, [
+                vue.createTextVNode(" \u70ED\u95E8\u97F3\u4E50 "),
+                vue.createElementVNode("view", { class: "right" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    onClick: gocharts,
+                    type: "forward",
+                    size: "20"
+                  })
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "hotMusic" }, [
+                vue.createElementVNode("view", null, [
+                  (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(hotmusiclist), (item) => {
+                    return vue.openBlock(), vue.createElementBlock("view", { class: "hotMusic_item" }, [
+                      vue.createTextVNode(vue.toDisplayString(item.name) + " ", 1),
+                      vue.createElementVNode("view", null, [
+                        vue.createVNode(_component_uni_icons, {
+                          type: "forward",
+                          size: "12"
+                        })
                       ])
                     ]);
                   }), 256))
                 ])
               ])
-            ]),
-            vue.createElementVNode("view", {
-              class: "hotsongs",
-              style: { "margin-top": "10px" }
-            }, [
-              vue.createTextVNode(" \u70ED\u95E8\u6B4C\u624B "),
-              vue.createElementVNode("view", { class: "right" }, [
-                vue.createVNode(_component_uni_icons, {
-                  onClick: gocharts,
-                  type: "forward",
-                  size: "20"
-                })
-              ])
-            ]),
-            vue.createElementVNode("view", { class: "newAlbums" }, [
-              vue.createElementVNode("swiper", {
-                class: "swiper",
-                autoplay: false,
-                duration: 500,
-                "display-multiple-items": "3",
-                "next-margin": "30px"
-              }, [
-                (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(hotartistslist.value, (item) => {
-                  return vue.openBlock(), vue.createElementBlock("swiper-item", null, [
-                    vue.createElementVNode("view", { class: "swiper-item3" }, [
-                      vue.createElementVNode("image", {
-                        "lazy-load": "",
-                        src: item.picUrl,
-                        style: { "width": "100%", "height": "180rpx", "border-radius": "10px" },
-                        mode: ""
-                      }, null, 8, ["src"])
-                    ]),
-                    vue.createElementVNode("view", { class: "albums_name" }, vue.toDisplayString(item.name), 1)
-                  ]);
-                }), 256))
-              ])
-            ]),
-            vue.createElementVNode("view", {
-              class: "hotsongs",
-              style: { "margin-top": "10px" }
-            }, [
-              vue.createTextVNode(" \u70ED\u95E8\u97F3\u4E50 "),
-              vue.createElementVNode("view", { class: "right" }, [
-                vue.createVNode(_component_uni_icons, {
-                  onClick: gocharts,
-                  type: "forward",
-                  size: "20"
-                })
-              ])
-            ]),
-            vue.createElementVNode("view", { class: "hotMusic" }, [
-              vue.createElementVNode("view", null, [
-                (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(hotmusiclist), (item) => {
-                  return vue.openBlock(), vue.createElementBlock("view", { class: "hotMusic_item" }, [
-                    vue.createTextVNode(vue.toDisplayString(item.name) + " ", 1),
-                    vue.createElementVNode("view", null, [
-                      vue.createVNode(_component_uni_icons, {
-                        type: "forward",
-                        size: "12"
-                      })
-                    ])
-                  ]);
-                }), 256))
-              ])
-            ])
-          ], 4)
-        ], 2);
+            ], 4)
+          ], 2), [
+            [vue.vShow, !vue.unref(loadingStatus)]
+          ])
+        ], 64);
       };
     }
   };
-  var trending = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-2ac50026"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/trending/trending.vue"]]);
+  var trending = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__scopeId", "data-v-2ac50026"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/trending/trending.vue"]]);
   function debounce(func, delay = 300, immediate = false) {
     let timer = null;
     return function() {
@@ -4760,7 +4786,7 @@ if (uni.restoreGlobal) {
       }, delay);
     };
   }
-  const _sfc_main$m = {
+  const _sfc_main$n = {
     __name: "search",
     setup(__props) {
       vue.getCurrentInstance();
@@ -4865,8 +4891,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var search = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-4cedc0c6"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/search/search.vue"]]);
-  const _sfc_main$l = {
+  var search = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__scopeId", "data-v-4cedc0c6"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/search/search.vue"]]);
+  const _sfc_main$m = {
     __name: "radios",
     setup(__props) {
       vue.getCurrentInstance();
@@ -5008,8 +5034,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var radios = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-40ce6ac6"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/radios/radios.vue"]]);
-  const _sfc_main$k = {
+  var radios = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__scopeId", "data-v-40ce6ac6"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/radios/radios.vue"]]);
+  const _sfc_main$l = {
     __name: "setting",
     setup(__props) {
       let statusBarHeight = vue.ref(0);
@@ -5084,7 +5110,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var setting = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-9543fcb0"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/setting/setting.vue"]]);
+  var setting = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__scopeId", "data-v-9543fcb0"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/setting/setting.vue"]]);
   var library1 = "/static/image/library1.png";
   var library2 = "/static/image/library2.png";
   var data1 = "/static/image/data1.png";
@@ -5095,7 +5121,7 @@ if (uni.restoreGlobal) {
   var radio2 = "/static/image/radio2.png";
   var setting1 = "/static/image/setting1.png";
   var setting2 = "/static/image/setting2.png";
-  const _sfc_main$j = {
+  const _sfc_main$k = {
     __name: "tabbar",
     setup(__props) {
       const proxy = vue.getCurrentInstance();
@@ -5175,8 +5201,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var tabbar = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__scopeId", "data-v-6b6b6164"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/common/tabbar.vue"]]);
-  const _sfc_main$i = {
+  var tabbar = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__scopeId", "data-v-6b6b6164"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/common/tabbar.vue"]]);
+  const _sfc_main$j = {
     name: "UniNoticeBar",
     emits: ["click", "getmore", "close"],
     props: {
@@ -5388,8 +5414,8 @@ if (uni.restoreGlobal) {
       ])) : vue.createCommentVNode("v-if", true)
     ], 4)) : vue.createCommentVNode("v-if", true);
   }
-  var __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$4], ["__scopeId", "data-v-a1596656"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
-  const _sfc_main$h = {
+  var __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$4], ["__scopeId", "data-v-a1596656"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
+  const _sfc_main$i = {
     __name: "play_tabbar",
     props: {
       meauStatus: {
@@ -5568,8 +5594,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var playtabbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-7d022d33"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/common/play_tabbar.vue"]]);
-  const _sfc_main$g = {
+  var playtabbar = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__scopeId", "data-v-7d022d33"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/common/play_tabbar.vue"]]);
+  const _sfc_main$h = {
     __name: "mainEntrance",
     setup(__props) {
       const proxy = vue.getCurrentInstance();
@@ -5645,21 +5671,11 @@ if (uni.restoreGlobal) {
         const _component_uni_popup_dialog = resolveEasycom(vue.resolveDynamicComponent("uni-popup-dialog"), __easycom_0$3);
         const _component_uni_popup = resolveEasycom(vue.resolveDynamicComponent("uni-popup"), __easycom_3);
         return vue.openBlock(), vue.createElementBlock("view", { class: "main" }, [
-          vue.withDirectives(vue.createVNode(home, null, null, 512), [
-            [vue.vShow, vue.unref(ctabbarItem) === 0]
-          ]),
-          vue.withDirectives(vue.createVNode(trending, null, null, 512), [
-            [vue.vShow, vue.unref(ctabbarItem) === 1]
-          ]),
-          vue.withDirectives(vue.createVNode(search, null, null, 512), [
-            [vue.vShow, vue.unref(ctabbarItem) === 2]
-          ]),
-          vue.withDirectives(vue.createVNode(radios, null, null, 512), [
-            [vue.vShow, vue.unref(ctabbarItem) === 3]
-          ]),
-          vue.withDirectives(vue.createVNode(setting, null, null, 512), [
-            [vue.vShow, vue.unref(ctabbarItem) === 4]
-          ]),
+          vue.unref(ctabbarItem) === 0 ? (vue.openBlock(), vue.createBlock(home, { key: 0 })) : vue.createCommentVNode("v-if", true),
+          vue.unref(ctabbarItem) === 1 ? (vue.openBlock(), vue.createBlock(trending, { key: 1 })) : vue.createCommentVNode("v-if", true),
+          vue.unref(ctabbarItem) === 2 ? (vue.openBlock(), vue.createBlock(search, { key: 2 })) : vue.createCommentVNode("v-if", true),
+          vue.unref(ctabbarItem) === 3 ? (vue.openBlock(), vue.createBlock(radios, { key: 3 })) : vue.createCommentVNode("v-if", true),
+          vue.unref(ctabbarItem) === 4 ? (vue.openBlock(), vue.createBlock(setting, { key: 4 })) : vue.createCommentVNode("v-if", true),
           vue.withDirectives(vue.createVNode(playtabbar, null, null, 512), [
             [vue.vShow, vue.unref(store).state.musicPlay.playMusicURL]
           ]),
@@ -5685,8 +5701,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesMainEntranceMainEntrance = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/mainEntrance/mainEntrance.vue"]]);
-  const _sfc_main$f = {
+  var PagesMainEntranceMainEntrance = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/mainEntrance/mainEntrance.vue"]]);
+  const _sfc_main$g = {
     __name: "charts",
     setup(__props) {
       let current = vue.ref(0);
@@ -5897,8 +5913,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesTrendingChartsCharts = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-514f111e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/trending/charts/charts.vue"]]);
-  const _sfc_main$e = {
+  var PagesTrendingChartsCharts = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-514f111e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/trending/charts/charts.vue"]]);
+  const _sfc_main$f = {
     __name: "login",
     setup(__props) {
       let login_data = vue.ref({
@@ -6011,7 +6027,7 @@ if (uni.restoreGlobal) {
         return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
           vue.unref(loginStatus) ? (vue.openBlock(), vue.createElementBlock("view", {
             key: 0,
-            class: vue.normalizeClass(_ctx.store.state.css_style ? "gray_filter" : "")
+            class: vue.normalizeClass(vue.unref(store).state.css_style ? "gray_filter" : "")
           }, [
             vue.createElementVNode("view", { class: "login" }, [
               vue.createElementVNode("image", {
@@ -6083,7 +6099,7 @@ if (uni.restoreGlobal) {
           vue.createCommentVNode(" //\u9A8C\u8BC1\u7801\u767B\u5F55 "),
           !vue.unref(loginStatus) ? (vue.openBlock(), vue.createElementBlock("view", {
             key: 1,
-            class: vue.normalizeClass(["codelogin", _ctx.store.state.css_style ? "gray_filter" : ""])
+            class: vue.normalizeClass(["codelogin", vue.unref(store).state.css_style ? "gray_filter" : ""])
           }, [
             vue.createElementVNode("view", { class: "login" }, [
               vue.createElementVNode("image", {
@@ -6146,8 +6162,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesLoginLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-1389b5f4"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/login/login.vue"]]);
-  const _sfc_main$d = {
+  var PagesLoginLoginLogin = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-1389b5f4"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/login/login.vue"]]);
+  const _sfc_main$e = {
     __name: "register",
     setup(__props) {
       vue.getCurrentInstance();
@@ -6339,8 +6355,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesLoginRegisterRegister = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-417ad080"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/register/register.vue"]]);
-  const _sfc_main$c = {
+  var PagesLoginRegisterRegister = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-417ad080"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/register/register.vue"]]);
+  const _sfc_main$d = {
     __name: "playlists",
     setup(__props) {
       let index = vue.ref(true);
@@ -6464,8 +6480,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomePlaylistsPlaylists = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-6a3d4dfc"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/playlists/playlists.vue"]]);
-  const _sfc_main$b = {
+  var PagesHomePlaylistsPlaylists = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-6a3d4dfc"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/playlists/playlists.vue"]]);
+  const _sfc_main$c = {
     __name: "albums",
     setup(__props) {
       let statusBarHeight = vue.ref(0);
@@ -6528,8 +6544,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeAlbumsAlbums = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-80346010"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/albums/albums.vue"]]);
-  const _sfc_main$a = {
+  var PagesHomeAlbumsAlbums = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-80346010"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/albums/albums.vue"]]);
+  const _sfc_main$b = {
     __name: "songs",
     setup(__props) {
       let statusBarHeight = vue.ref();
@@ -6702,8 +6718,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeSongsSongs = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-279f1b76"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/songs/songs.vue"]]);
-  const _sfc_main$9 = {
+  var PagesHomeSongsSongs = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-279f1b76"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/songs/songs.vue"]]);
+  const _sfc_main$a = {
     __name: "artists",
     setup(__props) {
       let statusBarHeight = vue.ref(0);
@@ -6844,8 +6860,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeArtistsArtists = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-0b792752"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/artists/artists.vue"]]);
-  const _sfc_main$8 = {
+  var PagesHomeArtistsArtists = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-0b792752"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/artists/artists.vue"]]);
+  const _sfc_main$9 = {
     __name: "dailyrecommendations",
     setup(__props) {
       let statusBarHeight = vue.ref();
@@ -6944,7 +6960,7 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeDailyrecommendationsDailyrecommendations = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-47143558"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/dailyrecommendations/dailyrecommendations.vue"]]);
+  var PagesHomeDailyrecommendationsDailyrecommendations = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-47143558"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/dailyrecommendations/dailyrecommendations.vue"]]);
   function obj2strClass(obj) {
     let classess = "";
     for (let key in obj) {
@@ -6963,7 +6979,7 @@ if (uni.restoreGlobal) {
     }
     return style;
   }
-  const _sfc_main$7 = {
+  const _sfc_main$8 = {
     name: "uni-easyinput",
     emits: ["click", "iconClick", "update:modelValue", "input", "focus", "blur", "confirm", "clear", "eyes", "change"],
     model: {
@@ -7329,7 +7345,7 @@ if (uni.restoreGlobal) {
       ], 6)
     ], 6);
   }
-  var __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$3], ["__scopeId", "data-v-abe12412"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
+  var __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$3], ["__scopeId", "data-v-abe12412"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
   const pages = [
     {
       path: "pages/mainEntrance/mainEntrance",
@@ -7449,6 +7465,14 @@ if (uni.restoreGlobal) {
       style: {
         navigationBarTitleText: "\u626B\u7801\u767B\u5F55",
         enablePullDownRefresh: false
+      }
+    },
+    {
+      path: "pages/detailedInformation/detailedInformation",
+      style: {
+        navigationBarTitleText: "detailedInformation",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
       }
     }
   ];
@@ -9952,7 +9976,7 @@ if (uni.restoreGlobal) {
     }
     return filedata;
   };
-  const _sfc_main$6 = {
+  const _sfc_main$7 = {
     name: "uploadImage",
     emits: ["uploadFiles", "choose", "delFile"],
     props: {
@@ -10162,8 +10186,8 @@ if (uni.restoreGlobal) {
       ], 4)) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  var uploadImage = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$2], ["__scopeId", "data-v-4c5c5653"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.vue"]]);
-  const _sfc_main$5 = {
+  var uploadImage = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$2], ["__scopeId", "data-v-4c5c5653"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/upload-image.vue"]]);
+  const _sfc_main$6 = {
     name: "uploadFile",
     emits: ["uploadFiles", "choose", "delFile"],
     props: {
@@ -10354,8 +10378,8 @@ if (uni.restoreGlobal) {
       ], 4)) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  var uploadFile = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$1], ["__scopeId", "data-v-4f822398"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.vue"]]);
-  const _sfc_main$4 = {
+  var uploadFile = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$1], ["__scopeId", "data-v-4f822398"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/upload-file.vue"]]);
+  const _sfc_main$5 = {
     name: "uniFilePicker",
     components: {
       uploadImage,
@@ -10823,8 +10847,8 @@ if (uni.restoreGlobal) {
       }, 8, ["readonly", "list-styles", "files-list", "showType", "delIcon", "onUploadFiles", "onChoose", "onDelFile"])) : vue.createCommentVNode("v-if", true)
     ]);
   }
-  var __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render], ["__scopeId", "data-v-363ace0e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue"]]);
-  const _sfc_main$3 = {
+  var __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render], ["__scopeId", "data-v-363ace0e"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker.vue"]]);
+  const _sfc_main$4 = {
     __name: "issuanceTrends",
     setup(__props) {
       let statusBarHeight = vue.ref();
@@ -11198,8 +11222,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeIssuanceTrendsIssuanceTrends = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-72546150"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/issuanceTrends/issuanceTrends.vue"]]);
-  const _sfc_main$2 = {
+  var PagesHomeIssuanceTrendsIssuanceTrends = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-72546150"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/issuanceTrends/issuanceTrends.vue"]]);
+  const _sfc_main$3 = {
     __name: "event",
     setup(__props) {
       let statusBarHeight = vue.ref();
@@ -11389,8 +11413,8 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesHomeEventEvent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-83b238a4"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/event/event.vue"]]);
-  const _sfc_main$1 = {
+  var PagesHomeEventEvent = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-83b238a4"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/home/event/event.vue"]]);
+  const _sfc_main$2 = {
     __name: "scan",
     setup(__props) {
       let qrurl = vue.ref("");
@@ -11460,7 +11484,154 @@ if (uni.restoreGlobal) {
       };
     }
   };
-  var PagesLoginScanScan = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-506d47c0"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/scan/scan.vue"]]);
+  var PagesLoginScanScan = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-506d47c0"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/login/scan/scan.vue"]]);
+  const _sfc_main$1 = {
+    __name: "detailedInformation",
+    setup(__props) {
+      let musicId = vue.ref("");
+      let statusBarHeight = vue.ref("");
+      let pgList = vue.ref([0, 0, 0, 0]);
+      let loadingStatus = vue.ref(true);
+      onLoad((option) => {
+        statusBarHeight.value = store.state.phoneInfo.statusbarHeight;
+        musicId.value = option.id;
+        getMusicInfo();
+      });
+      const goBack = () => {
+        uni.navigateBack({
+          delta: 1,
+          animationType: "slide-out-bottom",
+          animationDuration: 700
+        });
+      };
+      let musicInfo = vue.ref({});
+      const getMusicInfo = async () => {
+        await axios.getsongsInfo({
+          ids: musicId.value
+        }).then((res) => {
+          musicInfo.value = res.data.songs[0];
+          setTimeout(() => {
+            loadingStatus.value = false;
+          }, 1e3);
+        });
+      };
+      return (_ctx, _cache) => {
+        const _component_uni_icons = resolveEasycom(vue.resolveDynamicComponent("uni-icons"), __easycom_0$1);
+        return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+          vue.withDirectives(vue.createElementVNode("view", {
+            class: "loader",
+            style: { "margin-top": "30vh" }
+          }, null, 512), [
+            [vue.vShow, vue.unref(loadingStatus)]
+          ]),
+          vue.withDirectives(vue.createElementVNode("view", { class: "detailedInformation" }, [
+            vue.createElementVNode("image", {
+              class: "imagebackground",
+              src: vue.unref(musicInfo).al.picUrl,
+              mode: ""
+            }, null, 8, ["src"]),
+            vue.createElementVNode("view", {
+              style: vue.normalizeStyle([{ marginTop: vue.unref(statusBarHeight) + "px" }]),
+              class: "detailedInformation_title"
+            }, [
+              vue.createElementVNode("view", { class: "detailedInformation_title-style" }, [
+                vue.createElementVNode("view", { class: "iconsview" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    type: "bottom",
+                    size: "20",
+                    onClick: goBack
+                  })
+                ]),
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createTextVNode(vue.toDisplayString(vue.unref(musicInfo).name) + " ", 1),
+                  vue.createElementVNode("view", { class: "" }, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(musicInfo).ar, (item, index) => {
+                      return vue.openBlock(), vue.createElementBlock("text", null, vue.toDisplayString(item.name) + "\xA0", 1);
+                    }), 256))
+                  ])
+                ])
+              ])
+            ], 4),
+            vue.createElementVNode("view", { class: "detailedInformation_center" }, [
+              vue.createElementVNode("view", { class: "detailedInformation_center-style" }, [
+                vue.createElementVNode("view", { class: "detailedInformation_center-style_image" }, [
+                  vue.createElementVNode("image", {
+                    class: "detailedInformation_center_image",
+                    src: vue.unref(musicInfo).al.picUrl,
+                    mode: ""
+                  }, null, 8, ["src"])
+                ]),
+                vue.createElementVNode("view", { class: "radio" })
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "bottom_item" }, [
+              vue.createElementVNode("view", { class: "progress" }, [
+                vue.createElementVNode("view", { class: "startTime" }, "\u65F6\u95F4"),
+                vue.createElementVNode("view", { class: "progress-box" }, [
+                  vue.createElementVNode("progress", {
+                    percent: vue.unref(pgList)[3],
+                    activeColor: "#10AEFF",
+                    "stroke-width": "3"
+                  }, null, 8, ["percent"])
+                ]),
+                vue.createElementVNode("view", { class: "endTime" }, "\u603B\u65F6\u95F4")
+              ]),
+              vue.createElementVNode("view", { class: "iconMeaus" }, [
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    "custom-prefix": "iconfont",
+                    color: "white",
+                    type: "icon-xunhuanbofang",
+                    size: "30"
+                  }),
+                  vue.createCommentVNode("v-if", true)
+                ]),
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    "custom-prefix": "iconfont",
+                    class: "uni-icons",
+                    color: "white",
+                    type: "icon-shangyishoushangyige",
+                    size: "30"
+                  })
+                ]),
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    "custom-prefix": "iconfont",
+                    class: "uni-icons",
+                    color: "white",
+                    type: "icon-pause-full",
+                    size: "30"
+                  }),
+                  vue.createCommentVNode("v-if", true)
+                ]),
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    "custom-prefix": "iconfont",
+                    class: "uni-icons",
+                    color: "white",
+                    type: "icon-xiayigexiayishou",
+                    size: "30"
+                  })
+                ]),
+                vue.createElementVNode("view", { class: "" }, [
+                  vue.createVNode(_component_uni_icons, {
+                    class: "uni-icons",
+                    color: "white",
+                    type: "bars",
+                    size: "30"
+                  })
+                ])
+              ])
+            ])
+          ], 512), [
+            [vue.vShow, !vue.unref(loadingStatus)]
+          ])
+        ], 64);
+      };
+    }
+  };
+  var PagesDetailedInformationDetailedInformation = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-4d2d2940"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/detailedInformation/detailedInformation.vue"]]);
   __definePage("pages/mainEntrance/mainEntrance", PagesMainEntranceMainEntrance);
   __definePage("pages/trending/charts/charts", PagesTrendingChartsCharts);
   __definePage("pages/login/login/login", PagesLoginLoginLogin);
@@ -11473,6 +11644,7 @@ if (uni.restoreGlobal) {
   __definePage("pages/home/issuanceTrends/issuanceTrends", PagesHomeIssuanceTrendsIssuanceTrends);
   __definePage("pages/home/event/event", PagesHomeEventEvent);
   __definePage("pages/login/scan/scan", PagesLoginScanScan);
+  __definePage("pages/detailedInformation/detailedInformation", PagesDetailedInformationDetailedInformation);
   const _sfc_main = {
     data() {
       return {

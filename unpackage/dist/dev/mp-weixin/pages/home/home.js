@@ -6,14 +6,12 @@ var http_req = require("../../http/req.js");
 var uniStorage_index = require("../../uniStorage/index.js");
 require("../../http/http.js");
 if (!Array) {
-  const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  (_easycom_uni_load_more2 + _easycom_uni_icons2)();
+  _easycom_uni_icons2();
 }
-const _easycom_uni_load_more = () => "../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js";
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 if (!Math) {
-  (_easycom_uni_load_more + _easycom_uni_icons)();
+  _easycom_uni_icons();
 }
 const _sfc_main = {
   __name: "home",
@@ -82,6 +80,10 @@ const _sfc_main = {
             }
           });
         }
+      }).catch((err) => {
+        setTimeout(() => {
+          getuserallevent();
+        }, 1e3);
       });
     };
     const getUserInfo = async () => {
@@ -94,6 +96,13 @@ const _sfc_main = {
           userAvatar: res.data.profile.avatarUrl,
           nickname: res.data.profile.nickname
         });
+        setTimeout(() => {
+          loadingStatus.value = false;
+        }, 1e3);
+      }).catch((err) => {
+        setTimeout(() => {
+          getUserInfo();
+        }, 1e3);
       });
     };
     let songssheetlist = common_vendor.ref("");
@@ -104,6 +113,10 @@ const _sfc_main = {
       }).then((res) => {
         songssheetlist.value = res.data.playlist[0].id;
         getsheetallsongs(songssheetlist.value);
+      }).catch((err) => {
+        setTimeout(() => {
+          usersongsheet(uid);
+        }, 1e3);
       });
     };
     const scroll_event = (event) => {
@@ -143,6 +156,10 @@ const _sfc_main = {
         if (res.data.code == 200) {
           uniStorage_index.unistorage.setStorage("token", res.data.cookie);
         }
+      }).catch((err) => {
+        setTimeout(() => {
+          anonimous();
+        }, 1e3);
       });
     };
     let recommendsheetlist = common_vendor.ref([]);
@@ -151,6 +168,10 @@ const _sfc_main = {
         limit: 10
       }).then((res) => {
         recommendsheetlist.value = res.data.result;
+      }).catch((err) => {
+        setTimeout(() => {
+          getrecommondsongsheet();
+        }, 1e3);
       });
     };
     let hottopiclist = common_vendor.ref();
@@ -165,6 +186,10 @@ const _sfc_main = {
             loadingStatus.value = false;
           }, 1e3);
         }
+      }).catch((err) => {
+        setTimeout(() => {
+          gethottopic();
+        }, 1e3);
       });
     };
     const songslist = common_vendor.ref([]);
@@ -177,8 +202,9 @@ const _sfc_main = {
           musiclist: songslist.value,
           index: 0
         });
+      }).catch((err) => {
         setTimeout(() => {
-          loadingStatus.value = false;
+          getsheetallsongs(id);
         }, 1e3);
       });
     };
@@ -247,42 +273,38 @@ const _sfc_main = {
       }, !common_vendor.unref(store_index.store).state.userInfo.userAvatar ? {} : {
         b: common_vendor.unref(store_index.store).state.userInfo.userAvatar
       }, {
-        c: common_vendor.unref(loadingStatus),
-        d: common_vendor.p({
-          iconType: "snow",
-          showText: false,
-          status: "loading"
-        }),
-        e: common_vendor.f(common_vendor.unref(home_meaus), (item, index, i0) => {
+        c: common_vendor.unref(loadingStatus)
+      }, common_vendor.unref(loadingStatus) ? {} : {}, {
+        d: common_vendor.f(common_vendor.unref(home_meaus), (item, index, i0) => {
           return {
             a: item.imgurl,
             b: common_vendor.t(item.name),
-            c: "92bb8f34-1-" + i0,
+            c: "92bb8f34-0-" + i0,
             d: common_vendor.o(($event) => gotoPage(index))
           };
         }),
-        f: common_vendor.p({
+        e: common_vendor.p({
           type: "right",
           size: "20"
         }),
-        g: !common_vendor.unref(loadingStatus),
-        h: common_vendor.o(($event) => gotoPage(4)),
-        i: common_vendor.p({
+        f: !common_vendor.unref(loadingStatus),
+        g: common_vendor.o(($event) => gotoPage(4)),
+        h: common_vendor.p({
           type: "forward",
           size: "16"
         }),
-        j: common_vendor.f(common_vendor.unref(recommendsheetlist), (item, index, i0) => {
+        i: common_vendor.f(common_vendor.unref(recommendsheetlist), (item, index, i0) => {
           return {
             a: item.picUrl,
             b: common_vendor.t(item.name),
             c: common_vendor.o(($event) => gotoPage(7, item.id))
           };
         }),
+        j: !common_vendor.unref(loadingStatus),
         k: !common_vendor.unref(loadingStatus),
-        l: !common_vendor.unref(loadingStatus),
-        m: common_vendor.unref(loginStatus)
+        l: common_vendor.unref(loginStatus)
       }, common_vendor.unref(loginStatus) ? {
-        n: common_vendor.f(common_vendor.unref(hottopiclist), (item, index, i0) => {
+        m: common_vendor.f(common_vendor.unref(hottopiclist), (item, index, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.title),
             b: common_vendor.t(item.text[0] ? item.text[0] : "\u6682\u65E0\u5185\u5BB9"),
@@ -291,16 +313,16 @@ const _sfc_main = {
             d: item.sharePicUrl
           } : {});
         }),
-        o: !common_vendor.unref(loadingStatus)
+        n: !common_vendor.unref(loadingStatus)
       } : {}, {
-        p: !common_vendor.unref(loginStatus)
+        o: !common_vendor.unref(loginStatus)
       }, !common_vendor.unref(loginStatus) ? {
-        q: common_vendor.o(($event) => gotoPage()),
-        r: !common_vendor.unref(loadingStatus)
+        p: common_vendor.o(($event) => gotoPage()),
+        q: !common_vendor.unref(loadingStatus)
       } : {}, {
-        s: common_vendor.unref(loginStatus)
+        r: common_vendor.unref(loginStatus)
       }, common_vendor.unref(loginStatus) ? {
-        t: common_vendor.f(common_vendor.unref(useralleventdatares), (item, index, i0) => {
+        s: common_vendor.f(common_vendor.unref(useralleventdatares), (item, index, i0) => {
           return common_vendor.e({
             a: item.user.avatarUrl,
             b: common_vendor.t(item.user.nickname),
@@ -320,42 +342,42 @@ const _sfc_main = {
             i: common_vendor.t(item.song2.name),
             j: common_vendor.t(item.song2.album.artists[0].name)
           } : {}, {
-            k: "92bb8f34-3-" + i0,
+            k: "92bb8f34-2-" + i0,
             l: common_vendor.t(item.info.commentThread.hotCount),
-            m: "92bb8f34-4-" + i0,
+            m: "92bb8f34-3-" + i0,
             n: common_vendor.t(item.info.commentThread.commentCount),
-            o: "92bb8f34-5-" + i0,
+            o: "92bb8f34-4-" + i0,
             p: common_vendor.t(item.info.commentThread.likedCount),
             q: common_vendor.o(($event) => gotoPage(6, item))
           });
         }),
-        v: common_vendor.p({
+        t: common_vendor.p({
           color: "#9194AE",
           type: "redo",
           size: "20"
         }),
-        w: common_vendor.p({
+        v: common_vendor.p({
           color: "#9194AE",
           type: "chatboxes",
           size: "20"
         }),
-        x: common_vendor.p({
+        w: common_vendor.p({
           color: "#9194AE",
           type: "hand-up",
           size: "20"
         }),
-        y: !common_vendor.unref(loadingStatus),
-        z: !common_vendor.unref(loadingStatus)
+        x: !common_vendor.unref(loadingStatus),
+        y: !common_vendor.unref(loadingStatus)
       } : {}, {
-        A: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
-        B: common_vendor.unref(statusBarHeight) + "px",
-        C: common_vendor.unref(issuanceStatus) && common_vendor.unref(loginStatus)
+        z: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
+        A: common_vendor.unref(statusBarHeight) + "px",
+        B: common_vendor.unref(issuanceStatus) && common_vendor.unref(loginStatus)
       }, common_vendor.unref(issuanceStatus) && common_vendor.unref(loginStatus) ? {
-        D: common_vendor.o(($event) => gotoPage(5)),
-        E: !common_vendor.unref(loadingStatus)
+        C: common_vendor.o(($event) => gotoPage(5)),
+        D: !common_vendor.unref(loadingStatus)
       } : {}, {
-        F: common_vendor.o(scroll_event),
-        G: common_vendor.o(scrolltolower)
+        E: common_vendor.o(scroll_event),
+        F: common_vendor.o(scrolltolower)
       });
     };
   }

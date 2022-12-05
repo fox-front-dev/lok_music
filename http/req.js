@@ -375,6 +375,12 @@ const getsongsurl=(data)=>{
 		}
 	})
 }
+// banner
+const banner=()=>{
+	return http.get({
+		url:"/banner?type=2"
+	})
+}
 
 export default {
 	search,
@@ -408,5 +414,6 @@ export default {
 	shareevent,
 	lastplaysong,
 	checknickname,
-	logout,allToplist,toplistartist,highquality,createplaylist,getsongsurl
+	logout,allToplist,toplistartist,highquality,createplaylist,getsongsurl,banner,
+	
 }

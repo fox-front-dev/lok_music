@@ -11,7 +11,8 @@
     "pages/home/dailyrecommendations/dailyrecommendations",
     "pages/home/issuanceTrends/issuanceTrends",
     "pages/home/event/event",
-    "pages/login/scan/scan"
+    "pages/login/scan/scan",
+    "pages/detailedInformation/detailedInformation"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -60,6 +60,10 @@ const _sfc_main = {
           });
         });
         commenteventlist2.value = commenteventlist_firstfitler;
+      }).catch((err) => {
+        setTimeout(() => {
+          getcommentevent();
+        }, 1e3);
       });
     };
     return (_ctx, _cache) => {

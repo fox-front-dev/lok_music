@@ -22,12 +22,20 @@ const _sfc_main = {
       });
     };
     common_vendor.onMounted(() => {
+      common_vendor.index.preloadPage({ url: "/pages/detailedInformation/detailedInformation" });
       statusBarHeight.value = store_index.store.state.phoneInfo.statusbarHeight;
       getdjtoplist();
       getrecommendmusic();
       gethotartists();
       gethotmusic();
+      banner();
     });
+    let bannerlist = common_vendor.ref([]);
+    const banner = () => {
+      http_req.axios.banner().then((res) => {
+        bannerlist.value = res.data.banners;
+      });
+    };
     let djtoplist = common_vendor.ref();
     const getdjtoplist = async () => {
       await http_req.axios.hotdjtoplist({
@@ -36,6 +44,10 @@ const _sfc_main = {
         offset: 0
       }).then((res) => {
         djtoplist.value = res.data.toplist;
+      }).catch((err) => {
+        setTimeout(() => {
+          getdjtoplist();
+        }, 1e3);
       });
     };
     const recommendmusiclist = common_vendor.ref([]);
@@ -53,6 +65,10 @@ const _sfc_main = {
             list = list.concat(item);
           }
         });
+      }).catch((err) => {
+        setTimeout(() => {
+          getrecommendmusic(index);
+        }, 1e3);
       });
     };
     const hotartistslist = common_vendor.ref();
@@ -61,6 +77,10 @@ const _sfc_main = {
         limit: 10
       }).then((res) => {
         hotartistslist.value = res.data.artists;
+      }).catch((err) => {
+        setTimeout(() => {
+          gethotartists();
+        }, 1e3);
       });
     };
     let hotmusiclist = common_vendor.ref([]);
@@ -73,6 +93,15 @@ const _sfc_main = {
             hotmusiclist.value = hotmusiclist.value.concat(item);
           }
         });
+      }).catch((err) => {
+        setTimeout(() => {
+          gethotmusic();
+        }, 1e3);
+      });
+    };
+    const gotodetailedInformation = (...arg) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/detailedInformation/detailedInformation?id=${arg[0].id}`
       });
     };
     return (_ctx, _cache) => {
@@ -81,64 +110,56 @@ const _sfc_main = {
       }, !common_vendor.unref(store_index.store).state.userInfo.userAvatar ? {} : {
         b: common_vendor.unref(store_index.store).state.userInfo.userAvatar
       }, {
-        c: common_vendor.f(common_vendor.unref(djtoplist), (item, k0, i0) => {
+        c: common_vendor.f(common_vendor.unref(bannerlist), (item, k0, i0) => {
           return {
-            a: item.picUrl,
-            b: "2ac50026-0-" + i0,
-            c: common_vendor.t(Math.round(item.score / 1e4)),
-            d: common_vendor.t(item.name),
-            e: common_vendor.t(item.rcmdtext)
+            a: item.pic
           };
         }),
-        d: common_vendor.p({
-          type: "star-filled",
-          color: "rgb(141, 141, 141)",
-          size: "16"
-        }),
-        e: common_vendor.o(gocharts),
-        f: common_vendor.p({
+        d: common_vendor.o(gocharts),
+        e: common_vendor.p({
           type: "forward",
           size: "20"
         }),
-        g: common_vendor.f(recommendmusiclist.value, (item, k0, i0) => {
+        f: common_vendor.f(recommendmusiclist.value, (item, k0, i0) => {
           return {
             a: common_vendor.f(item, (item_re, k1, i1) => {
               return {
                 a: item_re.picUrl,
                 b: common_vendor.t(item_re.name),
-                c: common_vendor.t(item_re.song.artists[0].name)
+                c: common_vendor.t(item_re.song.artists[0].name),
+                d: common_vendor.o(($event) => gotodetailedInformation(item_re))
               };
             })
           };
         }),
-        h: common_vendor.o(gocharts),
-        i: common_vendor.p({
+        g: common_vendor.o(gocharts),
+        h: common_vendor.p({
           type: "forward",
           size: "20"
         }),
-        j: common_vendor.f(hotartistslist.value, (item, k0, i0) => {
+        i: common_vendor.f(hotartistslist.value, (item, k0, i0) => {
           return {
             a: item.picUrl,
             b: common_vendor.t(item.name)
           };
         }),
-        k: common_vendor.o(gocharts),
-        l: common_vendor.p({
+        j: common_vendor.o(gocharts),
+        k: common_vendor.p({
           type: "forward",
           size: "20"
         }),
-        m: common_vendor.f(common_vendor.unref(hotmusiclist), (item, k0, i0) => {
+        l: common_vendor.f(common_vendor.unref(hotmusiclist), (item, k0, i0) => {
           return {
             a: common_vendor.t(item.name),
-            b: "2ac50026-4-" + i0
+            b: "2ac50026-3-" + i0
           };
         }),
-        n: common_vendor.p({
+        m: common_vendor.p({
           type: "forward",
           size: "12"
         }),
-        o: common_vendor.unref(statusBarHeight) + "px",
-        p: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : "")
+        n: common_vendor.unref(statusBarHeight) + "px",
+        o: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : "")
       });
     };
   }

@@ -7,7 +7,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons",
-    "uni-load-more": "../../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
     "playtabbar": "../../../common/play_tabbar"
   }
 }

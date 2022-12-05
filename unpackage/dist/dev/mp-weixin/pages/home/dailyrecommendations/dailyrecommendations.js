@@ -37,6 +37,10 @@ const _sfc_main = {
     const getDailyrecommend = async () => {
       await http_req.axios.dailyrecommend({}).then((res) => {
         dailyrecommendreslist.value = res.data.recommend;
+      }).catch((err) => {
+        setTimeout(() => {
+          getDailyrecommend();
+        }, 1e3);
       });
     };
     let dailyrecommendsongslist = common_vendor.ref([]);
@@ -44,6 +48,10 @@ const _sfc_main = {
       await http_req.axios.dailyrecommendsongs({}).then((res) => {
         dailyrecommendsongslist.value = res.data.data.dailySongs;
         dailyrecommendsongslist.value.length = 20;
+      }).catch((err) => {
+        setTimeout(() => {
+          getdailyrecommendsongs();
+        }, 1e3);
       });
     };
     return (_ctx, _cache) => {

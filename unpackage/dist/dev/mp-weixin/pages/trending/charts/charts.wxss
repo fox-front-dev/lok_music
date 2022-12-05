@@ -1,11 +1,11 @@
 
-.charts.data-v-514f111e{
+.charts.data-v-514f111e {
 		padding-bottom: 60rpx;
 }
 .title.data-v-514f111e {
 
 		display: flex;
-		padding:0 30rpx;
+		padding: 0 30rpx;
 		justify-content: space-between;
 		box-sizing: border-box;
 }
@@ -41,11 +41,11 @@
 		border-bottom-left-radius: 5rpx;
 		border-bottom-right-radius: 5rpx;
 }
-.charts_item.data-v-514f111e{
+.charts_item.data-v-514f111e {
 		display: flex;
 		margin-top: 30rpx;
 }
-.charts_item1.data-v-514f111e{
+.charts_item1.data-v-514f111e {
 		width: 80rpx;
 		height: 80rpx;
 		text-align: center;
@@ -53,34 +53,34 @@
 		padding-left: 10rpx;
 		box-sizing: border-box;
 }
-.charts_item2.data-v-514f111e{
+.charts_item2.data-v-514f111e {
 		width: 80rpx;
 		height: 80rpx;
 }
-.charts_item3.data-v-514f111e{
+.charts_item3.data-v-514f111e {
 		margin-left: 20rpx;
 }
-.charts_item4.data-v-514f111e{
+.charts_item4.data-v-514f111e {
 		line-height: 88rpx;
 		flex: 1;
 		text-align: right;
 		padding-right: 30rpx;
 }
-.charts_item3_title.data-v-514f111e{
+.charts_item3_title.data-v-514f111e {
 		font-size: 16px;
-		  text-overflow: -o-ellipsis-lastline;
-		  overflow: hidden;
-		  text-overflow: ellipsis;
-		  display: -webkit-box;
-		  -webkit-line-clamp: 1;
-		  line-clamp: 1;
-		  -webkit-box-orient: vertical;
-		  width: 12em;
+		text-overflow: -o-ellipsis-lastline;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		width: 12em;
 }
-.reviews.data-v-514f111e{
+.reviews.data-v-514f111e {
 		margin-top: 10rpx;
 }
-.charts_item3_content.data-v-514f111e{
+.charts_item3_content.data-v-514f111e {
 		font-size: 14px;
 		width: 12em;
 		display: flex;
@@ -93,12 +93,12 @@
 		line-clamp: 1;
 		-webkit-box-orient: vertical;
 }
-.charts_albums_item.data-v-514f111e{
+.charts_albums_item.data-v-514f111e {
 		height: 160rpx;
 		display: flex;
 		margin-top: 30rpx;
 }
-.charts_albums_item1.data-v-514f111e{
+.charts_albums_item1.data-v-514f111e {
 		width: 80rpx;
 		height: 160rpx;
 		text-align: center;
@@ -106,20 +106,20 @@
 		padding-left: 10rpx;
 		box-sizing: border-box;
 }
-.charts_albums_item2.data-v-514f111e{
+.charts_albums_item2.data-v-514f111e {
 		width: 160rpx;
 		height: 160rpx;
 }
-.charts_albums_item3.data-v-514f111e{
+.charts_albums_item3.data-v-514f111e {
 		margin-left: 20rpx;
 }
-.charts_albums_item4.data-v-514f111e{
+.charts_albums_item4.data-v-514f111e {
 		line-height: 160rpx;
 		flex: 1;
 		text-align: right;
 		padding-right: 30rpx;
 }
-.star.data-v-514f111e{
+.star.data-v-514f111e {
 		/* width: 100rpx; */
 		height: 44rpx;
 		border-radius: 10rpx;
@@ -129,8 +129,8 @@
 		font-size: 12px;
 		margin-top: 20rpx;
 }
-.hot.data-v-514f111e{
-		color:red
+.hot.data-v-514f111e {
+		color: red
 }
 scroll-view.data-v-514f111e {
 		height: 100vh;

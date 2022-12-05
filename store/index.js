@@ -23,7 +23,7 @@ const store = createStore({
 
 			// 当前时常
 			schedule: 0,
-			// 播放器实例
+			// 播放器实例 app打包取消注释
 			player: uni.getBackgroundAudioManager(),
 			// 总时长
 			maxtime: 0,

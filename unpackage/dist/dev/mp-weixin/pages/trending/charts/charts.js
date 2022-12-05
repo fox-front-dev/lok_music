@@ -34,6 +34,10 @@ const _sfc_main = {
       await http_req.axios.allToplist().then((res) => {
         toplist.value = res.data.list[0];
         toplistid.value = res.data.list[0].id;
+      }).catch((err) => {
+        setTimeout(() => {
+          gettoplist();
+        }, 1e3);
       });
       getsheetallsongs();
     };
@@ -44,6 +48,10 @@ const _sfc_main = {
       }).then((res) => {
         sheetsonglist.value = res.data.songs;
         sheetsonglist.value.length = 20;
+      }).catch((err) => {
+        setTimeout(() => {
+          getsheetallsongs();
+        }, 1e3);
       });
     };
     const gettitleheight = () => {
@@ -65,6 +73,10 @@ const _sfc_main = {
         toplistart2.value = res.data.list.artists;
         toplistart.value = [...toplistart2.value];
         toplistart.value.length = 20;
+      }).catch((err) => {
+        setTimeout(() => {
+          toplistartist();
+        }, 1e3);
       });
     };
     let highqualitydata = common_vendor.ref({
@@ -76,6 +88,10 @@ const _sfc_main = {
       await http_req.axios.highquality(highqualitydata.value).then((res) => {
         highqualitylist.value = res.data.playlists;
         highqualitydata.value.before = res.data.lasttime;
+      }).catch((err) => {
+        setTimeout(() => {
+          highquality();
+        }, 1e3);
       });
     };
     return (_ctx, _cache) => {

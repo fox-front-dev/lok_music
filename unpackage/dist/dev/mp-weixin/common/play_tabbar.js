@@ -82,14 +82,15 @@ const _sfc_main = {
         t: common_vendor.o(($event) => common_vendor.unref(store_index.store).commit("next")),
         v: common_vendor.n(showMeauStatus.value ? "" : "tranX2"),
         w: common_vendor.n(showMeauStatus.value && common_vendor.unref(firstOpen) ? "tranX2-2" : ""),
-        x: !common_vendor.unref(musicInfo).musicImage,
-        y: common_vendor.o(showMeau),
-        z: common_vendor.unref(musicInfo).musicImage,
+        x: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
+        y: !common_vendor.unref(musicInfo).musicImage,
+        z: common_vendor.o(showMeau),
         A: common_vendor.unref(musicInfo).musicImage,
-        B: common_vendor.n(common_vendor.unref(roles) ? "" : "rolesStop"),
-        C: common_vendor.o(showMeau),
-        D: common_vendor.unref(props).meauStatus,
-        E: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : "")
+        B: common_vendor.unref(musicInfo).musicImage,
+        C: common_vendor.n(common_vendor.unref(roles) ? "" : "rolesStop"),
+        D: common_vendor.o(showMeau),
+        E: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
+        F: common_vendor.unref(props).meauStatus
       };
     };
   }

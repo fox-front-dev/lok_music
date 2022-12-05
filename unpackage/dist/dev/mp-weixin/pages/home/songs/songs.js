@@ -7,13 +7,11 @@ require("../../../http/http.js");
 require("../../../uniStorage/index.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
-  const _easycom_uni_load_more2 = common_vendor.resolveComponent("uni-load-more");
-  (_easycom_uni_icons2 + _easycom_uni_load_more2)();
+  _easycom_uni_icons2();
 }
 const _easycom_uni_icons = () => "../../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
-const _easycom_uni_load_more = () => "../../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more.js";
 if (!Math) {
-  (_easycom_uni_icons + _easycom_uni_load_more + playtabbar)();
+  (_easycom_uni_icons + playtabbar)();
 }
 const playtabbar = () => "../../../common/play_tabbar.js";
 const _sfc_main = {
@@ -25,6 +23,9 @@ const _sfc_main = {
       common_vendor.index.navigateBack(-1);
     };
     common_vendor.nextTick(() => {
+    });
+    common_vendor.onUnload(() => {
+      console.log(123);
     });
     common_vendor.onLoad((option) => {
       common_vendor.index.getSystemInfo({
@@ -41,24 +42,42 @@ const _sfc_main = {
       getsheetallsongs(option.songssheetId);
     });
     let songslists = common_vendor.ref({
-      creator: { nickname: "" }
+      creator: {
+        nickname: "",
+        coverImgUrl: ""
+      }
     });
     const songsheepsInfo = async (id) => {
-      await http_req.axios.songsheepsInfo({ id }).then((res) => {
+      await http_req.axios.songsheepsInfo({
+        id
+      }).then((res) => {
         songslists.value = res.data.playlist;
+      }).catch((err) => {
+        setTimeout(() => {
+          songsheepsInfo(id);
+        }, 1e3);
       });
     };
     const songslist = common_vendor.ref([]);
     const getsheetallsongs = async (id) => {
-      await http_req.axios.getsheetallsongs({ id }).then((res) => {
+      await http_req.axios.getsheetallsongs({
+        id
+      }).then((res) => {
         songslist.value = res.data.songs;
         setTimeout(() => {
           loadingStatus.value = false;
         }, 1e3);
+      }).catch((err) => {
+        setTimeout(() => {
+          getsheetallsongs(id);
+        }, 1e3);
       });
     };
     const playAll = () => {
-      store_index.store.commit("changeMusic", { musiclist: songslist.value, index: 0 });
+      store_index.store.commit("changeMusic", {
+        musiclist: songslist.value,
+        index: 0
+      });
       store_index.store.commit("stop", 0);
       store_index.store.commit("play");
     };
@@ -68,7 +87,10 @@ const _sfc_main = {
       debounces();
     };
     const debounces = common_debounce.debounce(() => {
-      store_index.store.commit("changeMusic", { musiclist: songslist.value, index: musicIndex.value });
+      store_index.store.commit("changeMusic", {
+        musiclist: songslist.value,
+        index: musicIndex.value
+      });
       store_index.store.commit("stop", musicIndex.value);
       store_index.store.commit("play");
     }, 1e3);
@@ -79,21 +101,17 @@ const _sfc_main = {
           type: "back",
           size: "20"
         }),
-        c: common_vendor.unref(loadingStatus),
-        d: common_vendor.p({
-          showText: false,
-          iconType: "snow",
-          status: "loading"
-        }),
-        e: common_vendor.unref(songslists).coverImgUrl,
-        f: common_vendor.t(common_vendor.unref(songslists).name),
-        g: common_vendor.unref(songslists).creator.avatarUrl,
-        h: common_vendor.t(common_vendor.unref(songslists).creator.nickname),
-        i: common_vendor.t(common_vendor.unref(songslists).playCount),
-        j: common_vendor.o(playAll),
-        k: songslist.value.length
+        c: common_vendor.unref(loadingStatus)
+      }, common_vendor.unref(loadingStatus) ? {} : {}, {
+        d: common_vendor.unref(songslists).coverImgUrl,
+        e: common_vendor.t(common_vendor.unref(songslists).name),
+        f: common_vendor.unref(songslists).creator.avatarUrl,
+        g: common_vendor.t(common_vendor.unref(songslists).creator.nickname),
+        h: common_vendor.t(common_vendor.unref(songslists).playCount > 1e4 ? Math.round(common_vendor.unref(songslists).playCount / 1e4) + "\u4E07" : common_vendor.unref(songslists).playCount),
+        i: common_vendor.o(playAll),
+        j: songslist.value.length
       }, songslist.value.length ? {
-        l: common_vendor.f(songslist.value, (item, index, i0) => {
+        k: common_vendor.f(songslist.value, (item, index, i0) => {
           return {
             a: common_vendor.t(index + 1),
             b: common_vendor.t(item.name),
@@ -107,12 +125,12 @@ const _sfc_main = {
           };
         })
       } : {}, {
-        m: !songslist.value.length,
-        n: !common_vendor.unref(loadingStatus),
-        o: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
-        p: common_vendor.n(common_vendor.unref(loadingStatus) ? "" : "songs"),
-        q: common_vendor.unref(statusBarHeight) + "px",
-        r: common_vendor.p({
+        l: !songslist.value.length,
+        m: !common_vendor.unref(loadingStatus),
+        n: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : ""),
+        o: common_vendor.n(common_vendor.unref(loadingStatus) ? "" : "songs"),
+        p: common_vendor.unref(statusBarHeight) + "px",
+        q: common_vendor.p({
           meauStatus: true
         })
       });

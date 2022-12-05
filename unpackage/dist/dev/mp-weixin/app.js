@@ -19,6 +19,7 @@ if (!Math) {
   "./pages/home/issuanceTrends/issuanceTrends.js";
   "./pages/home/event/event.js";
   "./pages/login/scan/scan.js";
+  "./pages/detailedInformation/detailedInformation.js";
 }
 const _sfc_main = {
   data() {

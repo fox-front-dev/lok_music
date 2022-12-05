@@ -1,5 +1,6 @@
 <template>
-	<scroll-view scroll-y :class="store.state.css_style?'gray_filter':''">
+	<view class="loader" style="margin-top: 30vh;" v-show="loadingStatus"></view>
+	<scroll-view scroll-y :class="store.state.css_style?'gray_filter':''" v-show="!loadingStatus">
 		<view class="trending_content" :style="{paddingTop:statusBarHeight+'px'}">
 			<view class="trending_title">
 				<view class="title_left">
@@ -19,25 +20,9 @@
 				<view class="uni-margin-wrap">
 					<swiper class="swiper" :autoplay="false" :duration="500" display-multiple-items="1"
 						next-margin="20px">
-						<swiper-item v-for="item in djtoplist">
+						<swiper-item v-for="item in bannerlist">
 							<view class="swiper-item2">
-								<image lazy-load class="swiper-item2_image" :src="item.picUrl" mode=""></image>
-								<view class="swiper-item2_item">
-									<view class="star">
-										<uni-icons type="star-filled" color="rgb(141, 141, 141)" size="16"></uni-icons>
-										<view style="margin-left: 10rpx;">
-											{{Math.round(item.score/10000)}}w
-										</view>
-									</view>
-									<view class="info">
-										<view class="info_name">
-											{{item.name}}
-										</view>
-										<view class="info_ac">
-											{{item.rcmdtext}}
-										</view>
-									</view>
-								</view>
+								<image lazy-load class="swiper-item2_image" :src="item.pic" mode=""></image>
 							</view>
 						</swiper-item>
 					</swiper>
@@ -55,7 +40,7 @@
 						next-margin="30px">
 						<swiper-item v-for="item in recommendmusiclist">
 							<view class="swiper-item ">
-								<view class="swiper-item1" v-for="item_re in item">
+								<view class="swiper-item1" @click="gotodetailedInformation(item_re)" v-for="item_re in item">
 									<view class="imageview">
 										<image lazy-load style="height: 40px;width: 40px;border-radius: 20rpx;"
 											:src="item_re.picUrl" mode=""></image>
@@ -121,20 +106,37 @@
 	} from "vue"
 	import store from "../../store/index.js"
 	import axios from "../../http/req.js"
+	import uniStorage from "../../uniStorage/index.js";
 	let statusBarHeight = ref(0)
+	let loadingStatus=ref(true)
 	const gocharts = () => {
 		uni.navigateTo({
 			url: "/pages/trending/charts/charts"
 		})
 	}
 	onMounted(() => {
+		uni.preloadPage({url: "/pages/detailedInformation/detailedInformation"})
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
 		getdjtoplist()
 		getrecommendmusic()
 		gethotartists()
 		gethotmusic()
-
+		banner()
 	})
+	// banner
+	let bannerlist=ref([])
+	const banner=()=>{
+		axios.banner().then(res=>{
+			bannerlist.value=res.data.banners
+			setTimeout(()=>{
+				loadingStatus.value=false
+			},1000)
+		}).catch(err => {
+			setTimeout(() => {
+				banner()
+			}, 1000)
+		})
+	}
 	// dj电台排行榜
 	let djtoplist = ref()
 	const getdjtoplist = async () => {
@@ -201,6 +203,12 @@
 			setTimeout(() => {
 				gethotmusic()
 			}, 1000)
+		})
+	}
+	// 前往别的页面
+	const gotodetailedInformation=(...arg)=>{
+		uni.navigateTo({
+			url:`/pages/detailedInformation/detailedInformation?id=${arg[0].id}`
 		})
 	}
 </script>
@@ -388,6 +396,9 @@
 		padding-left: 30rpx;
 		padding-right: 20rpx;
 		font-size: 14px;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		overflow: hidden;
 	}
 
 	.hotMusic_item>view {

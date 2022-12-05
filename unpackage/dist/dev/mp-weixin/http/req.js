@@ -326,6 +326,11 @@ const getsongsurl = (data) => {
     }, data)
   });
 };
+const banner = () => {
+  return http_http.http.get({
+    url: "/banner?type=2"
+  });
+};
 var axios = {
   search,
   login,
@@ -363,6 +368,7 @@ var axios = {
   toplistartist,
   highquality,
   createplaylist,
-  getsongsurl
+  getsongsurl,
+  banner
 };
 exports.axios = axios;

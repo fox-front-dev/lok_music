@@ -2,6 +2,7 @@
 var common_vendor = require("../../../common/vendor.js");
 var http_req = require("../../../http/req.js");
 var uniStorage_index = require("../../../uniStorage/index.js");
+var store_index = require("../../../store/index.js");
 require("../../../http/http.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
@@ -147,7 +148,7 @@ const _sfc_main = {
           size: "18"
         }),
         m: common_vendor.o(goregister),
-        n: common_vendor.n(_ctx.store.state.css_style ? "gray_filter" : "")
+        n: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : "")
       } : {}, {
         o: !common_vendor.unref(loginStatus)
       }, !common_vendor.unref(loginStatus) ? {
@@ -171,7 +172,7 @@ const _sfc_main = {
           size: "18"
         }),
         B: common_vendor.o(goregister),
-        C: common_vendor.n(_ctx.store.state.css_style ? "gray_filter" : "")
+        C: common_vendor.n(common_vendor.unref(store_index.store).state.css_style ? "gray_filter" : "")
       } : {});
     };
   }
