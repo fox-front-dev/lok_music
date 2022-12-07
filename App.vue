@@ -1,5 +1,4 @@
 <script>
-	import "@/static/font/font_iss/iconfont.css";
 	export default {
 		data() {
 			return {
@@ -82,7 +81,7 @@
 			},
 		},
 		onLaunch: function() {
-			// app打包取消注释
+			// app打包取消注释 删掉return
 			// return
 			this.keepAlive = uni.requireNativePlugin('Ba-KeepAlive')
 			this.$store.state.musicPlay.player.onEnded(() => {

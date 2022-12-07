@@ -144,9 +144,11 @@
 		<view class="issuance" v-if="issuanceStatus&&loginStatus" @click="gotoPage(5)" v-show="!loadingStatus">
 			发布
 		</view>
-
 	</scroll-view>
-
+	<uni-popup ref="popup" type="dialog">
+		<uni-popup-dialog mode="base" content="请先打开权限,否则无法熄屏播放" message="成功消息" :duration="2000" :before-close="true"
+			@close="close" @confirm="confirm"></uni-popup-dialog>
+	</uni-popup>
 </template>
 
 <script setup>
@@ -185,10 +187,7 @@
 	}, {
 		name: '音乐',
 		imgurl: shape3
-	}, {
-		name: '歌手',
-		imgurl: shape4
-	}, ]
+	}]
 	let audioAction = ref({
 		method: 'pause'
 	})
@@ -202,6 +201,9 @@
 			usersongsheet(store.state.userId)
 			getUserInfo()
 		}
+		// app打包取消注释
+		POWER_SERVICE()
+		register()
 	})
 
 
@@ -245,10 +247,10 @@
 				})
 
 			}
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				getuserallevent()
-			},1000)
+			}, 1000)
 		})
 	}
 	// 获取用户信息
@@ -262,13 +264,11 @@
 				userAvatar: res.data.profile.avatarUrl,
 				nickname: res.data.profile.nickname
 			})
-			setTimeout(() => {
 				loadingStatus.value = false
-			}, 1000)
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				getUserInfo()
-			},1000)
+			}, 1000)
 		})
 	}
 	// 获取用户喜欢的音乐歌单
@@ -282,10 +282,10 @@
 			// console.log(songssheetlist.value);
 			// 获取用户喜欢的歌单中的音乐
 			getsheetallsongs(songssheetlist.value)
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				usersongsheet(uid)
-			},1000)
+			}, 1000)
 		})
 	}
 	// 滚动事件
@@ -331,10 +331,10 @@
 			if (res.data.code == 200) {
 				uniStorage.setStorage("token", res.data.cookie)
 			}
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				anonimous()
-			},1000)
+			}, 1000)
 		})
 	}
 	// 获取推荐歌单
@@ -344,10 +344,10 @@
 			limit: 10
 		}).then(res => {
 			recommendsheetlist.value = res.data.result
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				getrecommondsongsheet()
-			},1000)
+			}, 1000)
 		})
 	}
 	// 热门话题
@@ -359,15 +359,13 @@
 		}).then(res => {
 			hottopiclist.value = res.data.hot
 			if (!(uniStorage.getStorage("userId"))) {
-				setTimeout(() => {
-					loadingStatus.value = false
-				}, 1000)
+				loadingStatus.value = false
 			}
 
-		}).catch(err=>{
-			setTimeout(()=>{
+		}).catch(err => {
+			setTimeout(() => {
 				gethottopic()
-			},1000)
+			}, 1000)
 		})
 	}
 	// 根据音乐歌单id获取用户歌单的音乐
@@ -381,11 +379,6 @@
 				musiclist: songslist.value,
 				index: 0
 			})
-			
-		}).catch(err=>{
-			setTimeout(()=>{
-				getsheetallsongs(id)
-			},1000)
 		})
 	}
 
@@ -453,6 +446,71 @@
 				url: "/pages/login/login/login"
 			})
 		}
+	}
+	// 后台运行权利
+	const info = ref({
+		pausePlay: null,
+		channelId: 'Ba-KeepAlive',
+		channelName: "Ba-KeepAlive",
+		title: "lok音乐",
+		content: "lok音乐正在运行",
+		dataResult: "",
+		type: undefined
+	})
+	// 注册服务
+	const register = () => { //注册
+		let keepAlive = uni.requireNativePlugin('Ba-KeepAlive')
+		keepAlive.register({
+				channelId: info.value.channelId,
+				channelName: info.value.channelName,
+				title: info.value.title,
+				content: info.value.content,
+				backgroundMusicEnabled: true,
+				musicInterval: 2
+			},
+			(res) => {});
+	}
+	// 获取并打开权限
+	const whiteList2 = () => { //获取并打开白名单
+		let keepAlive = uni.requireNativePlugin('Ba-KeepAlive')
+		keepAlive.whiteList({
+			isDialog: true,
+			reason: "轨迹服务",
+			whiteType: 0,
+		}, (res) => {
+			proxy.refs.popup.close()
+			if (res.msg != "success") {
+				uni.showToast({
+					title: "请手动打开权限"
+				})
+			}
+		});
+	}
+	const POWER_SERVICE = () => {
+		// return
+		let main = plus.android.runtimeMainActivity();
+		let packName = main.getPackageName();
+		let Context = plus.android.importClass("android.content.Context");
+		let PowerManager = plus.android.importClass("android.os.PowerManager");
+		// 获取电源类  
+		let pm = main.getSystemService(Context.POWER_SERVICE);
+		let whiteList = pm.isIgnoringBatteryOptimizations(packName);
+		if (!whiteList && !uniStorage.getStorage("firstOpenApp")) {
+			proxy.refs.popup.open()
+		}
+	}
+	const confirm = () => {
+		whiteList2()
+		return
+
+	}
+	const close = () => {
+		proxy.refs.popup.close()
+		unistorage.setStorage("firstOpenApp", true)
+		uni.showToast({
+			title: "无法后台播放！请以后手动添加",
+			icon: "none"
+		})
 	}
 </script>
 
@@ -734,16 +792,29 @@
 	}
 
 	.playmusic_item-right {
+		width: 80%;
 		margin-left: 10px;
+
 	}
 
 	.playmusic_item-right-title {
+		overflow: hidden;
+		-webkit-line-clamp: 1;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
 		font-size: 14px;
+
 	}
 
 	.playmusic_item-right-art {
 		font-size: 12px;
 		color: #545454;
+		overflow: hidden;
+		-webkit-line-clamp: 1;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
 	}
 
 	.issuance {

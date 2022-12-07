@@ -3,7 +3,7 @@
 		<view class="title">
 			<image v-if="!store.state.userInfo.userAvatar" style="width: 50px;height: 50px;" src="../../static/image/Avatar.png" mode="">
 			</image>
-			<image v-else style="width: 50px;height: 50px;border-radius:50% ;" :src="store.state.userInfo.userAvatar" mode=""></image>
+			<image v-else style="width: 50px;height: 50px;border-radius:50% ;"  @click="gotoPage" :src="store.state.userInfo.userAvatar" mode=""></image>
 			<view class="username">
 				{{ store.state.userInfo.nickname}}
 			</view>
@@ -57,6 +57,11 @@
 		}
 		uni.redirectTo({
 			url: "/pages/login/login/login"
+		})
+	}
+	const gotoPage=()=>{
+		uni.navigateTo({
+			url:"/pages/setting/userInfo/userInfo"
 		})
 	}
 	onMounted(() => {

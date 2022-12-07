@@ -8,7 +8,6 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-
 		}, {
 			"path": "pages/trending/charts/charts",
 			"style": {
@@ -26,7 +25,6 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-
 		}, {
 			// 注册
 			"path": "pages/login/register/register",
@@ -44,9 +42,7 @@
 				"backgroundColor": "#ffffff",
 				"navigationBarBackgroundColor": "#ffffff",
 				"navigationStyle": "custom"
-
 			}
-
 		}, {
 			"path": "pages/home/albums/albums",
 			"style": {
@@ -57,7 +53,6 @@
 				"navigationBarBackgroundColor": "#ffffff",
 				"navigationStyle": "custom"
 			}
-
 		}, {
 			"path": "pages/home/songs/songs",
 			"style": {
@@ -77,8 +72,7 @@
 					}
 				}
 			}
-		}
-	    ,{
+		},{
             "path" : "pages/home/artists/artists",
             "style" :                                                                                    
             {
@@ -92,9 +86,7 @@
 					"scrollIndicator": "none"
 				}
             }
-            
-        }
-        ,{
+        },{
             "path" : "pages/home/dailyrecommendations/dailyrecommendations",
             "style" :                                                                                    
             {
@@ -102,9 +94,7 @@
                 "enablePullDownRefresh": false,
 				"navigationStyle": "custom"
             }
-            
-        }
-        ,{
+        },{
             "path" : "pages/home/issuanceTrends/issuanceTrends",
             "style" :                                                                                    
             {
@@ -112,9 +102,7 @@
                 "enablePullDownRefresh": false,
 				"navigationStyle": "custom"
             }
-            
-        }
-        ,{
+        },{
             "path" : "pages/home/event/event",
             "style" :                                                                                    
             {
@@ -122,19 +110,14 @@
                 "enablePullDownRefresh": false,
 				"navigationStyle": "custom"
             }
-            
-        }
-        ,{
+        },{
             "path" : "pages/login/scan/scan",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "扫码登录",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        
-        ,{
+        },{
             "path" : "pages/detailedInformation/detailedInformation",
             "style" :                                                                                    
             {
@@ -142,9 +125,16 @@
                 "enablePullDownRefresh": false,
 				"navigationStyle": "custom"
             }
-            
+        },{
+            "path" : "pages/setting/userInfo/userInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人资料",
+                "enablePullDownRefresh": false,
+				"backgroundColor": "#FFFFFF",
+				"navigationBarBackgroundColor": "#FFFFFF"
+            }
         }
-        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

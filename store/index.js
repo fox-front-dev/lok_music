@@ -20,7 +20,6 @@ const store = createStore({
 			// 播放列表
 			playMusicList: [],
 			playMusicURL: "",
-
 			// 当前时常
 			schedule: 0,
 			// 播放器实例 app打包取消注释
@@ -31,7 +30,9 @@ const store = createStore({
 			playStatus: false,
 			// 音乐索引
 			musicIndex: 0,
-			// musicStop:null
+			// 是否随机播放
+			rando:false
+			
 		},
 		musicInfo: {
 			musicName: "畅享生活",
@@ -41,7 +42,7 @@ const store = createStore({
 			firstPlay: true
 		},
 		// 控制是否哀悼模式 false否，true是
-		css_style:false
+		css_style: false
 	},
 	mutations: {
 		//收入手机状态栏高度
@@ -61,12 +62,13 @@ const store = createStore({
 		changeMusic(state, val) {
 			state.musicPlay.playMusicList = val.musiclist
 			state.musicPlay.musicIndex = val.index
-			state.musicPlay.player.autoplay = true;
+			// state.musicPlay.player.autoplay = true;
 		},
 
 		// 开始播放音乐
 		async play(state, val) {
 			state.musicInfo.firstPlay = false
+			// console.log(state.musicPlay.playMusicList[state.musicPlay.musicIndex].name);
 			state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name
 			state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl
 			state.musicInfo.musicPlayStatus = true
@@ -80,14 +82,18 @@ const store = createStore({
 			}).then(res => {
 				state.musicPlay.playMusicURL = res.data.data[0]
 			})
-		
 			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
-
 		},
 
 		// 下一首
 		async next(state) {
-			state.musicPlay.musicIndex++;
+			if(state.musicPlay.rando){
+				state.musicPlay.musicIndex=Math.floor(Math.random()*state.musicPlay.playMusicList.length)
+				console.log(state.musicPlay.musicIndex);
+			}else{
+				state.musicPlay.musicIndex++;
+				console.log(state.musicPlay.musicIndex);
+			}
 			state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name
 			state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl
 			state.musicInfo.musicPlayStatus = true
@@ -118,10 +124,26 @@ const store = createStore({
 		},
 		// 继续播放
 		continueplay(state) {
-			
 			state.musicPlay.player.play()
+		},
+		// 停下播放其他音乐
+		async PlayOutMusic(state, value) {
+			state.musicPlay.player.stop();
+			state.musicInfo.firstPlay = false
+			state.musicInfo.musicName = value.name
+			state.musicInfo.musicImage = value.al.picUrl
+			state.musicInfo.musicPlayStatus = true
+			await axios.getsongsurl({
+				id: value.id
+			}).then(res => {
+				state.musicPlay.playMusicURL = res.data.data[0]
+			})
+			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
+		},
+		rando(state,value){
+			state.musicPlay.rando=value
 		}
-		
+
 	},
 	actions: {
 		//相当于异步的操作,不能直接改变state的值，只能通过触发mutations的方法才能改变

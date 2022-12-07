@@ -549,11 +549,10 @@
 .detailedInformation_title-style[data-v-4d2d2940] {
 		display: flex;
 		justify-content: space-between;
-		padding-top: 10px; 
+		padding-top: 10px;
 		box-sizing: border-box;
 		align-items: center;
 }
-.iconsview[data-v-4d2d2940] {}
 .detailedInformation_title-style>uni-view[data-v-4d2d2940] {
 		flex: 1;
 }
@@ -565,12 +564,12 @@
 		filter: blur(60px);
 }
 .detailedInformation_center-style[data-v-4d2d2940] {
+		position: relative;
 		width: 70vw;
 		height: 70vw;
 		border-radius: 50%;
 		background-color: black;
 		margin: 60px auto;
-		position: relative;
 }
 .detailedInformation_center_image[data-v-4d2d2940] {
 		transform: translate(-50%, -50%);
@@ -583,52 +582,60 @@
 		border: 1px solid white;
 		overflow: hidden;
 }
+.animation[data-v-4d2d2940] {
+		animation: roler-4d2d2940 5s linear infinite;
+}
+.pause[data-v-4d2d2940] {
+		animation-play-state: paused;
+}
+.running[data-v-4d2d2940] {
+		animation-play-state: running;
+}
 .detailedInformation_center-style_image[data-v-4d2d2940] {
 		width: 100%;
 		height: 100%;
-		animation: roler-4d2d2940 5s linear infinite;
 }
-.progress[data-v-4d2d2940]{
+.progress[data-v-4d2d2940] {
 		display: flex;
 		align-items: center;
 }
-.progress-box[data-v-4d2d2940]{
+.progress-box[data-v-4d2d2940] {
 		flex: 1;
 }
-.startTime[data-v-4d2d2940]{
+.startTime[data-v-4d2d2940] {
 		width: 3.125rem;
 		text-align: center;
 }
-.endTime[data-v-4d2d2940]{
-		width: 4.375rem;		
-		 text-align: center;
+.endTime[data-v-4d2d2940] {
+		width: 4.375rem;
+		text-align: center;
 }
-.iconMeaus[data-v-4d2d2940]{
+.iconMeaus[data-v-4d2d2940] {
 		display: flex;
 		width: 80%;
 		margin: 20px auto;
 		justify-content: space-between;
 		align-items: center;
 }
-.iconMeaus>uni-view[data-v-4d2d2940]{
+.iconMeaus>uni-view[data-v-4d2d2940] {
 		width: 10vw;
 		height: 10vw;
 		text-align: center;
 		position: relative;
 }
-.iconMeaus>uni-view[data-v-4d2d2940]:nth-child(3){
+.iconMeaus>uni-view[data-v-4d2d2940]:nth-child(3) {
 		width: 15vw;
 		height: 15vw;
 		border: 1px solid white;
 		border-radius: 50%;
 }
-.uni-icons[data-v-4d2d2940]{
+.uni-icons[data-v-4d2d2940] {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 }
-.bottom_item[data-v-4d2d2940]{
+.bottom_item[data-v-4d2d2940] {
 		color: white;
 		font-size: 12px;
 		position: fixed;

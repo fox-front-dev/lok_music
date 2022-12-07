@@ -1,5 +1,6 @@
 <template>
-	<scroll-view scroll-y  :class="store.state.css_style?'gray_filter':''">
+	<view class="loader" style="margin-top: 30vh;" v-show="loadingStatus"></view>
+	<scroll-view scroll-y  :class="store.state.css_style?'gray_filter':''" v-show="!loadingStatus">
 	<view class="radios_content" :style="{paddingTop:statusBarHeight+'px'}">
 		<view class="title">
 			<view class="title_left">
@@ -83,6 +84,7 @@
 	const proxy = getCurrentInstance()
 	let statusBarHeight = ref(0)
 	let current = ref(0)
+	let loadingStatus=ref(true)
 
 
 	const changeView = (index) => {
@@ -116,6 +118,7 @@
 			limit: 10
 		}).then(res => {
 			hotdjlist.value = res.data.djRadios
+			loadingStatus.value=false
 		}).catch(err=>{
 			setTimeout(()=>{
 				gethotdj()

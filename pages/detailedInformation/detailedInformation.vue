@@ -1,7 +1,7 @@
 <template>
-	<view class="loader" style="margin-top: 30vh;" v-show="loadingStatus"></view>
-	<view  class="detailedInformation"  v-show="!loadingStatus">
-		
+	<view class="loader" style="margin-top: 30vh;" v-if="loadingStatus"></view>
+	<view class="detailedInformation" v-if="!loadingStatus">
+
 		<image class="imagebackground" :src="musicInfo.al.picUrl" mode=""></image>
 		<view :style="[{marginTop:statusBarHeight+'px'}]" class="detailedInformation_title">
 			<view class="detailedInformation_title-style">
@@ -14,12 +14,12 @@
 						<text v-for="item,index in musicInfo.ar">{{item.name}}&nbsp;</text>
 					</view>
 				</view>
-
 			</view>
 		</view>
 		<view class="detailedInformation_center">
 			<view class="detailedInformation_center-style">
-				<view class="detailedInformation_center-style_image">
+				<view class="detailedInformation_center-style_image"
+					:class="playbackstate?'animation running':'animation pause'">
 					<image class="detailedInformation_center_image" :src="musicInfo.al.picUrl" mode=""></image>
 				</view>
 				<view class="radio"></view>
@@ -29,29 +29,35 @@
 			<view class="progress">
 				<view class="startTime">时间</view>
 				<view class="progress-box">
-					<progress  :percent="pgList[3]" activeColor="#10AEFF" stroke-width="3" />
+					<progress :percent="pgList[3]" activeColor="#10AEFF" stroke-width="3" />
 				</view>
 				<view class="endTime">总时间</view>
 			</view>
 			<view class="iconMeaus">
 				<view class="">
-					<uni-icons custom-prefix="iconfont" color="white" type="icon-xunhuanbofang" size="30"></uni-icons>
-					<uni-icons custom-prefix="iconfont" v-if="false"  color="white" type="icon-24gl-repeat2" size="30"></uni-icons>
+					<uni-icons custom-prefix="iconfont" v-if="randomBFStatus" @click="randomBF(true)" color="white"
+						type="icon-xunhuanbofang" size="30"></uni-icons>
+					<uni-icons custom-prefix="iconfont" v-if="!randomBFStatus" @click="randomBF(false)" color="white"
+						type="icon-24gl-repeat2" size="30">
+					</uni-icons>
 				</view>
 				<view class="">
-					<uni-icons  custom-prefix="iconfont" class="uni-icons"  color="white" type="icon-shangyishoushangyige" size="30"></uni-icons>
-					
+					<uni-icons custom-prefix="iconfont" class="uni-icons" @click="laster" color="white"
+						type="icon-shangyishoushangyige" size="30"></uni-icons>
 				</view>
 				<view class="">
-					<uni-icons custom-prefix="iconfont"  class="uni-icons"  color="white" type="icon-pause-full" size="30"></uni-icons>
-					<uni-icons  custom-prefix="iconfont"  v-if="false" class="uni-icons"  color="white" type="icon-kaishi1" size="30"></uni-icons>
-			
+					<uni-icons custom-prefix="iconfont" @click="changePlaybackstate(false)" v-if="playbackstate"
+						class="uni-icons" color="white" type="icon-pause-full" size="30"></uni-icons>
+					<uni-icons v-if="!playbackstate" @click="changePlaybackstate(true)" custom-prefix="iconfont"
+						class="uni-icons" color="white" type="icon-kaishi1" size="30"></uni-icons>
+
 				</view>
 				<view class="">
-					<uni-icons  custom-prefix="iconfont" class="uni-icons"  color="white" type="icon-xiayigexiayishou" size="30"></uni-icons>
+					<uni-icons custom-prefix="iconfont" @click="next" class="uni-icons" color="white"
+						type="icon-xiayigexiayishou" size="30"></uni-icons>
 				</view>
 				<view class="">
-					<uni-icons  class="uni-icons"  color="white" type="bars" size="30"></uni-icons>
+					<uni-icons class="uni-icons" color="white" type="bars" size="30"></uni-icons>
 				</view>
 			</view>
 		</view>
@@ -63,7 +69,8 @@
 	import {
 		ref,
 		getCurrentInstance,
-		nextTick
+		nextTick,
+		watch
 	} from "vue"
 	import store from "../../store/index.js"
 	import axios from "../../http/req.js"
@@ -73,14 +80,18 @@
 		onShow,
 		onUnload
 	} from "@dcloudio/uni-app";
+	import uniStorage from "../../uniStorage/index.js";
 	let musicId = ref("")
 	let statusBarHeight = ref("")
 	let pgList = ref([0, 0, 0, 0])
-	let loadingStatus=ref(true)
+	let loadingStatus = ref(true)
+	let playbackstate = ref(false)
 	onLoad((option) => {
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
+		randomBFStatus.value = uniStorage.getStorage("rando")
 		musicId.value = option.id
 		getMusicInfo()
+
 	})
 	const goBack = () => {
 		uni.navigateBack({
@@ -89,6 +100,10 @@
 			animationDuration: 700
 		})
 	}
+	watch(() => store.state.musicPlay.musicIndex, (newVal, oldVal) => {
+		let obj = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
+		musicInfo.value = obj
+	})
 	// 
 	let musicInfo = ref({})
 	const getMusicInfo = async () => {
@@ -96,10 +111,34 @@
 			ids: musicId.value
 		}).then(res => {
 			musicInfo.value = res.data.songs[0]
-			setTimeout(()=>{
-				loadingStatus.value=false
-			},1000)
+			setTimeout(() => {
+				loadingStatus.value = false
+			}, 1000)
 		})
+	}
+
+	const changePlaybackstate = (bool) => {
+		playbackstate.value = bool
+		if (bool) {
+			store.commit("PlayOutMusic", musicInfo.value)
+		} else {
+			store.commit("pause")
+		}
+	}
+	const laster = () => {
+		// 上一首
+	}
+	// 
+	let randomBFStatus = ref(false)
+	const next = () => {
+		store.commit("next")
+	}
+	// 随机播放
+	const randomBF = (bool) => {
+		randomBFStatus.value = !bool
+		// 设置随机播放
+		uniStorage.setStorage("rando", !bool)
+		store.commit("rando", !bool)
 	}
 </script>
 
@@ -125,12 +164,11 @@
 	.detailedInformation_title-style {
 		display: flex;
 		justify-content: space-between;
-		padding-top: 10px; 
+		padding-top: 10px;
 		box-sizing: border-box;
 		align-items: center;
 	}
 
-	.iconsview {}
 
 	.detailedInformation_title-style>view {
 		flex: 1;
@@ -145,12 +183,12 @@
 	}
 
 	.detailedInformation_center-style {
+		position: relative;
 		width: 70vw;
 		height: 70vw;
 		border-radius: 50%;
 		background-color: black;
 		margin: 60px auto;
-		position: relative;
 	}
 
 	.detailedInformation_center_image {
@@ -165,53 +203,74 @@
 		overflow: hidden;
 	}
 
+	.animation {
+		animation: roler 5s linear infinite;
+	}
+
+	.pause {
+		animation-play-state: paused;
+	}
+
+	.running {
+		animation-play-state: running;
+	}
+
 	.detailedInformation_center-style_image {
 		width: 100%;
 		height: 100%;
-		animation: roler 5s linear infinite;
+
 	}
-	.progress{
+
+	.progress {
 		display: flex;
 		align-items: center;
-		
+
 	}
-	.progress-box{
+
+	.progress-box {
 		flex: 1;
 	}
-	.startTime{
+
+	.startTime {
 		width: 100rpx;
 		text-align: center;
 	}
-	.endTime{
-		width: 140rpx;		
-		 text-align: center;
+
+	.endTime {
+		width: 140rpx;
+		text-align: center;
 	}
-	.iconMeaus{
+
+	.iconMeaus {
 		display: flex;
 		width: 80%;
 		margin: 20px auto;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.iconMeaus>view{
+
+	.iconMeaus>view {
 		width: 10vw;
 		height: 10vw;
 		text-align: center;
 		position: relative;
 	}
-	.iconMeaus>view:nth-child(3){
+
+	.iconMeaus>view:nth-child(3) {
 		width: 15vw;
 		height: 15vw;
 		border: 1px solid white;
 		border-radius: 50%;
 	}
-	.uni-icons{
+
+	.uni-icons {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%, -50%);
 	}
-	.bottom_item{
+
+	.bottom_item {
 		color: white;
 		font-size: 12px;
 		position: fixed;

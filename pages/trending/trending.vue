@@ -128,9 +128,7 @@
 	const banner=()=>{
 		axios.banner().then(res=>{
 			bannerlist.value=res.data.banners
-			setTimeout(()=>{
 				loadingStatus.value=false
-			},1000)
 		}).catch(err => {
 			setTimeout(() => {
 				banner()
@@ -242,19 +240,21 @@
 	}
 
 	.swiper-item1 {
-		height: 80rpx;
+		height: 90rpx;
 		margin-top: 16rpx;
 		display: flex;
 		margin-right: 10px;
 	}
 
 	.trendingSwiper {
-		padding: 30rpx;
+		/* padding: 30rpx;
+		box-sizing: border-box; */
+		margin: 15px;
 	}
 
 	.swiper-item_content {
 		padding-left: 20rpx;
-		overflow: hidden;
+		/* overflow: hidden; */
 		width: 70%;
 
 	}
@@ -305,7 +305,7 @@
 		justify-content: space-between;
 		/* align-items: center; */
 		height: 100%;
-		padding: 15px;
+		/* padding: 15px; */
 		box-sizing: border-box;
 	}
 
@@ -355,17 +355,18 @@
 	}
 
 	.newAlbums {
-		padding: 30rpx;
-		height: 220rpx;
+		height: 240rpx;
 		overflow: hidden;
+		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 
 	.swiper-item3 {
+		margin-left: 30rpx;
 		margin-right: 20rpx;
 	}
 
 	.albums_name {
-
 		display: -webkit-box;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -375,6 +376,7 @@
 		-webkit-box-orient: vertical;
 		margin-right: 20rpx;
 		font-size: 14px;
+		text-align: center;
 	}
 
 	.hotMusic>view {
@@ -405,7 +407,10 @@
 		flex: 1;
 		text-align: right;
 	}
-
+	::v-deep .swiper {
+		height: 320rpx !important;
+	}
+	
 	scroll-view {
 		height: 100vh;
 	}
