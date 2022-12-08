@@ -8,27 +8,21 @@
 			</view>
 		</view>
 		<view class="change_tabs">
-			<view :class="current==0?'bordergreen':''" @click="changeView(0)">
-				排行榜
-			</view>
-			<view :class="current==1?'bordergreen':''" @click="changeView(1)">
-				推荐
-			</view>
+			
 		</view>
-		<view class="curren0" v-show="current==0">
+		<view class="curren0">
 			<view class="video_swiper">
 				<view class="uni-margin-wrap">
-					<swiper class="swiper" :duration="500" next-margin="50px">
-						<swiper-item v-for="item,index in djprogramlist">
-							<view class="swiper-item1 ">
+					<swiper class="swiper" duration="500" next-margin="50px">
+						<swiper-item v-for="(item,index) in djprogramlist">
+							<view class="swiper-item1">
 								<image lazy-load :src="item.picUrl" mode="" class="video_css"></image>
 								<view class="swiper-item1_title">
 									<view class="content">
 										{{item.name}}
 									</view>
 									<view class="icon">
-										<uni-icons color="#e2e2e2" style="vertical-align: middle;" type="headphones"
-											size="20"></uni-icons>
+										<uni-icons color="#e2e2e2" style="vertical-align: middle;" type="headphones" size="20"></uni-icons>
 										<text>{{item.program.adjustedPlayCount}}</text>
 									</view>
 								</view>
@@ -66,9 +60,6 @@
 				</view>
 			</view>
 		</view>
-		<view class="curren1" v-show="current==1">
-			123213
-		</view>
 	</view>
 	</scroll-view>
 </template>
@@ -83,7 +74,6 @@
 	import axios from "../../http/req.js"
 	const proxy = getCurrentInstance()
 	let statusBarHeight = ref(0)
-	let current = ref(0)
 	let loadingStatus=ref(true)
 
 
@@ -92,9 +82,6 @@
 		current.value = index
 	}
 
-	const touchable = () => {
-		console.log(123);
-	}
 	onMounted(() => {
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
 		getdjprogram()

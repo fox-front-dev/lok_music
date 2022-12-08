@@ -4,10 +4,9 @@ const setStorage=(key,data)=>{
 		key,
 		data:JSON.stringify(data),
 		success(val) {
-			// console.log(val);
-			// console.log("val");
+			
 		},fail() {
-			// console.log(123);
+			
 		}
 	})
 }
@@ -15,6 +14,7 @@ const setStorage=(key,data)=>{
 const getStorage=(key)=>{
 	const data=uni.getStorageSync(key)
 	if(data){
+		// console.log(JSON.parse(data));
 		return JSON.parse(data)
 	}else{
 		return ""

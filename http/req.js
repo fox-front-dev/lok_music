@@ -381,6 +381,24 @@ const banner=()=>{
 		url:"/banner?type=2"
 	})
 }
+//获取用户信息
+const binding=(data)=>{
+	return http.get({
+		url:"/user/binding",
+		data:{
+			...data
+		}
+	})
+}
+// 更新用户信息
+const updateUserInfo=(data)=>{
+	return http.get({
+		url:"/user/update",
+		data:{
+			...data
+		}
+	})
+}
 
 export default {
 	search,
@@ -414,6 +432,13 @@ export default {
 	shareevent,
 	lastplaysong,
 	checknickname,
-	logout,allToplist,toplistartist,highquality,createplaylist,getsongsurl,banner,
-	
+	logout,
+	allToplist,
+	toplistartist,
+	highquality,
+	createplaylist,
+	getsongsurl,
+	banner,
+	binding,
+	updateUserInfo
 }

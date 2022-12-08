@@ -81,7 +81,6 @@
 				"navigationBarTextStyle": "black",
 				"backgroundColor": "#ffffff",
 				"navigationBarBackgroundColor": "#ffffff",
-				// "navigationStyle": "custom",
 				"app-plus": {
 					"scrollIndicator": "none"
 				}

@@ -5,7 +5,7 @@
 				<view class="title_left">
 					搜索
 					<view class="input_search">
-						<image class="input_left" src="../../static/image/search1.png" style="" mode=""></image>
+						<image class="input_left" src="/static/image/search1.png" style="" mode=""></image>
 						<input v-model="searchData.keywords" type="text" @input="inputclick"
 							style="width: 100%;height: 72rpx;margin-left: 10rpx;" placeholder="search">
 					</view>

@@ -1,20 +1,20 @@
 <template>
 	<view class="setting_content" :style="{paddingTop:statusBarHeight+'px'}"  :class="store.state.css_style?'gray_filter':''">
 		<view class="title">
-			<image v-if="!store.state.userInfo.userAvatar" style="width: 50px;height: 50px;" src="../../static/image/Avatar.png" mode="">
+			<image v-if="!store.state.userInfo.userAvatar" style="width: 50px;height: 50px;" src="/static/image/Avatar.png" mode="">
 			</image>
 			<image v-else style="width: 50px;height: 50px;border-radius:50% ;"  @click="gotoPage" :src="store.state.userInfo.userAvatar" mode=""></image>
 			<view class="username">
 				{{ store.state.userInfo.nickname}}
 			</view>
 			<view>
-				<uni-icons type="compose" size="20"></uni-icons>
+				<uni-icons @click="gotoSettingInfo" type="compose" size="20"></uni-icons>
 			</view>
 		</view>
 		<view class="btnMeau">
 			<view class="first">
 				<view class="left">
-					<view>
+					<view  @click="gotoPage">
 						个人信息
 					</view>
 				</view>
@@ -38,7 +38,7 @@
 		onMounted
 	} from "vue"
 	import store from "../../store/index.js"
-	import axios from "../../http/req.js"
+	// import axios from "../../http/req.js"
 	import unistorage from "../../uniStorage/index.js";
 	let statusBarHeight = ref(0)
 	let testlogin = ref("登录")
@@ -68,7 +68,6 @@
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
 		token.value = unistorage.getStorage("token")
 		if (token.value && unistorage.getStorage("userId")) {
-			// unstorage.removeStorage("token")
 			testlogin.value = "退出登录"
 		} else {
 			testlogin.value = "登录"
@@ -76,6 +75,12 @@
 		userinfo.value.nickname = store.state.userInfo.nickname
 		userinfo.value.avt = store.state.userInfo.userAvatar
 	})
+	const gotoSettingInfo=()=>{
+		uni.showToast({
+			title:"暂无该功能",
+			icon:"none"
+		})
+	}
 </script>
 
 <style scoped>

@@ -161,7 +161,8 @@
 	} from "vue"
 	import {
 		onLoad,
-		onShow
+		onShow,
+		onReady
 	} from "@dcloudio/uni-app";
 	import shape1 from "../../static/image/Shape1.png"
 	import shape2 from "../../static/image/Shape2.png"
@@ -205,8 +206,6 @@
 		POWER_SERVICE()
 		register()
 	})
-
-
 	// 上一页返回时调用函数
 	onLoad(() => {
 		uni.$on('refreshData', () => {
@@ -215,7 +214,6 @@
 			useralleventdatares.value = []
 			getuserallevent()
 		})
-
 	})
 	// 获取用户所有的动态(朋友也算)
 	let useralleventdata = ref({
@@ -225,7 +223,6 @@
 	let useralleventdatares = ref([])
 	const getuserallevent = async () => {
 		await axios.getuserallevent(useralleventdata.value).then(res => {
-			// console.log(res);
 			if (res.data.event) {
 				useralleventdata.value.lasttime = res.data.lasttime
 				useralleventdatares.value = useralleventdatares.value.concat(res.data.event)

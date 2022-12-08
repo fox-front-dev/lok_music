@@ -1,4 +1,5 @@
 <script>
+import store from './store';
 	export default {
 		data() {
 			return {
@@ -61,14 +62,9 @@
 						reason: "轨迹服务",
 						type: list[0].type,
 					}, (res) => {
-						// console.log(res);
 					});
 				} catch (e) {
-					// uni.showToast({
-					// 	title: "请先获取有效的白名单项",
-					// 	icon: "none",
-					// 	duration: 3000
-					// })
+					
 				}
 			},
 			getWhiteList() { //获取白名单项
@@ -81,7 +77,7 @@
 			},
 		},
 		onLaunch: function() {
-			// app打包取消注释 删掉return
+			// app打包注释 删掉return
 			// return
 			this.keepAlive = uni.requireNativePlugin('Ba-KeepAlive')
 			this.$store.state.musicPlay.player.onEnded(() => {
@@ -96,9 +92,14 @@
 			})
 		},
 		onShow: function() {
-			//console.log("onShow");
+			if(this.$store.state.musicPlay.player.paused){
+				this.$store.commit("musicPlayStatus",false)
+			}else{
+				this.$store.commit("musicPlayStatus",true)
+			}
 		},
 		onHide: function() {}
+		
 	}
 </script>
 

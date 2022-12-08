@@ -142,6 +142,9 @@ const store = createStore({
 		},
 		rando(state,value){
 			state.musicPlay.rando=value
+		},
+		musicPlayStatus(state,value){
+			state.musicPlay.musicPlayStatus=value
 		}
 
 	},
