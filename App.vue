@@ -75,14 +75,10 @@ import store from './store';
 					//console.log(this.dataResult);
 				});
 			},
-			getAppPlayStates(){//获取播放器是否随机播放
-			return
-				if(this.$store.state.musicPlay.player.paused){
-					this.$store.commit("musicPlayStatus",false)
-				}else{
-					this.$store.commit("musicPlayStatus",true)
-				}
-			}
+
+		},
+		watch(){
+			
 		},
 		onLaunch: function() {
 			// app打包注释 删掉return
@@ -98,7 +94,7 @@ import store from './store';
 			this.$store.state.musicPlay.player.onPlay(() => {
 				this.isRunning()
 			})
-			this.getAppPlayStates()
+		
 		},
 		onShow: function() {
 			if(this.$store.state.musicPlay.player.paused){
@@ -108,7 +104,6 @@ import store from './store';
 			}
 		},
 		onHide: function() {}
-		
 	}
 </script>
 

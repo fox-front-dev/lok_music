@@ -89,12 +89,6 @@
 	const gobacks = () => {
 		uni.navigateBack(-1)
 	}
-	nextTick(() => {
-
-	})
-	onUnload(() => {
-		console.log(123);
-	})
 	onLoad((option) => {
 		//获取手机信息，例如状态栏高度
 		uni.getSystemInfo({

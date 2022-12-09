@@ -2,6 +2,7 @@ import {
 	createStore
 } from 'vuex'
 import axios from "../http/req.js"
+import uniStorage from '../uniStorage/index.js'
 
 const store = createStore({
 	state: {
@@ -31,15 +32,15 @@ const store = createStore({
 			// 音乐索引
 			musicIndex: 0,
 			// 是否随机播放
-			rando:false
-			
+			rando:false||uniStorage.getStorage("rando")
 		},
 		musicInfo: {
 			musicName: "畅享生活",
 			musicAuthor: ["lok音乐"],
 			musicImage: "",
 			musicPlayStatus: false,
-			firstPlay: true
+			firstPlay: true,
+			id:""
 		},
 		// 控制是否哀悼模式 false否，true是
 		css_style: false
@@ -68,8 +69,8 @@ const store = createStore({
 		// 开始播放音乐
 		async play(state, val) {
 			state.musicInfo.firstPlay = false
-			// console.log(state.musicPlay.playMusicList[state.musicPlay.musicIndex].name);
 			state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name
+			state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
 			state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl
 			state.musicInfo.musicPlayStatus = true
 			let list = []
@@ -89,18 +90,21 @@ const store = createStore({
 		async next(state) {
 			if(state.musicPlay.rando){
 				state.musicPlay.musicIndex=Math.floor(Math.random()*state.musicPlay.playMusicList.length)
-				console.log(state.musicPlay.musicIndex);
 			}else{
 				state.musicPlay.musicIndex++;
-				console.log(state.musicPlay.musicIndex);
+				if(state.musicPlay.musicIndex>state.musicPlay.playMusicList.length-1){
+					state.musicPlay.musicIndex=0
+				}
 			}
 			state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name
+			state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
 			state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl
 			state.musicInfo.musicPlayStatus = true
 			let list = []
 			state.musicPlay.playMusicList[state.musicPlay.musicIndex].ar.forEach(item => {
 				list.push(item.name)
 			})
+			// 获取歌手列表
 			state.musicInfo.musicAuthor = list
 			await axios.getsongsurl({
 				id: state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
@@ -111,7 +115,37 @@ const store = createStore({
 			// state.musicPlay.maxtime = state.musicPlay.playMusicURL.time+2000
 			// 
 			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
-
+		},
+		// 上一首
+		async previous(state) {
+			if(state.musicPlay.rando){
+				state.musicPlay.musicIndex=Math.floor(Math.random()*state.musicPlay.playMusicList.length)
+			}else{
+				state.musicPlay.musicIndex--;
+				if(state.musicPlay.musicIndex<0){
+					state.musicPlay.musicIndex=state.musicPlay.playMusicList.length-1
+				}
+			}
+			state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name
+			state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
+			state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl
+			state.musicInfo.musicPlayStatus = true
+			let list = []
+			state.musicPlay.playMusicList[state.musicPlay.musicIndex].ar.forEach(item => {
+				list.push(item.name)
+			})
+			// 获取歌手列表
+			state.musicInfo.musicAuthor = list
+			await axios.getsongsurl({
+				id: state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
+			}).then(res => {
+				state.musicPlay.playMusicURL = res.data.data[0]
+			})
+			// 取出音乐总时间
+			// state.musicPlay.maxtime = state.musicPlay.playMusicURL.time+2000
+			// 
+			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
+		
 		},
 		// 停止播放
 		stop(state, val) {
@@ -138,8 +172,10 @@ const store = createStore({
 			}).then(res => {
 				state.musicPlay.playMusicURL = res.data.data[0]
 			})
+			state.musicInfo.id = state.musicPlay.playMusicURL.id
 			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
 		},
+		// 立即设置随机播放
 		rando(state,value){
 			state.musicPlay.rando=value
 		},

@@ -48,7 +48,7 @@ if (uni.restoreGlobal) {
 (function(vue, shared) {
   "use strict";
   const ON_LOAD = "onLoad";
-  const ON_UNLOAD = "onUnload";
+  const ON_BACK_PRESS = "onBackPress";
   function requireNativePlugin(name) {
     return weex.requireModule(name);
   }
@@ -66,7 +66,7 @@ if (uni.restoreGlobal) {
     !vue.isInSSRComponentSetup && vue.injectHook(lifecycle, hook, target);
   };
   const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
-  const onUnload = /* @__PURE__ */ createHook(ON_UNLOAD);
+  const onBackPress = /* @__PURE__ */ createHook(ON_BACK_PRESS);
   var icons = {
     "id": "2852637",
     "name": "uniui\u56FE\u6807\u5E93",
@@ -3928,14 +3928,15 @@ if (uni.restoreGlobal) {
         maxtime: 0,
         playStatus: false,
         musicIndex: 0,
-        rando: false
+        rando: unistroage.getStorage("rando")
       },
       musicInfo: {
         musicName: "\u7545\u4EAB\u751F\u6D3B",
         musicAuthor: ["lok\u97F3\u4E50"],
         musicImage: "",
         musicPlayStatus: false,
-        firstPlay: true
+        firstPlay: true,
+        id: ""
       },
       css_style: false
     },
@@ -3959,6 +3960,7 @@ if (uni.restoreGlobal) {
       async play(state, val) {
         state.musicInfo.firstPlay = false;
         state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name;
+        state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id;
         state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl;
         state.musicInfo.musicPlayStatus = true;
         let list = [];
@@ -3976,12 +3978,39 @@ if (uni.restoreGlobal) {
       async next(state) {
         if (state.musicPlay.rando) {
           state.musicPlay.musicIndex = Math.floor(Math.random() * state.musicPlay.playMusicList.length);
-          formatAppLog("log", "at store/index.js:92", state.musicPlay.musicIndex);
         } else {
           state.musicPlay.musicIndex++;
-          formatAppLog("log", "at store/index.js:95", state.musicPlay.musicIndex);
+          if (state.musicPlay.musicIndex > state.musicPlay.playMusicList.length - 1) {
+            state.musicPlay.musicIndex = 0;
+          }
         }
         state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name;
+        state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id;
+        state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl;
+        state.musicInfo.musicPlayStatus = true;
+        let list = [];
+        state.musicPlay.playMusicList[state.musicPlay.musicIndex].ar.forEach((item) => {
+          list.push(item.name);
+        });
+        state.musicInfo.musicAuthor = list;
+        await axios$1.getsongsurl({
+          id: state.musicPlay.playMusicList[state.musicPlay.musicIndex].id
+        }).then((res) => {
+          state.musicPlay.playMusicURL = res.data.data[0];
+        });
+        state.musicPlay.player.src = state.musicPlay.playMusicURL.url;
+      },
+      async previous(state) {
+        if (state.musicPlay.rando) {
+          state.musicPlay.musicIndex = Math.floor(Math.random() * state.musicPlay.playMusicList.length);
+        } else {
+          state.musicPlay.musicIndex--;
+          if (state.musicPlay.musicIndex < 0) {
+            state.musicPlay.musicIndex = state.musicPlay.playMusicList.length - 1;
+          }
+        }
+        state.musicInfo.musicName = state.musicPlay.playMusicList[state.musicPlay.musicIndex].name;
+        state.musicInfo.id = state.musicPlay.playMusicList[state.musicPlay.musicIndex].id;
         state.musicInfo.musicImage = state.musicPlay.playMusicList[state.musicPlay.musicIndex].al.picUrl;
         state.musicInfo.musicPlayStatus = true;
         let list = [];
@@ -4017,6 +4046,7 @@ if (uni.restoreGlobal) {
         }).then((res) => {
           state.musicPlay.playMusicURL = res.data.data[0];
         });
+        state.musicInfo.id = state.musicPlay.playMusicURL.id;
         state.musicPlay.player.src = state.musicPlay.playMusicURL.url;
       },
       rando(state, value) {
@@ -4858,7 +4888,10 @@ if (uni.restoreGlobal) {
               vue.createElementVNode("view", { class: "hotMusic" }, [
                 vue.createElementVNode("view", null, [
                   (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(vue.unref(hotmusiclist), (item) => {
-                    return vue.openBlock(), vue.createElementBlock("view", { class: "hotMusic_item" }, [
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "hotMusic_item",
+                      onClick: ($event) => gotodetailedInformation(item)
+                    }, [
                       vue.createTextVNode(vue.toDisplayString(item.name) + " ", 1),
                       vue.createElementVNode("view", null, [
                         vue.createVNode(_component_uni_icons, {
@@ -4866,7 +4899,7 @@ if (uni.restoreGlobal) {
                           size: "12"
                         })
                       ])
-                    ]);
+                    ], 8, ["onClick"]);
                   }), 256))
                 ])
               ])
@@ -5543,6 +5576,13 @@ if (uni.restoreGlobal) {
         return store.state.musicInfo;
       });
       vue.getCurrentInstance();
+      const gotodetailedInformation = (id) => {
+        if (!id)
+          return;
+        uni.navigateTo({
+          url: `/pages/detailedInformation/detailedInformation?id=${id}`
+        });
+      };
       const settingPlay = (index) => {
         if (index == 0) {
           store.state.musicInfo.musicPlayStatus = false;
@@ -5574,25 +5614,28 @@ if (uni.restoreGlobal) {
             }, null, 2),
             vue.createElementVNode("view", { class: "playsetting" }, [
               vue.withDirectives(vue.createElementVNode("image", {
-                src: "/static/image/demo.jpeg",
+                src: "/static/image/firefox.png",
                 class: "imagesetting",
                 mode: ""
               }, null, 512), [
                 [vue.vShow, !vue.unref(musicInfo).musicImage]
               ]),
               vue.withDirectives(vue.createElementVNode("image", {
+                onClick: _cache[0] || (_cache[0] = ($event) => gotodetailedInformation(vue.unref(musicInfo).id)),
                 src: vue.unref(musicInfo).musicImage,
                 class: "imagesetting",
                 mode: ""
               }, null, 8, ["src"]), [
                 [vue.vShow, vue.unref(musicInfo).musicImage]
               ]),
-              vue.createElementVNode("view", { class: "musicInfo" }, [
+              vue.createElementVNode("view", {
+                class: "musicInfo",
+                onClick: _cache[1] || (_cache[1] = ($event) => gotodetailedInformation(vue.unref(musicInfo).id))
+              }, [
                 vue.createElementVNode("view", {
                   class: "title",
                   style: { "font-size": "16px" }
                 }, vue.toDisplayString(vue.unref(musicInfo).musicName), 1),
-                vue.createCommentVNode(' <video src=""></video> '),
                 vue.createElementVNode("view", {
                   class: "albums",
                   style: { "font-size": "14px" }
@@ -5609,7 +5652,7 @@ if (uni.restoreGlobal) {
                     src: "/static/image/stop.png",
                     style: {},
                     mode: "",
-                    onClick: _cache[0] || (_cache[0] = ($event) => settingPlay(0))
+                    onClick: _cache[2] || (_cache[2] = ($event) => settingPlay(0))
                   }, null, 512), [
                     [vue.vShow, vue.unref(musicInfo).musicPlayStatus]
                   ]),
@@ -5617,7 +5660,7 @@ if (uni.restoreGlobal) {
                     class: "imageadd imageadd2",
                     src: "/static/image/play.png",
                     mode: "",
-                    onClick: _cache[1] || (_cache[1] = ($event) => settingPlay(1))
+                    onClick: _cache[3] || (_cache[3] = ($event) => settingPlay(1))
                   }, null, 512), [
                     [vue.vShow, !vue.unref(musicInfo).musicPlayStatus]
                   ])
@@ -5626,7 +5669,7 @@ if (uni.restoreGlobal) {
                   src: "/static/image/next.png",
                   style: { "width": "23px", "height": "23px" },
                   mode: "",
-                  onClick: _cache[2] || (_cache[2] = ($event) => vue.unref(store).commit("next"))
+                  onClick: _cache[4] || (_cache[4] = ($event) => vue.unref(store).commit("next"))
                 })
               ])
             ])
@@ -5656,7 +5699,7 @@ if (uni.restoreGlobal) {
                 src: "/static/image/stop.png",
                 style: {},
                 mode: "",
-                onClick: _cache[3] || (_cache[3] = ($event) => settingPlay(0))
+                onClick: _cache[5] || (_cache[5] = ($event) => settingPlay(0))
               }, null, 512), [
                 [vue.vShow, vue.unref(musicInfo).musicPlayStatus && !showMeauStatus.value]
               ]),
@@ -5664,7 +5707,7 @@ if (uni.restoreGlobal) {
                 class: "imageadd",
                 src: "/static/image/play.png",
                 mode: "",
-                onClick: _cache[4] || (_cache[4] = ($event) => settingPlay(1))
+                onClick: _cache[6] || (_cache[6] = ($event) => settingPlay(1))
               }, null, 512), [
                 [vue.vShow, !vue.unref(musicInfo).musicPlayStatus && !showMeauStatus.value]
               ]),
@@ -5673,7 +5716,7 @@ if (uni.restoreGlobal) {
                 class: "imageadd imageadd3",
                 style: { "width": "23px", "height": "23px" },
                 mode: "",
-                onClick: _cache[5] || (_cache[5] = ($event) => vue.unref(store).commit("next"))
+                onClick: _cache[7] || (_cache[7] = ($event) => vue.unref(store).commit("next"))
               }, null, 512), [
                 [vue.vShow, !showMeauStatus.value]
               ])
@@ -5715,6 +5758,25 @@ if (uni.restoreGlobal) {
       const ctabbarEvent = (value) => {
         ctabbarItem.value = value;
       };
+      let keepAlive = vue.ref(null);
+      vue.onMounted(() => {
+        keepAlive.value = requireNativePlugin("Ba-KeepAlive");
+      });
+      let first = vue.ref(null);
+      onBackPress(() => {
+        if (!first.value) {
+          first.value = 1;
+          setTimeout(function() {
+            first.value = null;
+          }, 3e3);
+        } else {
+          keepAlive.value.isRunning((res) => {
+            if (res.isRunning) {
+              keepAlive.value.unregister();
+            }
+          });
+        }
+      });
       return (_ctx, _cache) => {
         return vue.openBlock(), vue.createElementBlock("view", { class: "main" }, [
           vue.unref(ctabbarItem) === 0 ? (vue.openBlock(), vue.createBlock(home, { key: 0 })) : vue.createCommentVNode("v-if", true),
@@ -6581,11 +6643,6 @@ if (uni.restoreGlobal) {
       const gobacks = () => {
         uni.navigateBack(-1);
       };
-      vue.nextTick(() => {
-      });
-      onUnload(() => {
-        formatAppLog("log", "at pages/home/songs/songs.vue:96", 123);
-      });
       onLoad((option) => {
         uni.getSystemInfo({
           success(res) {
@@ -11534,6 +11591,12 @@ if (uni.restoreGlobal) {
         randomBFStatus.value = unistroage.getStorage("rando");
         musicId.value = option.id;
         getMusicInfo();
+        let playMusic = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex];
+        if (playMusic.id != musicId.value) {
+          playbackstate.value = false;
+        } else {
+          playbackstate.value = true;
+        }
       });
       const goBack = () => {
         uni.navigateBack({
@@ -11560,17 +11623,23 @@ if (uni.restoreGlobal) {
       const changePlaybackstate = (bool) => {
         playbackstate.value = bool;
         if (bool) {
-          store.commit("PlayOutMusic", musicInfo.value);
+          let playMusic = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex];
+          if (playMusic.id != musicId.value) {
+            store.commit("PlayOutMusic", musicInfo.value);
+          } else {
+            store.commit("continueplay");
+          }
         } else {
           store.commit("pause");
         }
       };
-      const laster = () => {
+      const previous = () => {
+        store.commit("previous");
       };
-      let randomBFStatus = vue.ref(false);
       const next = () => {
         store.commit("next");
       };
+      let randomBFStatus = vue.ref(false);
       const randomBF = (bool) => {
         randomBFStatus.value = !bool;
         unistroage.setStorage("rando", !bool);
@@ -11664,7 +11733,7 @@ if (uni.restoreGlobal) {
                   vue.createVNode(_component_uni_icons, {
                     "custom-prefix": "iconfont",
                     class: "uni-icons",
-                    onClick: laster,
+                    onClick: previous,
                     color: "white",
                     type: "icon-shangyishoushangyige",
                     size: "30"
@@ -11944,6 +12013,8 @@ if (uni.restoreGlobal) {
           this.dataResult = res.data ? JSON.stringify(res.data) : "";
         });
       }
+    },
+    watch() {
     },
     onLaunch: function() {
       this.keepAlive = requireNativePlugin("Ba-KeepAlive");

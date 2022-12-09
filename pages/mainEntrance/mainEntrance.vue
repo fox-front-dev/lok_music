@@ -1,5 +1,5 @@
 <template>
-	<view class="main" >
+	<view class="main">
 		<home v-if="ctabbarItem===0"></home>
 		<trending v-if="ctabbarItem===1"></trending>
 		<search v-if="ctabbarItem===2"></search>
@@ -25,12 +25,33 @@
 		onMounted,
 		getCurrentInstance
 	} from "vue"
+	import {
+		onBackPress
+	} from "@dcloudio/uni-app";
 	const proxy = getCurrentInstance()
 	let ctabbarItem = ref(0)
 	const ctabbarEvent = (value) => {
 		ctabbarItem.value = value
 	}
-
+	let keepAlive = ref(null)
+	onMounted(() => {
+		keepAlive.value = uni.requireNativePlugin('Ba-KeepAlive')
+	})
+	let first = ref(null);
+	onBackPress(() => {
+		if (!first.value) {
+			first.value = 1;
+			setTimeout(function() {
+				first.value = null;
+			}, 3000);
+		} else {
+			keepAlive.value.isRunning(res => {
+				if (res.isRunning) {
+					keepAlive.value.unregister()
+				}
+			})
+		}
+	})
 </script>
 
 <style scoped>

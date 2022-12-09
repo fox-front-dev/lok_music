@@ -86,7 +86,7 @@
 			</view>
 			<view class="hotMusic">
 				<view>
-					<view class="hotMusic_item" v-for="item in hotmusiclist">
+					<view class="hotMusic_item" v-for="item in hotmusiclist"  @click="gotodetailedInformation(item)">
 						{{item.name}}
 						<view>
 							<uni-icons type="forward" size="12"></uni-icons>
@@ -203,7 +203,7 @@
 			}, 1000)
 		})
 	}
-	// 前往别的页面
+	// 前往音乐详情页面
 	const gotodetailedInformation=(...arg)=>{
 		uni.navigateTo({
 			url:`/pages/detailedInformation/detailedInformation?id=${arg[0].id}`

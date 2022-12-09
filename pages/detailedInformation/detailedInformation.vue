@@ -42,7 +42,7 @@
 					</uni-icons>
 				</view>
 				<view class="">
-					<uni-icons custom-prefix="iconfont" class="uni-icons" @click="laster" color="white"
+					<uni-icons custom-prefix="iconfont" class="uni-icons" @click="previous" color="white"
 						type="icon-shangyishoushangyige" size="30"></uni-icons>
 				</view>
 				<view class="">
@@ -87,12 +87,23 @@
 	let loadingStatus = ref(true)
 	let playbackstate = ref(false)
 	onLoad((option) => {
+		// 计算通知栏高度
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
+		// 取出是否按照顺序播放
 		randomBFStatus.value = uniStorage.getStorage("rando")
+		// 设置歌曲id值
 		musicId.value = option.id
 		getMusicInfo()
-
+		
+		// 判断当前是否播放该音乐，修改暂停和播放的图标
+		let playMusic=store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
+		if(playMusic.id!=musicId.value){
+			playbackstate.value=false
+		}else{
+			playbackstate.value=true
+		}
 	})
+	// 返回上一页
 	const goBack = () => {
 		uni.navigateBack({
 			delta: 1,
@@ -100,11 +111,12 @@
 			animationDuration: 700
 		})
 	}
+	// 监听如果下一首，则修改当前页面的信息
 	watch(() => store.state.musicPlay.musicIndex, (newVal, oldVal) => {
 		let obj = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
 		musicInfo.value = obj
 	})
-	// 
+	// 获取音乐详情信息
 	let musicInfo = ref({})
 	const getMusicInfo = async () => {
 		await axios.getsongsInfo({
@@ -116,24 +128,30 @@
 			}, 1000)
 		})
 	}
-
+	// 播放音乐
 	const changePlaybackstate = (bool) => {
 		playbackstate.value = bool
+		// 判断当前是否在播放当前音乐,如果是播放当前的音乐，点击播放之后让他继续。如果不是则重新播放
 		if (bool) {
-			store.commit("PlayOutMusic", musicInfo.value)
+			let playMusic=store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
+			if(playMusic.id!=musicId.value){
+				store.commit("PlayOutMusic", musicInfo.value)
+			}else{
+				store.commit("continueplay")
+			}
 		} else {
 			store.commit("pause")
 		}
 	}
-	const laster = () => {
-		// 上一首
+	const previous = () => {
+		store.commit("previous")
 	}
-	// 
-	let randomBFStatus = ref(false)
+	// 下一首
 	const next = () => {
 		store.commit("next")
 	}
 	// 随机播放
+	let randomBFStatus = ref(false)
 	const randomBF = (bool) => {
 		randomBFStatus.value = !bool
 		// 设置随机播放

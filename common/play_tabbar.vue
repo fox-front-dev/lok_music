@@ -3,16 +3,13 @@
 	<view class="play_tabbar" v-show="!props.meauStatus" :class="store.state.css_style?'gray_filter':''">
 		<view class="play_tabbar_1" :class="store.state.css_style?'play_tabbar_1_1':''"></view>
 		<view class="playsetting">
-			<image v-show="!(musicInfo.musicImage)" src="../static/image/demo.jpeg" class="imagesetting" mode="">
+			<image  v-show="!(musicInfo.musicImage)" src="../static/image/firefox.png" class="imagesetting" mode="">
 			</image>
-			<image v-show="musicInfo.musicImage" :src="musicInfo.musicImage" class="imagesetting" mode=""></image>
-			<view class="musicInfo">
+			<image  @click="gotodetailedInformation(musicInfo.id)" v-show="musicInfo.musicImage" :src="musicInfo.musicImage" class="imagesetting" mode=""></image>
+			<view class="musicInfo"  @click="gotodetailedInformation(musicInfo.id)">
 				<view class="title" style="font-size: 16px;">
 					{{musicInfo.musicName}}
 				</view>
-				<!-- <video src=""></video> -->
-
-
 				<view class="albums" style="font-size: 14px;">
 					<text v-for="item in musicInfo.musicAuthor">{{item}}&nbsp;</text>
 				</view>
@@ -77,7 +74,13 @@
 		return store.state.musicInfo
 	})
 	const proxy = getCurrentInstance()
-
+	// 前往音乐详情页面
+	const gotodetailedInformation=(id)=>{
+		if(!id) return
+		uni.navigateTo({
+			url:`/pages/detailedInformation/detailedInformation?id=${id}`
+		})
+	}
 	const settingPlay = (index) => {
 		if (index == 0) {
 			store.state.musicInfo.musicPlayStatus = false
