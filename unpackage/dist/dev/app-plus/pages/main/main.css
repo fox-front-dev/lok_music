@@ -1,0 +1,22 @@
+
+.main_container[data-v-52f690a6]{
+	height: 100vh;
+	width: 100vw;
+	background-color: aqua;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.showNumber[data-v-52f690a6]{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height:30px;
+	font-size: 14px;
+	background-color: antiquewhite;
+	position: absolute;
+	top: 50px;
+	right: 20px;
+}

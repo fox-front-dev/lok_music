@@ -27,11 +27,11 @@
 		</view>
 		<view class="bottom_item">
 			<view class="progress">
-				<view class="startTime">时间</view>
+				<view class="startTime"></view>
 				<view class="progress-box">
-					<progress :percent="pgList[3]" activeColor="#10AEFF" stroke-width="3" />
+					<progress :percent="!playbackstate?percent:store.state.musicPlay.percent" activeColor="#10AEFF" stroke-width="3" />
 				</view>
-				<view class="endTime">总时间</view>
+				<view class="endTime"></view>
 			</view>
 			<view class="iconMeaus">
 				<view class="">
@@ -70,7 +70,8 @@
 		ref,
 		getCurrentInstance,
 		nextTick,
-		watch
+		watch,
+		computed
 	} from "vue"
 	import store from "../../store/index.js"
 	import axios from "../../http/req.js"
@@ -86,6 +87,7 @@
 	let pgList = ref([0, 0, 0, 0])
 	let loadingStatus = ref(true)
 	let playbackstate = ref(false)
+	let progress=ref(0)
 	onLoad((option) => {
 		// 计算通知栏高度
 		statusBarHeight.value = store.state.phoneInfo.statusbarHeight
@@ -94,7 +96,6 @@
 		// 设置歌曲id值
 		musicId.value = option.id
 		getMusicInfo()
-		
 		// 判断当前是否播放该音乐，修改暂停和播放的图标
 		let playMusic=store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
 		if(playMusic.id!=musicId.value){
@@ -116,6 +117,8 @@
 		let obj = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
 		musicInfo.value = obj
 	})
+	// 
+	
 	// 获取音乐详情信息
 	let musicInfo = ref({})
 	const getMusicInfo = async () => {
@@ -135,6 +138,7 @@
 		if (bool) {
 			let playMusic=store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex]
 			if(playMusic.id!=musicId.value){
+				store.state.musicPlay.percent=0
 				store.commit("PlayOutMusic", musicInfo.value)
 			}else{
 				store.commit("continueplay")
@@ -250,12 +254,12 @@
 	}
 
 	.startTime {
-		width: 100rpx;
+		width: 50rpx;
 		text-align: center;
 	}
 
 	.endTime {
-		width: 140rpx;
+		width: 50rpx;
 		text-align: center;
 	}
 

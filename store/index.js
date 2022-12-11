@@ -32,7 +32,10 @@ const store = createStore({
 			// 音乐索引
 			musicIndex: 0,
 			// 是否随机播放
-			rando:false||uniStorage.getStorage("rando")
+			rando:false||uniStorage.getStorage("rando"),
+			currentTime:0,
+			// 进度条进度0-100格式
+			percent:0
 		},
 		musicInfo: {
 			musicName: "畅享生活",
@@ -112,8 +115,7 @@ const store = createStore({
 				state.musicPlay.playMusicURL = res.data.data[0]
 			})
 			// 取出音乐总时间
-			// state.musicPlay.maxtime = state.musicPlay.playMusicURL.time+2000
-			// 
+			state.musicPlay.maxtime = state.musicPlay.playMusicURL.time
 			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
 		},
 		// 上一首
@@ -142,7 +144,7 @@ const store = createStore({
 				state.musicPlay.playMusicURL = res.data.data[0]
 			})
 			// 取出音乐总时间
-			// state.musicPlay.maxtime = state.musicPlay.playMusicURL.time+2000
+			state.musicPlay.maxtime = state.musicPlay.playMusicURL.time
 			// 
 			state.musicPlay.player.src = state.musicPlay.playMusicURL.url
 		
@@ -181,8 +183,7 @@ const store = createStore({
 		},
 		musicPlayStatus(state,value){
 			state.musicPlay.musicPlayStatus=value
-		}
-
+		},
 	},
 	actions: {
 		//相当于异步的操作,不能直接改变state的值，只能通过触发mutations的方法才能改变

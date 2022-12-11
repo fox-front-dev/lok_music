@@ -47,6 +47,475 @@ if (uni.restoreGlobal) {
 }
 (function(vue, shared) {
   "use strict";
+  const setStorage = (key, data) => {
+    uni.setStorage({
+      key,
+      data: JSON.stringify(data),
+      success(val) {
+      },
+      fail() {
+      }
+    });
+  };
+  const getStorage = (key) => {
+    const data = uni.getStorageSync(key);
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return "";
+    }
+  };
+  const removeStorage = (key) => {
+    uni.removeStorageSync(key);
+  };
+  const clearStorage = () => {
+    uni.clearStorage();
+  };
+  var unistroage = {
+    setStorage,
+    getStorage,
+    removeStorage,
+    clearStorage
+  };
+  let baseUrl = "http://81.68.206.160:3000";
+  var http = {
+    get(opt) {
+      return new Promise((resolve, reject) => {
+        uni.request({
+          data: opt.data || {},
+          url: baseUrl + opt.url,
+          method: opt.methods || "GET",
+          header: {
+            "content-type": " application/json; charset=utf-8",
+            "Authorization": unistroage.getStorage("token")
+          },
+          success: (data) => {
+            resolve(data);
+          },
+          fail: (err) => {
+            reject(err);
+          }
+        });
+      });
+    },
+    post(opt) {
+      return new Promise((resolve, reject) => {
+        uni.request({
+          data: opt.data,
+          url: baseUrl + opt.url,
+          method: opt.method || "POST",
+          header: {
+            "content-type": " application/json; charset=utf-8",
+            Authorization: uni.getStorageSync("token")
+          },
+          success: (data) => {
+            resolve(data);
+          },
+          fail: (err) => {
+            reject(err);
+          }
+        });
+      });
+    }
+  };
+  let timestamp;
+  const search$1 = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/search",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const logout = () => {
+    return http.get({
+      url: "/logout"
+    });
+  };
+  const login = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/login/cellphone",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const captcha = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/captcha/sent",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const register = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/register/cellphone",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const anonimous = () => {
+    return http.get({
+      url: "/register/anonimous"
+    });
+  };
+  const recommendsheet = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/personalized",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const highquality = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/top/playlist/highquality",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const hottopic = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/hot/topic",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const hotdjtoplist = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/dj/toplist",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const recommendmusic = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/personalized/newsong",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const hotartists = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/top/artists",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const searchs = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/search",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const djprogram = () => {
+    return http.get({
+      url: "/personalized/djprogram"
+    });
+  };
+  const hotdj = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/dj/hot",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getqrkey = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/login/qr/key",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getqrbase64 = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/login/qr/create",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getqrstatus = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/login/qr/check",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getuserInfo = () => {
+    return http.get({
+      url: "/user/account"
+    });
+  };
+  const loginstatus = () => {
+    return http.get({
+      url: "/login/status"
+    });
+  };
+  const getuserallevent = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/event",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getsongsInfo = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/song/detail",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const dailyrecommend = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/recommend/resource",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const dailyrecommendsongs = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/recommend/songs",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const userplaylist = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/user/playlist",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const sublistalbum = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/album/sublist",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const lovesongslist = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/likelist",
+      data: __spreadProps(__spreadValues({}, data), {
+        timestamp
+      })
+    });
+  };
+  const getsheetallsongs = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/playlist/track/all",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const songsheepsInfo = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/playlist/detail",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const getcommentevent = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/comment/event",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const shareevent = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/share/resource",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const lastplaysong = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/record/recent/song",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const checknickname = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/nickname/check",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const allToplist = () => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/toplist"
+    });
+  };
+  const toplistartist = () => {
+    return http.get({
+      url: "/toplist/artist"
+    });
+  };
+  const createplaylist = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/playlist/create",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const getsongsurl = (data) => {
+    timestamp = new Date().getTime();
+    return http.get({
+      url: "/song/url",
+      data: __spreadValues({
+        timestamp
+      }, data)
+    });
+  };
+  const banner = () => {
+    return http.get({
+      url: "/banner?type=2"
+    });
+  };
+  const binding = (data) => {
+    return http.get({
+      url: "/user/binding",
+      data: __spreadValues({}, data)
+    });
+  };
+  const updateUserInfo = (data) => {
+    return http.get({
+      url: "/user/update",
+      data: __spreadValues({}, data)
+    });
+  };
+  var axios$1 = {
+    search: search$1,
+    login,
+    captcha,
+    register,
+    anonimous,
+    recommendsheet,
+    hottopic,
+    hotdjtoplist,
+    recommendmusic,
+    hotartists,
+    searchs,
+    djprogram,
+    hotdj,
+    getqrkey,
+    getqrbase64,
+    getqrstatus,
+    getuserInfo,
+    loginstatus,
+    getuserallevent,
+    getsongsInfo,
+    dailyrecommend,
+    dailyrecommendsongs,
+    userplaylist,
+    sublistalbum,
+    lovesongslist,
+    getsheetallsongs,
+    songsheepsInfo,
+    getcommentevent,
+    shareevent,
+    lastplaysong,
+    checknickname,
+    logout,
+    allToplist,
+    toplistartist,
+    highquality,
+    createplaylist,
+    getsongsurl,
+    banner,
+    binding,
+    updateUserInfo
+  };
+  var _export_sfc = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+      target[key] = val;
+    }
+    return target;
+  };
+  const _sfc_main$v = {
+    __name: "main",
+    setup(__props) {
+      let time = vue.ref(3);
+      vue.onMounted(() => {
+        let Interval = setInterval(() => {
+          if (time.value <= 0) {
+            uni.redirectTo({
+              url: "/pages/mainEntrance/mainEntrance"
+            });
+            clearInterval(Interval);
+            time.value = 3;
+          }
+          time.value--;
+        }, 1e3);
+      });
+      return (_ctx, _cache) => {
+        return vue.openBlock(), vue.createElementBlock("view", { class: "main_container" }, [
+          vue.createElementVNode("view", { class: "showNumber" }, vue.toDisplayString(vue.unref(time)) + "s ", 1),
+          vue.createElementVNode("text", null, "\u5E7F\u544A\u4F4D\u62DB\u79DF(\u5F00\u73A9\u7B11)")
+        ]);
+      };
+    }
+  };
+  var PagesMainMain = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["__scopeId", "data-v-52f690a6"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/main/main.vue"]]);
   const ON_LOAD = "onLoad";
   const ON_BACK_PRESS = "onBackPress";
   function requireNativePlugin(name) {
@@ -1237,13 +1706,6 @@ if (uni.restoreGlobal) {
         "unicode_decimal": 58929
       }
     ]
-  };
-  var _export_sfc = (sfc, props) => {
-    const target = sfc.__vccOpts || sfc;
-    for (const [key, val] of props) {
-      target[key] = val;
-    }
-    return target;
   };
   const getVal = (val) => {
     const reg = /^[0-9]*$/g;
@@ -3471,443 +3933,6 @@ if (uni.restoreGlobal) {
     this._committing = committing;
   };
   Object.defineProperties(Store.prototype, prototypeAccessors);
-  const setStorage = (key, data) => {
-    uni.setStorage({
-      key,
-      data: JSON.stringify(data),
-      success(val) {
-      },
-      fail() {
-      }
-    });
-  };
-  const getStorage = (key) => {
-    const data = uni.getStorageSync(key);
-    if (data) {
-      return JSON.parse(data);
-    } else {
-      return "";
-    }
-  };
-  const removeStorage = (key) => {
-    uni.removeStorageSync(key);
-  };
-  const clearStorage = () => {
-    uni.clearStorage();
-  };
-  var unistroage = {
-    setStorage,
-    getStorage,
-    removeStorage,
-    clearStorage
-  };
-  let baseUrl = "http://81.68.206.160:3000";
-  var http = {
-    get(opt) {
-      return new Promise((resolve, reject) => {
-        uni.request({
-          data: opt.data || {},
-          url: baseUrl + opt.url,
-          method: opt.methods || "GET",
-          header: {
-            "content-type": " application/json; charset=utf-8",
-            "Authorization": unistroage.getStorage("token")
-          },
-          success: (data) => {
-            resolve(data);
-          },
-          fail: (err) => {
-            reject(err);
-          }
-        });
-      });
-    },
-    post(opt) {
-      return new Promise((resolve, reject) => {
-        uni.request({
-          data: opt.data,
-          url: baseUrl + opt.url,
-          method: opt.method || "POST",
-          header: {
-            "content-type": " application/json; charset=utf-8",
-            Authorization: uni.getStorageSync("token")
-          },
-          success: (data) => {
-            resolve(data);
-          },
-          fail: (err) => {
-            reject(err);
-          }
-        });
-      });
-    }
-  };
-  let timestamp;
-  const search$1 = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/search",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const logout = () => {
-    return http.get({
-      url: "/logout"
-    });
-  };
-  const login = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/login/cellphone",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const captcha = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/captcha/sent",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const register = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/register/cellphone",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const anonimous = () => {
-    return http.get({
-      url: "/register/anonimous"
-    });
-  };
-  const recommendsheet = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/personalized",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const highquality = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/top/playlist/highquality",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const hottopic = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/hot/topic",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const hotdjtoplist = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/dj/toplist",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const recommendmusic = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/personalized/newsong",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const hotartists = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/top/artists",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const searchs = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/search",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const djprogram = () => {
-    return http.get({
-      url: "/personalized/djprogram"
-    });
-  };
-  const hotdj = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/dj/hot",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getqrkey = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/login/qr/key",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getqrbase64 = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/login/qr/create",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getqrstatus = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/login/qr/check",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getuserInfo = () => {
-    return http.get({
-      url: "/user/account"
-    });
-  };
-  const loginstatus = () => {
-    return http.get({
-      url: "/login/status"
-    });
-  };
-  const getuserallevent = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/event",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getsongsInfo = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/song/detail",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const dailyrecommend = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/recommend/resource",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const dailyrecommendsongs = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/recommend/songs",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const userplaylist = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/user/playlist",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const sublistalbum = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/album/sublist",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const lovesongslist = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/likelist",
-      data: __spreadProps(__spreadValues({}, data), {
-        timestamp
-      })
-    });
-  };
-  const getsheetallsongs = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/playlist/track/all",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const songsheepsInfo = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/playlist/detail",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const getcommentevent = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/comment/event",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const shareevent = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/share/resource",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const lastplaysong = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/record/recent/song",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const checknickname = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/nickname/check",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const allToplist = () => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/toplist"
-    });
-  };
-  const toplistartist = () => {
-    return http.get({
-      url: "/toplist/artist"
-    });
-  };
-  const createplaylist = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/playlist/create",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const getsongsurl = (data) => {
-    timestamp = new Date().getTime();
-    return http.get({
-      url: "/song/url",
-      data: __spreadValues({
-        timestamp
-      }, data)
-    });
-  };
-  const banner = () => {
-    return http.get({
-      url: "/banner?type=2"
-    });
-  };
-  const binding = (data) => {
-    return http.get({
-      url: "/user/binding",
-      data: __spreadValues({}, data)
-    });
-  };
-  const updateUserInfo = (data) => {
-    return http.get({
-      url: "/user/update",
-      data: __spreadValues({}, data)
-    });
-  };
-  var axios$1 = {
-    search: search$1,
-    login,
-    captcha,
-    register,
-    anonimous,
-    recommendsheet,
-    hottopic,
-    hotdjtoplist,
-    recommendmusic,
-    hotartists,
-    searchs,
-    djprogram,
-    hotdj,
-    getqrkey,
-    getqrbase64,
-    getqrstatus,
-    getuserInfo,
-    loginstatus,
-    getuserallevent,
-    getsongsInfo,
-    dailyrecommend,
-    dailyrecommendsongs,
-    userplaylist,
-    sublistalbum,
-    lovesongslist,
-    getsheetallsongs,
-    songsheepsInfo,
-    getcommentevent,
-    shareevent,
-    lastplaysong,
-    checknickname,
-    logout,
-    allToplist,
-    toplistartist,
-    highquality,
-    createplaylist,
-    getsongsurl,
-    banner,
-    binding,
-    updateUserInfo
-  };
   const store = createStore({
     state: {
       phoneInfo: {
@@ -3928,7 +3953,9 @@ if (uni.restoreGlobal) {
         maxtime: 0,
         playStatus: false,
         musicIndex: 0,
-        rando: unistroage.getStorage("rando")
+        rando: unistroage.getStorage("rando"),
+        currentTime: 0,
+        percent: 0
       },
       musicInfo: {
         musicName: "\u7545\u4EAB\u751F\u6D3B",
@@ -3998,6 +4025,7 @@ if (uni.restoreGlobal) {
         }).then((res) => {
           state.musicPlay.playMusicURL = res.data.data[0];
         });
+        state.musicPlay.maxtime = state.musicPlay.playMusicURL.time;
         state.musicPlay.player.src = state.musicPlay.playMusicURL.url;
       },
       async previous(state) {
@@ -4023,6 +4051,7 @@ if (uni.restoreGlobal) {
         }).then((res) => {
           state.musicPlay.playMusicURL = res.data.data[0];
         });
+        state.musicPlay.maxtime = state.musicPlay.playMusicURL.time;
         state.musicPlay.player.src = state.musicPlay.playMusicURL.url;
       },
       stop(state, val) {
@@ -7431,6 +7460,14 @@ if (uni.restoreGlobal) {
   }
   var __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$3], ["__scopeId", "data-v-abe12412"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue"]]);
   const pages = [
+    {
+      path: "pages/main/main",
+      style: {
+        navigationBarTitleText: "main",
+        enablePullDownRefresh: false,
+        navigationStyle: "custom"
+      }
+    },
     {
       path: "pages/mainEntrance/mainEntrance",
       style: {
@@ -11583,9 +11620,10 @@ if (uni.restoreGlobal) {
     setup(__props) {
       let musicId = vue.ref("");
       let statusBarHeight = vue.ref("");
-      let pgList = vue.ref([0, 0, 0, 0]);
+      vue.ref([0, 0, 0, 0]);
       let loadingStatus = vue.ref(true);
       let playbackstate = vue.ref(false);
+      vue.ref(0);
       onLoad((option) => {
         statusBarHeight.value = store.state.phoneInfo.statusbarHeight;
         randomBFStatus.value = unistroage.getStorage("rando");
@@ -11625,6 +11663,7 @@ if (uni.restoreGlobal) {
         if (bool) {
           let playMusic = store.state.musicPlay.playMusicList[store.state.musicPlay.musicIndex];
           if (playMusic.id != musicId.value) {
+            store.state.musicPlay.percent = 0;
             store.commit("PlayOutMusic", musicInfo.value);
           } else {
             store.commit("continueplay");
@@ -11700,15 +11739,15 @@ if (uni.restoreGlobal) {
             ]),
             vue.createElementVNode("view", { class: "bottom_item" }, [
               vue.createElementVNode("view", { class: "progress" }, [
-                vue.createElementVNode("view", { class: "startTime" }, "\u65F6\u95F4"),
+                vue.createElementVNode("view", { class: "startTime" }),
                 vue.createElementVNode("view", { class: "progress-box" }, [
                   vue.createElementVNode("progress", {
-                    percent: vue.unref(pgList)[3],
+                    percent: !vue.unref(playbackstate) ? _ctx.percent : vue.unref(store).state.musicPlay.percent,
                     activeColor: "#10AEFF",
                     "stroke-width": "3"
                   }, null, 8, ["percent"])
                 ]),
-                vue.createElementVNode("view", { class: "endTime" }, "\u603B\u65F6\u95F4")
+                vue.createElementVNode("view", { class: "endTime" })
               ]),
               vue.createElementVNode("view", { class: "iconMeaus" }, [
                 vue.createElementVNode("view", { class: "" }, [
@@ -11931,6 +11970,7 @@ if (uni.restoreGlobal) {
     }
   };
   var PagesSettingUserInfoUserInfo = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3ecdb927"], ["__file", "/Users/fox/project/uniapp/lok\u97F3\u4E50/pages/setting/userInfo/userInfo.vue"]]);
+  __definePage("pages/main/main", PagesMainMain);
   __definePage("pages/mainEntrance/mainEntrance", PagesMainEntranceMainEntrance);
   __definePage("pages/trending/charts/charts", PagesTrendingChartsCharts);
   __definePage("pages/login/login/login", PagesLoginLoginLogin);
@@ -12014,8 +12054,6 @@ if (uni.restoreGlobal) {
         });
       }
     },
-    watch() {
-    },
     onLaunch: function() {
       this.keepAlive = requireNativePlugin("Ba-KeepAlive");
       this.$store.state.musicPlay.player.onEnded(() => {
@@ -12034,6 +12072,9 @@ if (uni.restoreGlobal) {
       } else {
         this.$store.commit("musicPlayStatus", true);
       }
+      this.$store.state.musicPlay.player.onTimeUpdate(() => {
+        this.$store.state.musicPlay.percent = this.$store.state.musicPlay.player.currentTime / this.$store.state.musicPlay.player.duration * 100;
+      });
     },
     onHide: function() {
     }

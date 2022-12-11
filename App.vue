@@ -77,9 +77,6 @@ import store from './store';
 			},
 
 		},
-		watch(){
-			
-		},
 		onLaunch: function() {
 			// app打包注释 删掉return
 			// return
@@ -94,7 +91,6 @@ import store from './store';
 			this.$store.state.musicPlay.player.onPlay(() => {
 				this.isRunning()
 			})
-		
 		},
 		onShow: function() {
 			if(this.$store.state.musicPlay.player.paused){
@@ -102,6 +98,9 @@ import store from './store';
 			}else{
 				this.$store.commit("musicPlayStatus",true)
 			}
+			this.$store.state.musicPlay.player.onTimeUpdate(() => {
+				this.$store.state.musicPlay.percent=this.$store.state.musicPlay.player.currentTime/this.$store.state.musicPlay.player.duration*100
+			})
 		},
 		onHide: function() {}
 	}
